@@ -1,6 +1,6 @@
 /*
     Created by Tim Theisinger on 19.08.2018
-    License: /LICENSE
+    License: /LICENSE.txt
 */
 
 import 'package:english_words/english_words.dart';

@@ -1,6 +1,6 @@
 /*
     Created by Tim Theisinger on 19.08.2018
-    License: /LICENSE.txt
+    License: This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
 import 'package:english_words/english_words.dart';

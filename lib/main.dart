@@ -3,38 +3,30 @@
     License: This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:english_words/english_words.dart';
+import 'dart:async';
+
+import 'package:erasmus_app/screens/app_home/app_home.dart';
+import 'package:erasmus_app/screens/personal_info/personal_info.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  Future.delayed(const Duration(seconds: 1));
+  runApp(App());
+}
 
-class MyApp extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final wordPair = WordPair.random();
     return MaterialApp(
-      title: 'Welcome to Flutter',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Welcome to Flutter'),
-        ),
-        body: Center(
-          child: Text(wordPair.asPascalCase),
-        ),
+      title: 'Erasmus',
+      home: PersonalInfoScreen(),
+      routes: <String, WidgetBuilder>{
+        '/home': (BuildContext context) => new AppHomeScreen()
+      },
+      theme: new ThemeData(
+        primaryColor: Colors.blueAccent,
+        buttonColor: Colors.blue,
       ),
     );
-  }
-}
-
-class RandomWords extends StatefulWidget {
-  @override
-  RandomWordsState createState() => new RandomWordsState();
-}
-
-class RandomWordsState extends State<RandomWords> {
-  @override
-  Widget build(BuildContext context) {
-    final wordPair = WordPair.random();
-    return Text(wordPair.asPascalCase);
   }
 }

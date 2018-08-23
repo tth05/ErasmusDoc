@@ -13,7 +13,9 @@ class AppHomeState extends State<AppHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Home"), centerTitle: true),
+      appBar: AppBar(title: Text("Home"),
+        centerTitle: true,
+        leading: IconButton(icon: Icon(Icons.person), onPressed: () => Navigator.of(context).pushNamed("/")),),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

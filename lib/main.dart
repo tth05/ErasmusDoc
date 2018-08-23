@@ -8,6 +8,7 @@ import 'dart:async';
 import 'package:erasmus_app/screens/app_home/app_home.dart';
 import 'package:erasmus_app/screens/personal_info/personal_info.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   Future.delayed(const Duration(seconds: 1));
@@ -27,6 +28,14 @@ class App extends StatelessWidget {
         primaryColor: Colors.blueAccent,
         buttonColor: Colors.blue,
       ),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('de', 'DE'),
+      ],
     );
   }
 }

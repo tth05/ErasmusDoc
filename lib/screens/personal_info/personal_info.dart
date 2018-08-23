@@ -7,33 +7,50 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class PersonalInfoScreen extends StatelessWidget {
-  var _fieldFont = TextStyle(fontSize: 15.0, color: Colors.black);
-  var _textFont = TextStyle(fontSize: 20.0);
+class PersonalInfoScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => PersonalInfoScreenState();
+}
+
+class PersonalInfoScreenState extends State<PersonalInfoScreen> {
+  final _fieldFont = TextStyle(fontSize: 15.0, color: Colors.black);
+  final _textFont = TextStyle(fontSize: 20.0);
+
+  final _formKey = GlobalKey<FormState>();
+
+  var _savedDate = DateTime.now();
 
   Widget buildTitle(String title) {
-    return ListTile(
-      contentPadding: EdgeInsets.only(top: 10.0),
-      title: Text(
-        title,
-        style: _textFont,
-      ),
+    return Text(
+      title,
+      style: _textFont,
     );
   }
 
   Widget buildTextField() {
-    return TextField(
+    return TextFormField(
       style: _fieldFont,
+      validator: (s) {
+        if (s.isEmpty) {
+          return "Bitte fülle dieses Feld aus.";
+        }
+      },
     );
   }
 
   Future<DateTime> waitForDatePicker(BuildContext context) {
     return showDatePicker(
         context: context,
-        initialDate: DateTime.now(),
+        locale: Locale("de"),
+        initialDate: _savedDate,
         firstDate: DateTime(1900),
         lastDate: DateTime.now(),
         initialDatePickerMode: DatePickerMode.year);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -43,40 +60,59 @@ class PersonalInfoScreen extends StatelessWidget {
         title: Text("Daten"),
         centerTitle: true,
       ),
-      body: Container(
-        padding: EdgeInsets.all(20.0),
-        child: Column(children: <Widget>[
-          Flexible(
-            child: ListView(
-              padding: EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
-              children: <Widget>[
-                buildTitle("Name:"),
-                buildTextField(),
-                buildTitle("Geburtsdatum:"),
-                RaisedButton(
-                  child: Text("Auswählen"),
-                  color: Theme.of(context).buttonColor,
-                  splashColor: Colors.lightBlueAccent,
-                  onPressed: () {
-                    Future<DateTime> result = waitForDatePicker(context);
-                    if (result == null) return;
-                    result.then((dateTime) => print(dateTime));
-                  },
+      body: Form(
+        key: _formKey,
+        child: Container(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            children: <Widget>[
+              Flexible(
+                child: ListView(
+                  padding: EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
+                  children: <Widget>[
+                    buildTitle("Name:"),
+                    buildTextField(),
+                    Divider(),
+                    buildTitle("Wohnort:"),
+                    buildTextField(),
+                    Divider(),
+                    buildTitle("Über mich:"),
+                    buildTextField(),
+                    Divider(),
+                    ListTile(
+                      title: buildTitle("Geburtsdatum:"),
+                      subtitle: Text(_savedDate.toString().substring(0, 10)),
+                      contentPadding: EdgeInsets.all(0.0),
+                      onTap: () {
+                        Future<DateTime> result = waitForDatePicker(context);
+                        if (result == null) return;
+                        result.then((dateTime) {
+                          if (dateTime == null) return;
+                          setState(() {
+                            _savedDate = dateTime;
+                          });
+                        });
+                      },
+                    ),
+                  ],
                 ),
-                buildTitle("Wohnort:"),
-                buildTextField(),
-                buildTitle("Über mich:"),
-                buildTextField(),
-              ],
-            ),
+              ),
+              FlatButton(
+                child: Text("Speichern"),
+                color: Theme
+                    .of(context)
+                    .buttonColor,
+                splashColor: Colors.lightBlueAccent,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    Navigator.of(context).pushReplacementNamed("/home");
+                  }
+                },
+              ),
+            ],
           ),
-          RaisedButton(
-            child: Text("Fertig"),
-            color: Theme.of(context).buttonColor,
-            splashColor: Colors.lightBlueAccent,
-            onPressed: () => Navigator.of(context).pushReplacementNamed("/home"),
-          ),
-        ]),
+        ),
       ),
     );
   }

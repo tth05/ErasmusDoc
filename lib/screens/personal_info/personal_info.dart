@@ -27,9 +27,10 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
     );
   }
 
-  Widget buildTextField() {
+  Widget buildTextField({bool focus = true}) {
     return TextFormField(
       style: _fieldFont,
+      autofocus: focus,
       validator: (s) {
         if (s.isEmpty) {
           return "Bitte fülle dieses Feld aus.";
@@ -59,6 +60,16 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
       appBar: AppBar(
         title: Text("Daten"),
         centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () {
+              if (_formKey.currentState.validate()) {
+                Navigator.of(context).pushReplacementNamed("/home");
+              }
+            },
+          ),
+        ],
       ),
       body: Form(
         key: _formKey,
@@ -71,7 +82,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                   padding: EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
                   children: <Widget>[
                     buildTitle("Name:"),
-                    buildTextField(),
+                    buildTextField(focus: true),
                     Divider(),
                     buildTitle("Wohnort:"),
                     buildTextField(),
@@ -97,19 +108,19 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                   ],
                 ),
               ),
-              FlatButton(
-                child: Text("Speichern"),
-                color: Theme
-                    .of(context)
-                    .buttonColor,
-                splashColor: Colors.lightBlueAccent,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                onPressed: () {
-                  if (_formKey.currentState.validate()) {
-                    Navigator.of(context).pushReplacementNamed("/home");
-                  }
-                },
-              ),
+//              FlatButton(
+//                child: Text("Speichern"),
+//                color: Theme
+//                    .of(context)
+//                    .buttonColor,
+//                splashColor: Colors.lightBlueAccent,
+//                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+//                onPressed: () {
+//                  if (_formKey.currentState.validate()) {
+//                    Navigator.of(context).pushReplacementNamed("/home");
+//                  }
+//                },
+//              ),
             ],
           ),
         ),

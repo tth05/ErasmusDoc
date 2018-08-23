@@ -1,4 +1,4 @@
-package com.example.erasmusapp;
+package com.github.kotliniscool.erasmusapp;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
-  Future.delayed(const Duration(seconds: 1));
-  runApp(App());
+  //Startup delay to show launch image
+  Future.delayed(const Duration(seconds: 4)).whenComplete(() => runApp(App()));
 }
 
 class App extends StatelessWidget {

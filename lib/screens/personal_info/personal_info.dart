@@ -5,6 +5,7 @@
 
 import 'dart:async';
 
+import 'package:erasmus_app/globals.dart' as globals;
 import 'package:flutter/material.dart';
 
 class PersonalInfoScreen extends StatefulWidget {
@@ -15,6 +16,7 @@ class PersonalInfoScreen extends StatefulWidget {
 class PersonalInfoScreenState extends State<PersonalInfoScreen> {
   final _fieldFont = TextStyle(fontSize: 15.0, color: Colors.black);
   final _textFont = TextStyle(fontSize: 20.0);
+  final schools = ["Hessenwaldschule", "Schule 2"];
 
   final _formKey = GlobalKey<FormState>();
 
@@ -27,7 +29,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
     );
   }
 
-  Widget buildTextField({bool focus = true}) {
+  Widget buildTextField({bool focus = false}) {
     return TextFormField(
       style: _fieldFont,
       autofocus: focus,
@@ -82,14 +84,30 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                   padding: EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
                   children: <Widget>[
                     buildTitle("Name:"),
-                    buildTextField(focus: true),
-                    Divider(),
+                    buildTextField(focus: false),
+                    Divider(
+                      color: Colors.white,
+                    ),
                     buildTitle("Wohnort:"),
                     buildTextField(),
-                    Divider(),
+                    Divider(
+                      color: Colors.white,
+                    ),
                     buildTitle("Über mich:"),
-                    buildTextField(),
-                    Divider(),
+                    TextFormField(
+                      style: _fieldFont,
+                      maxLines: 1,
+                      maxLengthEnforced: true,
+                      maxLength: 500,
+                      validator: (s) {
+                        if (s.isEmpty) {
+                          return "Bitte fülle dieses Feld aus.";
+                        }
+                      },
+                    ),
+                    Divider(
+                      color: Colors.white,
+                    ),
                     ListTile(
                       title: buildTitle("Geburtsdatum:"),
                       subtitle: Text(_savedDate.toString().substring(0, 10)),
@@ -102,6 +120,29 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                           setState(() {
                             _savedDate = dateTime;
                           });
+                        });
+                      },
+                    ),
+                    Divider(
+                      color: Colors.white,
+                    ),
+                    DropdownButton(
+                      items: schools.map((String val) {
+                        return DropdownMenuItem(
+                          value: val,
+                          child: Text(val),
+                        );
+                      }).toList(),
+                      hint: Text(
+                        globals.selectedSchool == "" ? "Schule" : globals.selectedSchool,
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: globals.selectedSchool == "" ? Colors.grey : Colors.black,
+                        ),
+                      ),
+                      onChanged: (String s) {
+                        setState(() {
+                          globals.selectedSchool = s;
                         });
                       },
                     ),

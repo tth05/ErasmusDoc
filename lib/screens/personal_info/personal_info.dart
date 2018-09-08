@@ -3,9 +3,7 @@
     License: This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'dart:async';
-
-import 'package:erasmus_app/screens/personal_info/widgets/select_school_dropdown.dart';
+import 'package:erasmus_app/screens/personal_info/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class PersonalInfoScreen extends StatefulWidget {
@@ -18,10 +16,6 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
   final _textFont = TextStyle(fontSize: 20.0);
 
   final _formKey = GlobalKey<FormState>();
-
-  var _savedDate = DateTime.now();
-
-  String get savedDateAsString => _savedDate.toString().substring(0, 10);
 
   Widget buildTitle(String title) {
     return Text(
@@ -40,16 +34,6 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
         }
       },
     );
-  }
-
-  Future<DateTime> waitForDatePicker(BuildContext context) {
-    return showDatePicker(
-        context: context,
-        locale: Locale("de"),
-        initialDate: _savedDate,
-        firstDate: DateTime(1900),
-        lastDate: DateTime.now(),
-        initialDatePickerMode: DatePickerMode.year);
   }
 
   @override
@@ -109,21 +93,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                     Divider(
                       color: Colors.white,
                     ),
-                    ListTile(
-                      title: buildTitle("Geburtsdatum:"),
-                      subtitle: Text(savedDateAsString),
-                      contentPadding: EdgeInsets.all(0.0),
-                      onTap: () {
-                        Future<DateTime> result = waitForDatePicker(context);
-                        if (result == null) return;
-                        result.then((dateTime) {
-                          if (dateTime == null) return;
-                          setState(() {
-                            _savedDate = dateTime;
-                          });
-                        });
-                      },
-                    ),
+                    BirthdaySelector(),
                     Divider(
                       color: Colors.white,
                     ),
@@ -131,19 +101,6 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                   ],
                 ),
               ),
-//              FlatButton(
-//                child: Text("Speichern"),
-//                color: Theme
-//                    .of(context)
-//                    .buttonColor,
-//                splashColor: Colors.lightBlueAccent,
-//                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
-//                onPressed: () {
-//                  if (_formKey.currentState.validate()) {
-//                    Navigator.of(context).pushReplacementNamed("/home");
-//                  }
-//                },
-//              ),
             ],
           ),
         ),

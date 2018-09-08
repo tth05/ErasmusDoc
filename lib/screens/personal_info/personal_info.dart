@@ -5,7 +5,7 @@
 
 import 'dart:async';
 
-import 'package:erasmus_app/globals.dart' as globals;
+import 'package:erasmus_app/screens/personal_info/widgets/select_school_dropdown.dart';
 import 'package:flutter/material.dart';
 
 class PersonalInfoScreen extends StatefulWidget {
@@ -16,11 +16,12 @@ class PersonalInfoScreen extends StatefulWidget {
 class PersonalInfoScreenState extends State<PersonalInfoScreen> {
   final _fieldFont = TextStyle(fontSize: 15.0, color: Colors.black);
   final _textFont = TextStyle(fontSize: 20.0);
-  final schools = ["Hessenwaldschule", "Schule 2"];
 
   final _formKey = GlobalKey<FormState>();
 
   var _savedDate = DateTime.now();
+
+  String get savedDateAsString => _savedDate.toString().substring(0, 10);
 
   Widget buildTitle(String title) {
     return Text(
@@ -110,7 +111,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                     ),
                     ListTile(
                       title: buildTitle("Geburtsdatum:"),
-                      subtitle: Text(_savedDate.toString().substring(0, 10)),
+                      subtitle: Text(savedDateAsString),
                       contentPadding: EdgeInsets.all(0.0),
                       onTap: () {
                         Future<DateTime> result = waitForDatePicker(context);
@@ -126,26 +127,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                     Divider(
                       color: Colors.white,
                     ),
-                    DropdownButton(
-                      items: schools.map((String val) {
-                        return DropdownMenuItem(
-                          value: val,
-                          child: Text(val),
-                        );
-                      }).toList(),
-                      hint: Text(
-                        globals.selectedSchool == "" ? "Schule" : globals.selectedSchool,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          color: globals.selectedSchool == "" ? Colors.grey : Colors.black,
-                        ),
-                      ),
-                      onChanged: (String s) {
-                        setState(() {
-                          globals.selectedSchool = s;
-                        });
-                      },
-                    ),
+                    SelectSchoolDropdownButton(),
                   ],
                 ),
               ),

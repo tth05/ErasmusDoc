@@ -6,3 +6,5 @@
 library erasmus_app.globals;
 
 var selectedSchool = "";
+
+final schools = ["Hessenwaldschule", "Schule 2"];

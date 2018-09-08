@@ -6,7 +6,9 @@
 library erasmus_app.globals;
 
 var selectedSchool = "";
+final schools = ["Hessenwaldschule", "Schule 2"];
 
+//userBirthdayDate - Start
 var _userBirthdayDate;
 
 set userBirthdayDate(DateTime date) => _userBirthdayDate = date;
@@ -14,5 +16,4 @@ set userBirthdayDate(DateTime date) => _userBirthdayDate = date;
 DateTime get userBirthdayDate => _userBirthdayDate == null ? (_userBirthdayDate = DateTime.now()) : _userBirthdayDate;
 
 String get userBirthdayAsString => userBirthdayDate.toString().substring(0, 10);
-
-final schools = ["Hessenwaldschule", "Schule 2"];
+//userBirthdayDate - End

@@ -3,6 +3,7 @@
     License: This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
+import 'package:erasmus_app/globals.dart' as globals;
 import 'package:erasmus_app/screens/personal_info/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -58,6 +59,8 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
           ),
         ],
       ),
+      //TODO: Add maxLength checks for all TextFields
+      //TODO: Disallow special characters to not break anything for all TextFields
       body: Form(
         key: _formKey,
         child: Container(
@@ -81,9 +84,6 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                     buildTitle("Über mich:"),
                     TextFormField(
                       style: _fieldFont,
-                      maxLines: 1,
-                      maxLengthEnforced: true,
-                      maxLength: 500,
                       validator: (s) {
                         if (s.isEmpty) {
                           return "Bitte fülle dieses Feld aus.";
@@ -93,7 +93,9 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                     Divider(
                       color: Colors.white,
                     ),
-                    BirthdaySelector(),
+                    BirthdaySelector(
+                      initialValue: globals.userBirthdayDate,
+                    ),
                     Divider(
                       color: Colors.white,
                     ),

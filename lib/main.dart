@@ -27,6 +27,7 @@ class App extends StatelessWidget {
       theme: new ThemeData(
         primaryColor: Colors.blueAccent,
         buttonColor: Colors.blue,
+        errorColor: Colors.red[700],
       ),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,

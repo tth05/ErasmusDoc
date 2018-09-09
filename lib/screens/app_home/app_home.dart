@@ -21,7 +21,7 @@ class AppHomeState extends State<AppHomeScreen> {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.person),
-          onPressed: () => Navigator.of(context).pushNamed("/"),
+          onPressed: () => Navigator.of(context).pushNamed("/profile"),
         ),
         actions: <Widget>[
           IconButton(

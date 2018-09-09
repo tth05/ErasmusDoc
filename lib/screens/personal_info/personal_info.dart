@@ -53,7 +53,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
             icon: Icon(Icons.save),
             onPressed: () {
               if (_formKey.currentState.validate()) {
-                Navigator.of(context).pushReplacementNamed("/home");
+                Navigator.of(context).pushReplacementNamed("/");
               }
             },
           ),

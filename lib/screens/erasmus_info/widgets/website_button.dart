@@ -12,20 +12,17 @@ class ErasmusWebsiteRaisedButton extends StatelessWidget {
     return Row(
       children: <Widget>[
         Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: RaisedButton(
-              padding: EdgeInsets.all(10.0),
-              elevation: 5.0,
-              child: Text(
-                "Zur Webseite",
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: Colors.white,
-                ),
+          child: RaisedButton(
+            padding: EdgeInsets.all(10.0),
+            elevation: 5.0,
+            child: Text(
+              "Zur Webseite",
+              style: TextStyle(
+                fontSize: 25.0,
+                color: Colors.white,
               ),
-              onPressed: () => URLUtil.launchURL("https://erasmusplus.de"),
             ),
+            onPressed: () => URLUtil.launchURL("https://erasmusplus.de"),
           ),
         ),
       ],

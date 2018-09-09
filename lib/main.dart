@@ -7,6 +7,7 @@ import 'dart:async';
 
 import 'package:erasmus_app/screens/app_home/app_home.dart';
 import 'package:erasmus_app/screens/erasmus_info/erasmus_info.dart';
+import 'package:erasmus_app/screens/personal_info/personal_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -22,7 +23,7 @@ class App extends StatelessWidget {
       title: 'Erasmus',
       home: AppHomeScreen(),
       routes: <String, WidgetBuilder>{
-        '/home': (BuildContext context) => new AppHomeScreen(),
+        '/profile': (BuildContext context) => new PersonalInfoScreen(),
         '/erasmus_info': (BuildContext context) => new ErasmusInfoScreen()
       },
       theme: new ThemeData(

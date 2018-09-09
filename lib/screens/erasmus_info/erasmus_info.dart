@@ -12,12 +12,39 @@ class ErasmusInfoScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Erasmus-Projektinfo"),
+        centerTitle: true,
       ),
       body: Center(
-        child: Column(
-          children: <Widget>[
-            ErasmusWebsiteRaisedButton(),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: <Widget>[
+                      Image.asset(
+                        "assets/images/erasmus_logo.png",
+                        fit: BoxFit.scaleDown,
+                      ),
+                      Divider(color: Colors.grey[700],),
+                      Text(
+                        "Das Erasmus-Programm ist ein Förderprogramm der Europäischen Union. Sein Name erinnert an Erasmus von "
+                            "Rotterdam, einen europäisch gebildeten Humanisten der Renaissance. Es wurde zum weltweit größten "
+                            "Förderprogramm von Auslandsaufenthalten an Universitäten, über Europa hinaus erweitert seit dem Jahr "
+                            "2003 durch das Zusatzprogramm Erasmus Mundus, und finanzierte bis dahin in seinen ersten rund 15 Jahren "
+                            "etwa 1 Million Stipendien. Für andere Zielgruppen folgte beispielsweise Erasmus für Jungunternehmer. "
+                            "Seit dem Jahr 2014 ist Erasmus mit anderen Programmen zu Erasmus+ verschmolzen.",
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ErasmusWebsiteRaisedButton(),
+            ],
+          ),
         ),
       ),
     );

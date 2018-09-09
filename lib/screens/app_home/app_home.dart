@@ -23,6 +23,13 @@ class AppHomeState extends State<AppHomeScreen> {
           icon: Icon(Icons.person),
           onPressed: () => Navigator.of(context).pushNamed("/"),
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.menu),
+            color: Colors.white,
+            onPressed: () => Navigator.of(context).pushNamed("/"),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},

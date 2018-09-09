@@ -6,8 +6,7 @@
 import 'package:url_launcher/url_launcher.dart';
 
 class URLUtil {
-  static void launchURL() async {
-    const url = 'https://erasmusplus.de';
+  static void launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {

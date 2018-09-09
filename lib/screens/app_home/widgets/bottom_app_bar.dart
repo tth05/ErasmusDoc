@@ -37,7 +37,7 @@ class ErasmusBottomAppBar extends StatelessWidget {
           IconButton(
             color: Colors.white,
             icon: Icon(Icons.arrow_forward_ios),
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).pushNamed("/erasmus_info"),
           ),
         ],
       ),

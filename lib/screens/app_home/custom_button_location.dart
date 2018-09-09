@@ -7,6 +7,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+//The origin CenterDockedFloatingActionButtonLocation is sadly private. That's why this is needed
 class CustomCenterDockedFloatingActionButtonLocation extends FloatingActionButtonLocation {
   final yOffset;
 

@@ -1,7 +1,8 @@
 /*
-    Created by Tim Theisinger on 22.08.2018
-    License: This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
+    Copyright (C) 2018-2019 Tim Theisinger
+    This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
+
 import 'package:erasmus_app/globals.dart' as globals;
 import 'package:erasmus_app/screens/app_home/custom_button_location.dart';
 import 'package:erasmus_app/screens/app_home/widgets/widgets.dart';

@@ -32,11 +32,11 @@ class BirthdaySelector extends FormField<DateTime> {
             onTap: () {
               //TODO: Add custom DatePicker that doesn't show the buttons for smaller devices
               Future<DateTime> result = showDatePicker(
-                  context: state.context,
-                  locale: Locale("de"),
-                  initialDate: globals.userBirthdayDate,
-                  firstDate: DateTime(1900),
-                  lastDate: DateTime.now(),
+                context: state.context,
+                locale: Locale("de"),
+                initialDate: globals.userBirthdayDate,
+                firstDate: DateTime(1900),
+                lastDate: DateTime.now(),
                 initialDatePickerMode: DatePickerMode.year,
               );
               if (result == null) return;

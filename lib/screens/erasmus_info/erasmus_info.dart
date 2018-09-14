@@ -28,7 +28,9 @@ class ErasmusInfoScreen extends StatelessWidget {
                         "assets/images/erasmus_logo.png",
                         fit: BoxFit.scaleDown,
                       ),
-                      Divider(color: Colors.grey[700],),
+                      Divider(
+                        color: Colors.grey[700],
+                      ),
                       Text(
                         "Das Erasmus-Programm ist ein Förderprogramm der Europäischen Union. Sein Name erinnert an Erasmus von "
                             "Rotterdam, einen europäisch gebildeten Humanisten der Renaissance. Es wurde zum weltweit größten "

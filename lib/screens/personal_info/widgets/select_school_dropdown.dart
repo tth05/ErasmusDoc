@@ -11,8 +11,7 @@ class SelectSchoolDropdownButton extends FormField<String> {
       : super(
     onSaved: onSaved,
     validator: (value) {
-      if (value == null)
-        return 'Bitte wähle deine Schule aus.';
+      if (value == null) return 'Bitte wähle deine Schule aus.';
     },
     initialValue: initialValue,
     autovalidate: false,

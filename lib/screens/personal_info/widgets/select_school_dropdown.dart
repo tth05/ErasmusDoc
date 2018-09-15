@@ -3,6 +3,7 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
+import 'package:erasmus_app/data/school.dart';
 import 'package:erasmus_app/globals.dart' as globals;
 import 'package:flutter/material.dart';
 
@@ -20,10 +21,10 @@ class SelectSchoolDropdownButton extends FormField<String> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           DropdownButton(
-            items: globals.schools.map((String val) {
+            items: globals.schools.map((School val) {
               return DropdownMenuItem(
                 value: val,
-                child: Text(val),
+                child: Text(val.translatedName),
               );
             }).toList(),
             hint: Text(
@@ -33,8 +34,8 @@ class SelectSchoolDropdownButton extends FormField<String> {
                 color: globals.selectedSchool == "" ? Colors.grey : Colors.black,
               ),
             ),
-            onChanged: (String s) {
-              state.didChange(globals.selectedSchool = s);
+            onChanged: (School s) {
+              state.didChange(globals.selectedSchool = s.translatedName);
             },
           ),
           state.hasError

@@ -15,4 +15,9 @@ class School extends Object with _$SchoolSerializerMixin {
   School(this.fileName, this.translatedName, this.address);
 
   factory School.fromJson(Map<String, dynamic> json) => _$SchoolFromJson(json);
+
+  @override
+  String toString() {
+    return "fileName: '$fileName', translatedName: '$translatedName', address: '$address'";
+  }
 }

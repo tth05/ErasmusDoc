@@ -22,8 +22,7 @@ class AppHomeState extends State<AppHomeScreen> {
     drawerList.add(ListTile(title: Text("Schulen", style: TextStyle(fontSize: 20.0))));
     drawerList.add(Divider());
     drawerList.addAll(globals.schools.map(
-          (s) =>
-          ListTile(
+      (s) => ListTile(
             title: Text("$s"),
           ),
     ));
@@ -31,8 +30,7 @@ class AppHomeState extends State<AppHomeScreen> {
     drawerList.add(ListTile(title: Text("Länder", style: TextStyle(fontSize: 20.0))));
     drawerList.add(Divider());
     drawerList.addAll(globals.countries.map(
-          (s) =>
-          ListTile(
+      (s) => ListTile(
             title: Text("$s"),
           ),
     ));

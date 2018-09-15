@@ -11,8 +11,11 @@ import 'package:erasmus_app/screens/personal_info/personal_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'globals.dart' as globals;
+
 void main() {
   //Startup delay to show launch image
+  globals.init();
   Future.delayed(const Duration(seconds: 4)).whenComplete(() => runApp(App()));
 }
 

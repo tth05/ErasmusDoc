@@ -21,6 +21,6 @@ class Country extends Object with _$CountrySerializerMixin {
 
   @override
   String toString() {
-    return "fileName: '$fileName', translatedName: '$translatedName', orientation: '$orientation', schoolSystemInfo: '$schoolSystemInfo'";
+    return "(fileName: '$fileName', translatedName: '$translatedName', orientation: '$orientation', schoolSystemInfo: '$schoolSystemInfo')";
   }
 }

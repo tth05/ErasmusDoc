@@ -38,6 +38,7 @@ void _loadSchools() async {
     final data = await rootBundle.loadString("assets/schools/$s/data.json");
     schools.add(School.fromJson(json.decode(data)));
   }
+  print(schools);
 }
 
 void _loadCountries() async {

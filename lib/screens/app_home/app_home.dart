@@ -19,11 +19,12 @@ class AppHomeState extends State<AppHomeScreen> {
   @override
   void initState() {
     super.initState();
+    print(globals.schools);
     drawerList.add(ListTile(title: Text("Schulen", style: TextStyle(fontSize: 20.0))));
     drawerList.add(Divider());
     drawerList.addAll(globals.schools.map(
       (s) => ListTile(
-            title: Text("$s"),
+        title: Text("${s.translatedName}"),
           ),
     ));
     drawerList.add(Divider(color: Colors.white));
@@ -31,7 +32,7 @@ class AppHomeState extends State<AppHomeScreen> {
     drawerList.add(Divider());
     drawerList.addAll(globals.countries.map(
       (s) => ListTile(
-            title: Text("$s"),
+        title: Text("${s.translatedName}"),
           ),
     ));
   }

@@ -18,6 +18,6 @@ class School extends Object with _$SchoolSerializerMixin {
 
   @override
   String toString() {
-    return "fileName: '$fileName', translatedName: '$translatedName', address: '$address'";
+    return "(fileName: '$fileName', translatedName: '$translatedName', address: '$address')";
   }
 }

@@ -7,15 +7,14 @@ library erasmus_app.globals;
 
 import 'dart:convert';
 
+import 'package:erasmus_app/data/country.dart';
 import 'package:erasmus_app/data/school.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 //TODO: Make a class for PersonalData
 var selectedSchool = "";
-//TODO: Load schools and countries from assets
-var schools = <School>[];
-
-final countries = ["Deutschland", "Griechenland", "Litauen", "Türkei", "Slowakei"];
+final schools = <School>[];
+final countries = <Country>[];
 
 //userBirthdayDate - Start
 var _userBirthdayDate;
@@ -28,16 +27,24 @@ String get userBirthdayAsString => userBirthdayDate.toString().substring(0, 10);
 //userBirthdayDate - End
 
 void init() {
-  loadSchools();
+  _loadSchools();
+  _loadCountries();
 }
 
-void loadSchools() async {
+void _loadSchools() async {
   String load = await rootBundle.loadString("assets/schools/all_schools.json");
   List<String> allSchools = List<String>.from(json.decode(load)["schools"]);
   for (String s in allSchools) {
     final data = await rootBundle.loadString("assets/schools/$s/data.json");
     schools.add(School.fromJson(json.decode(data)));
   }
+}
 
-  print("Schools: $schools");
+void _loadCountries() async {
+  String load = await rootBundle.loadString("assets/countries/all_countries.json");
+  List<String> allCountries = List<String>.from(json.decode(load)["countries"]);
+  for (String s in allCountries) {
+    final data = await rootBundle.loadString("assets/countries/$s/data.json");
+    countries.add(Country.fromJson(json.decode(data)));
+  }
 }

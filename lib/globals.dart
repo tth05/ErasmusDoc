@@ -5,8 +5,16 @@
 
 library erasmus_app.globals;
 
+//TODO: Make a class for PersonalData
 var selectedSchool = "";
-final schools = ["Hessenwaldschule", "Schule 2"];
+//TODO: Load schools from assets
+final schools = [
+  "Hessenwaldschule",
+  "2. Gymnasium Chalkida",
+  "Juliaus Janonio gimnazija",
+  "Muhittin Mustafa Böcek Anadolu Lisesi",
+  "Gymnázium Grässlingová 18"
+];
 
 //userBirthdayDate - Start
 var _userBirthdayDate;

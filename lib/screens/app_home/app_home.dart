@@ -24,7 +24,7 @@ class AppHomeState extends State<AppHomeScreen> {
     drawerList.add(Divider());
     drawerList.addAll(globals.schools.map(
       (s) => ListTile(
-        title: Text("${s.translatedName}"),
+            title: Text("${s.translatedName}"),
           ),
     ));
     drawerList.add(Divider(color: Colors.white));
@@ -32,7 +32,7 @@ class AppHomeState extends State<AppHomeScreen> {
     drawerList.add(Divider());
     drawerList.addAll(globals.countries.map(
       (s) => ListTile(
-        title: Text("${s.translatedName}"),
+            title: Text("${s.translatedName}"),
           ),
     ));
   }

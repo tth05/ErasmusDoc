@@ -3,8 +3,6 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-library erasmus_app.globals;
-
 import 'dart:convert';
 
 import 'package:erasmus_app/data/country.dart';
@@ -33,17 +31,16 @@ void init() {
 
 void _loadSchools() async {
   String load = await rootBundle.loadString("assets/schools/all_schools.json");
-  List<String> allSchools = List<String>.from(json.decode(load)["schools"]);
+  final allSchools = List<String>.from(json.decode(load)["schools"]);
   for (String s in allSchools) {
     final data = await rootBundle.loadString("assets/schools/$s/data.json");
     schools.add(School.fromJson(json.decode(data)));
   }
-  print(schools);
 }
 
 void _loadCountries() async {
   String load = await rootBundle.loadString("assets/countries/all_countries.json");
-  List<String> allCountries = List<String>.from(json.decode(load)["countries"]);
+  final allCountries = List<String>.from(json.decode(load)["countries"]);
   for (String s in allCountries) {
     final data = await rootBundle.loadString("assets/countries/$s/data.json");
     countries.add(Country.fromJson(json.decode(data)));

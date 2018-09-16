@@ -19,7 +19,6 @@ class AppHomeState extends State<AppHomeScreen> {
   @override
   void initState() {
     super.initState();
-    print(globals.schools);
     drawerList.add(ListTile(title: Text("Schulen", style: TextStyle(fontSize: 20.0))));
     drawerList.add(Divider());
     drawerList.addAll(globals.schools.map(

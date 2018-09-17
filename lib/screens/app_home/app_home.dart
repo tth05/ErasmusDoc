@@ -25,10 +25,10 @@ class AppHomeState extends State<AppHomeScreen> {
     drawerList.addAll(globals.schools.map(
       (s) => ListTile(
             title: Text("${s.translatedName}"),
-        leading: Image.asset("assets/schools/${s.fileName}/small_logo.png"),
+            leading: Image.asset("assets/schools/${s.fileName}/small_logo.png"),
 //            leading: Image.asset("assets/schools/hessenwaldschule/small_logo.png"),
-        onTap: () =>
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(s))),
+            onTap: () =>
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(s))),
           ),
     ));
     drawerList.add(Divider(color: Colors.white));
@@ -43,9 +43,7 @@ class AppHomeState extends State<AppHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery
-        .of(context)
-        .devicePixelRatio);
+    print(MediaQuery.of(context).devicePixelRatio);
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),

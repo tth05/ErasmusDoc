@@ -25,7 +25,8 @@ class AppHomeState extends State<AppHomeScreen> {
     drawerList.addAll(globals.schools.map(
       (s) => ListTile(
             title: Text("${s.translatedName}"),
-        leading: Image.asset("assets/schools/hessenwaldschule/small_logo.png"),
+        leading: Image.asset("assets/schools/${s.fileName}/small_logo.png"),
+//            leading: Image.asset("assets/schools/hessenwaldschule/small_logo.png"),
         onTap: () =>
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(s))),
           ),

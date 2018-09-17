@@ -74,12 +74,12 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                     buildTitle("Name:"),
                     buildTextField(focus: false),
                     Divider(
-                      color: Colors.white,
+                      color: Colors.grey[50],
                     ),
                     buildTitle("Wohnort:"),
                     buildTextField(),
                     Divider(
-                      color: Colors.white,
+                      color: Colors.grey[50],
                     ),
                     buildTitle("Über mich:"),
                     TextFormField(
@@ -91,13 +91,13 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                       },
                     ),
                     Divider(
-                      color: Colors.white,
+                      color: Colors.grey[50],
                     ),
                     BirthdaySelector(
                       initialValue: globals.userBirthdayDate,
                     ),
                     Divider(
-                      color: Colors.white,
+                      color: Colors.grey[50],
                     ),
                     SelectSchoolDropdownButton(),
                   ],

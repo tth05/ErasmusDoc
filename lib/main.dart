@@ -25,8 +25,8 @@ class App extends StatelessWidget {
       title: 'Erasmus',
       home: AppHomeScreen(),
       routes: <String, WidgetBuilder>{
-        '/profile': (BuildContext context) => new PersonalInfoScreen(),
-        '/erasmus_info': (BuildContext context) => new ErasmusInfoScreen()
+        '/profile': (BuildContext context) => PersonalInfoScreen(),
+        '/erasmus_info': (BuildContext context) => ErasmusInfoScreen(),
       },
       theme: new ThemeData(
         primaryColor: Colors.blueAccent,

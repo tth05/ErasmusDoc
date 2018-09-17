@@ -6,6 +6,7 @@
 import 'package:erasmus_app/globals.dart' as globals;
 import 'package:erasmus_app/screens/app_home/custom_button_location.dart';
 import 'package:erasmus_app/screens/app_home/widgets/widgets.dart';
+import 'package:erasmus_app/screens/school_screen/school_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppHomeScreen extends StatefulWidget {
@@ -24,6 +25,9 @@ class AppHomeState extends State<AppHomeScreen> {
     drawerList.addAll(globals.schools.map(
       (s) => ListTile(
             title: Text("${s.translatedName}"),
+        leading: Image.asset("assets/schools/hessenwaldschule/small_logo.png"),
+        onTap: () =>
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(s))),
           ),
     ));
     drawerList.add(Divider(color: Colors.white));
@@ -38,6 +42,9 @@ class AppHomeState extends State<AppHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery
+        .of(context)
+        .devicePixelRatio);
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),

@@ -4,6 +4,7 @@
 */
 
 import 'package:erasmus_app/data/school.dart';
+import 'package:erasmus_app/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
 
 class SchoolScreen extends StatefulWidget {
@@ -29,11 +30,12 @@ class SchoolScreenState extends State<SchoolScreen> {
           onPressed: () => Navigator.of(context).pushReplacementNamed("/"),
         ),
       ),
+      endDrawer: GlobalDrawer(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Image.asset(
-            "assets/schools/${school.fileName}/3.0x/small_logo.png",
+            "assets/schools/${school.fileName}/3.0x/logo.png",
             fit: BoxFit.scaleDown,
           ),
         ],

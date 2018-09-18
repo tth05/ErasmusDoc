@@ -3,12 +3,22 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
+import 'package:erasmus_app/data/country.dart';
+import 'package:erasmus_app/data/school.dart';
 import 'package:erasmus_app/globals.dart' as globals;
 import 'package:erasmus_app/screens/school_screen/school_screen.dart';
 import 'package:flutter/material.dart';
 
 class GlobalDrawer extends StatelessWidget {
   final drawerList = <Widget>[];
+
+  void pressedSchool(BuildContext context, School s) {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(s)));
+  }
+
+  void pressedCountry(BuildContext context, Country s) {
+//    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(s)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +39,12 @@ class GlobalDrawer extends StatelessWidget {
                   child: ListTile(
                     title: Text("${s.translatedName}"),
                     leading: Image.asset("assets/schools/${s.fileName}/logo.png"),
+                    onTap: () => {},
                     trailing: IconButton(
                       icon: Icon(Icons.arrow_forward),
-                      onPressed: () => Navigator.of(context)
-                          .pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(s))),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onPressed: () => pressedSchool(context, s),
                     ),
                   ),
                 ),
@@ -57,9 +69,12 @@ class GlobalDrawer extends StatelessWidget {
                     child: ListTile(
                       title: Text("${c.translatedName}"),
                       leading: Image.asset("assets/countries/${c.fileName}/flag.png"),
-                      trailing: IconButton(icon: Icon(Icons.arrow_forward), onPressed: () => {}
-//                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(s))),
-                          ),
+                      trailing: IconButton(
+                        icon: Icon(Icons.arrow_forward),
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onPressed: () => pressedCountry(context, c),
+                      ),
                     ),
                   ),
                 ],

@@ -4,4 +4,3 @@
 */
 
 export 'bottom_app_bar.dart';
-export 'journal_data_table.dart';

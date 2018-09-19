@@ -36,7 +36,6 @@ class AppHomeState extends State<AppHomeScreen> {
       bottomNavigationBar: ErasmusBottomAppBar(),
       body: Column(
         children: <Widget>[
-          JournalDataTable(),
         ],
       ),
     );

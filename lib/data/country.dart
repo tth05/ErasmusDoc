@@ -11,16 +11,17 @@ part 'country.g.dart';
 class Country extends Object with _$CountrySerializerMixin {
   final String fileName;
   final String translatedName;
+  final String info;
   final String orientation;
   @JsonKey(name: "schoolSystem")
   final String schoolSystemInfo;
 
-  Country(this.fileName, this.translatedName, this.orientation, this.schoolSystemInfo);
+  Country(this.fileName, this.translatedName, this.info, this.orientation, this.schoolSystemInfo);
 
   factory Country.fromJson(Map<String, dynamic> json) => _$CountryFromJson(json);
 
   @override
   String toString() {
-    return "(fileName: '$fileName', translatedName: '$translatedName', orientation: '$orientation', schoolSystemInfo: '$schoolSystemInfo')";
+    return "(fileName: '$fileName', translatedName: '$translatedName', info: '$info', orientation: '$orientation', schoolSystemInfo: '$schoolSystemInfo')";
   }
 }

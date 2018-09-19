@@ -6,6 +6,7 @@
 import 'package:erasmus_app/data/country.dart';
 import 'package:erasmus_app/data/school.dart';
 import 'package:erasmus_app/globals.dart' as globals;
+import 'package:erasmus_app/screens/country_screen/country_screen.dart';
 import 'package:erasmus_app/screens/school_screen/school_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +17,8 @@ class GlobalDrawer extends StatelessWidget {
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(s)));
   }
 
-  void pressedCountry(BuildContext context, Country s) {
-//    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(s)));
+  void pressedCountry(BuildContext context, Country c) {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => CountryScreen(c)));
   }
 
   @override
@@ -41,7 +42,10 @@ class GlobalDrawer extends StatelessWidget {
                     leading: Image.asset("assets/schools/${s.fileName}/logo.png"),
                     onTap: () => {},
                     trailing: IconButton(
-                      icon: Icon(Icons.arrow_forward),
+                      icon: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.blueAccent,
+                      ),
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onPressed: () => pressedSchool(context, s),
@@ -70,7 +74,10 @@ class GlobalDrawer extends StatelessWidget {
                       title: Text("${c.translatedName}"),
                       leading: Image.asset("assets/countries/${c.fileName}/flag.png"),
                       trailing: IconButton(
-                        icon: Icon(Icons.arrow_forward),
+                        icon: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.blueAccent,
+                        ),
                         splashColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onPressed: () => pressedCountry(context, c),

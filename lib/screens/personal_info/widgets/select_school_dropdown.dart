@@ -28,14 +28,14 @@ class SelectSchoolDropdownButton extends FormField<String> {
               );
             }).toList(),
             hint: Text(
-              globals.selectedSchool == "" ? "Schule" : globals.selectedSchool,
+              globals.selectedSchool == null ? "Schule" : globals.selectedSchool.translatedName,
               style: TextStyle(
                 fontSize: 20.0,
-                color: globals.selectedSchool == "" ? Colors.grey : Colors.black,
+                color: globals.selectedSchool == null ? Colors.grey : Colors.black,
               ),
             ),
             onChanged: (School s) {
-              state.didChange(globals.selectedSchool = s.translatedName);
+              state.didChange((globals.selectedSchool = s).translatedName);
             },
           ),
           state.hasError

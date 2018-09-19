@@ -4,3 +4,4 @@
 */
 
 export 'bottom_app_bar.dart';
+export 'selected_school_button.dart';

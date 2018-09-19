@@ -19,7 +19,7 @@ class AppHomeState extends State<AppHomeScreen> {
     print(MediaQuery.of(context).devicePixelRatio);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("Startseite"),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.person),
@@ -34,9 +34,13 @@ class AppHomeState extends State<AppHomeScreen> {
       ),
       floatingActionButtonLocation: CustomCenterDockedFloatingActionButtonLocation(18.0),
       bottomNavigationBar: ErasmusBottomAppBar(),
-      body: Column(
-        children: <Widget>[
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Column(
+          children: <Widget>[
+            SelectedSchoolButton(),
+          ],
+        ),
       ),
     );
   }

@@ -26,7 +26,7 @@ class SchoolScreenState extends State<SchoolScreen> {
         title: Text("Info"),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.of(context).pushReplacementNamed("/"),
         ),
       ),

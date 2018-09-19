@@ -10,7 +10,7 @@ import 'package:erasmus_app/data/school.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 //TODO: Make a class for PersonalData
-var selectedSchool = "";
+School selectedSchool;
 final schools = <School>[];
 final countries = <Country>[];
 

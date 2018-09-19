@@ -21,6 +21,7 @@ class ErasmusInfoScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Card(
+                  shape: BeveledRectangleBorder(),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(

@@ -33,22 +33,25 @@ class GlobalDrawer extends StatelessWidget {
                   height: 10.0,
                   color: Colors.grey[50],
                 ),
-                Container(
-                  decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
-                    BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
-                  ]),
-                  child: ListTile(
-                    title: Text("${s.translatedName}"),
-                    leading: Image.asset("assets/schools/${s.fileName}/logo.png"),
-                    onTap: () => {},
-                    trailing: IconButton(
-                      icon: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.blueAccent,
+                GestureDetector(
+                  onTap: () => pressedSchool(context, s),
+                  child: Container(
+                    decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
+                      BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
+                    ]),
+                    child: ListTile(
+                      title: Text("${s.translatedName}"),
+                      leading: Image.asset("assets/schools/${s.fileName}/logo.png"),
+                      onTap: () => {},
+                      trailing: IconButton(
+                        icon: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.blueAccent,
+                        ),
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onPressed: () => pressedSchool(context, s),
                       ),
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onPressed: () => pressedSchool(context, s),
                     ),
                   ),
                 ),
@@ -66,21 +69,24 @@ class GlobalDrawer extends StatelessWidget {
                     height: 10.0,
                     color: Colors.grey[50],
                   ),
-                  Container(
-                    decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
-                      BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
-                    ]),
-                    child: ListTile(
-                      title: Text("${c.translatedName}"),
-                      leading: Image.asset("assets/countries/${c.fileName}/flag.png"),
-                      trailing: IconButton(
-                        icon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueAccent,
+                  GestureDetector(
+                    onTap: () => pressedCountry(context, c),
+                    child: Container(
+                      decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
+                        BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
+                      ]),
+                      child: ListTile(
+                        title: Text("${c.translatedName}"),
+                        leading: Image.asset("assets/countries/${c.fileName}/flag.png"),
+                        trailing: IconButton(
+                          icon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.blueAccent,
+                          ),
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onPressed: () => pressedCountry(context, c),
                         ),
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onPressed: () => pressedCountry(context, c),
                       ),
                     ),
                   ),

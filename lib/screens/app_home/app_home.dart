@@ -16,7 +16,9 @@ class AppHomeScreen extends StatefulWidget {
 class AppHomeState extends State<AppHomeScreen> {
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).devicePixelRatio);
+    print("devicePixelRatio: ${MediaQuery
+        .of(context)
+        .devicePixelRatio}");
     return Scaffold(
       appBar: AppBar(
         title: Text("Startseite"),

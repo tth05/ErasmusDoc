@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 class GlobalDrawer extends StatelessWidget {
   final drawerList = <Widget>[];
 
+  //Using pushReplacement to prevent "infinite" replacements. (Home -> School -> Country -> School -> School ...)
+  // The click on the back arrow should always lead back to the HomeScreen.
   void pressedSchool(BuildContext context, School s) {
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(s)));
   }
@@ -33,25 +35,22 @@ class GlobalDrawer extends StatelessWidget {
                   height: 10.0,
                   color: Colors.grey[50],
                 ),
-                GestureDetector(
-                  onTap: () => pressedSchool(context, s),
-                  child: Container(
-                    decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
-                      BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
-                    ]),
-                    child: ListTile(
-                      title: Text("${s.translatedName}"),
-                      leading: Image.asset("assets/schools/${s.fileName}/logo.png"),
-                      onTap: () => {},
-                      trailing: IconButton(
-                        icon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueAccent,
-                        ),
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onPressed: () => pressedSchool(context, s),
+                Container(
+                  decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
+                    BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
+                  ]),
+                  child: ListTile(
+                    title: Text("${s.translatedName}"),
+                    leading: Image.asset("assets/schools/${s.fileName}/logo.png"),
+                    onTap: () => pressedSchool(context, s),
+                    trailing: IconButton(
+                      icon: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.blueAccent,
                       ),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onPressed: () => pressedSchool(context, s),
                     ),
                   ),
                 ),
@@ -69,24 +68,22 @@ class GlobalDrawer extends StatelessWidget {
                     height: 10.0,
                     color: Colors.grey[50],
                   ),
-                  GestureDetector(
-                    onTap: () => pressedCountry(context, c),
-                    child: Container(
-                      decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
-                        BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
-                      ]),
-                      child: ListTile(
-                        title: Text("${c.translatedName}"),
-                        leading: Image.asset("assets/countries/${c.fileName}/flag.png"),
-                        trailing: IconButton(
-                          icon: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.blueAccent,
-                          ),
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onPressed: () => pressedCountry(context, c),
+                  Container(
+                    decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
+                      BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
+                    ]),
+                    child: ListTile(
+                      onTap: () => pressedCountry(context, c),
+                      title: Text(c.translatedName),
+                      leading: Image.asset("assets/countries/${c.fileName}/flag.png"),
+                      trailing: IconButton(
+                        icon: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.blueAccent,
                         ),
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onPressed: () => pressedCountry(context, c),
                       ),
                     ),
                   ),

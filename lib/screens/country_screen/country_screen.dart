@@ -4,6 +4,7 @@
 */
 
 import 'package:erasmus_app/data/country.dart';
+import 'package:erasmus_app/screens/image_view_screen/image_view_screen.dart';
 import 'package:erasmus_app/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -70,42 +71,40 @@ class CountryScreenState extends State<CountryScreen> {
           padding: const EdgeInsets.all(4.0),
           child: Column(
             children: <Widget>[
-              Card(
-                shape: BeveledRectangleBorder(),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Stack(
-                            alignment: AlignmentDirectional.center,
-                            children: <Widget>[
-//                          Opacity(
-//                            child: Image.asset(
-//                              "assets/countries/${country.fileName}/3.0x/flag.png",
-//                              fit: BoxFit.fill,
-//                            ),
-//                            opacity: 0.4,
-//                          ),
-                              Text(
-                                country.translatedName,
-                                style: TextStyle(fontSize: 40.0),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Divider(),
-                      Text(
-                        country.info,
-                        style: TextStyle(
-                          fontSize: 20.0,
+              GestureDetector(
+                onTap: () =>
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ImageViewScreen("assets/countries/${country.fileName}/test.png"),
+                        fullscreenDialog: true)),
+                child: Card(
+                  elevation: 2.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              country.translatedName,
+                              style: TextStyle(fontSize: 40.0),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
+                        Divider(),
+//                      Image.asset(
+//                        "assets/countries/${country.fileName}/flag.png",
+//                        fit: BoxFit.fill,
+//                      ),
+                        Text(
+                          country.info,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

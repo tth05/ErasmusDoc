@@ -34,7 +34,7 @@ class AppHomeState extends State<AppHomeScreen> {
         icon: Icon(Icons.add),
         label: Text("Neuer Eintrag"),
       ),
-      floatingActionButtonLocation: CustomCenterDockedFloatingActionButtonLocation(18.0),
+      floatingActionButtonLocation: CustomCenterDockedFloatingActionButtonLocation(20.0),
       bottomNavigationBar: ErasmusBottomAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(4.0),

@@ -17,6 +17,7 @@ class SelectSchoolDropdownButton extends FormField<String> {
     initialValue: initialValue,
     autovalidate: false,
     builder: (FormFieldState<String> state) {
+      //TODO: Fix overflow bug for smaller devices
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

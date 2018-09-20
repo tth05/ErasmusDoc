@@ -74,7 +74,7 @@ class CountryScreenState extends State<CountryScreen> {
               GestureDetector(
                 onTap: () =>
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ImageViewScreen("assets/countries/${country.fileName}/test.png"),
+                        builder: (context) => ImageViewScreen("assets/countries/${country.fileName}/big_flag.png"),
                         fullscreenDialog: true)),
                 child: Card(
                   elevation: 2.0,

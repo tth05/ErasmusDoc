@@ -10,14 +10,15 @@ part 'school.g.dart';
 class School extends Object with _$SchoolSerializerMixin {
   final String fileName;
   final String translatedName;
+  final String info;
   final String address;
 
-  School(this.fileName, this.translatedName, this.address);
+  School(this.fileName, this.translatedName, this.info, this.address);
 
   factory School.fromJson(Map<String, dynamic> json) => _$SchoolFromJson(json);
 
   @override
   String toString() {
-    return "(fileName: '$fileName', translatedName: '$translatedName', address: '$address')";
+    return "(fileName: '$fileName', translatedName: '$translatedName', info: '$info', address: '$address')";
   }
 }

@@ -87,7 +87,7 @@ class CountryScreenState extends State<CountryScreen> {
                           children: <Widget>[
                             Text(
                               country.translatedName,
-                              style: TextStyle(fontSize: 40.0),
+                              style: TextStyle(fontSize: 30.0),
                             ),
                           ],
                         ),

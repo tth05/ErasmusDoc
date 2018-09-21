@@ -64,7 +64,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
       body: Form(
         key: _formKey,
         child: Container(
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(8.0),
           child: Column(
             children: <Widget>[
               Flexible(

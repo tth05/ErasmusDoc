@@ -16,9 +16,7 @@ class ErasmusBottomAppBar extends StatelessWidget {
       onTap: () => openInfoScreen(context),
       child: BottomAppBar(
         elevation: 2.0,
-        color: Theme
-            .of(context)
-            .primaryColor,
+        color: Theme.of(context).primaryColor,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

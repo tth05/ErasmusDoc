@@ -15,15 +15,15 @@ class SelectedSchoolButton extends StatefulWidget {
 class SelectedSchoolButtonState extends State<SelectedSchoolButton> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: globals.selectedSchool != null
-          ? () =>
-          Navigator.of(context)
-              .pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(globals.selectedSchool)))
-          : null,
-      child: Card(
-        elevation: globals.selectedSchool != null ? 4.0 : 1.0,
-        child: Padding(
+    return Card(
+      elevation: globals.selectedSchool != null ? 4.0 : 1.0,
+      child: InkWell(
+        onTap: globals.selectedSchool != null
+            ? () =>
+            Navigator.of(context)
+                .pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(globals.selectedSchool)))
+            : null,
+        child: Container(
           padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

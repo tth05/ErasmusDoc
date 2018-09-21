@@ -25,24 +25,26 @@ class GlobalDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (drawerList.isEmpty) {
-      drawerList.add(ListTile(title: Text("Schulen", style: TextStyle(fontSize: 20.0))));
-      drawerList.add(Divider());
-      drawerList.addAll(globals.schools.map(
-        (s) => Column(
-              children: <Widget>[
-                Divider(
-                  height: 10.0,
-                  color: Colors.grey[50],
-                ),
-                Container(
-                  decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
-                    BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
-                  ]),
+    drawerList.clear();
+    drawerList.add(ListTile(title: Text("Schulen", style: TextStyle(fontSize: 20.0))));
+    drawerList.add(Divider());
+    drawerList.addAll(globals.schools.map(
+          (s) =>
+          Column(
+            children: <Widget>[
+              Divider(
+                height: 10.0,
+                color: Colors.grey[50],
+              ),
+              Container(
+//                    decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
+//                      BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
+//                    ]),
+                child: InkWell(
+                  onTap: () => pressedSchool(context, s),
                   child: ListTile(
                     title: Text("${s.translatedName}"),
                     leading: Image.asset("assets/schools/${s.fileName}/logo.png"),
-                    onTap: () => pressedSchool(context, s),
                     trailing: IconButton(
                       icon: Icon(
                         Icons.arrow_forward_ios,
@@ -54,26 +56,29 @@ class GlobalDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
-            ),
-      ));
-      drawerList.add(Divider(color: Colors.white));
-      drawerList.add(ListTile(title: Text("Länder", style: TextStyle(fontSize: 20.0))));
-      drawerList.add(Divider());
-      drawerList.addAll(
-        globals.countries.map(
-          (c) => Column(
-                children: <Widget>[
-                  Divider(
-                    height: 10.0,
-                    color: Colors.grey[50],
-                  ),
-                  Container(
-                    decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
-                      BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
-                    ]),
+              ),
+            ],
+          ),
+    ));
+    drawerList.add(Divider(color: Colors.white));
+    drawerList.add(ListTile(title: Text("Länder", style: TextStyle(fontSize: 20.0))));
+    drawerList.add(Divider());
+    drawerList.addAll(
+      globals.countries.map(
+            (c) =>
+            Column(
+              children: <Widget>[
+                Divider(
+                  height: 10.0,
+                  color: Colors.grey[50],
+                ),
+                Container(
+//                    decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
+//                      BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
+//                    ]),
+                  child: InkWell(
+                    onTap: () => pressedCountry(context, c),
                     child: ListTile(
-                      onTap: () => pressedCountry(context, c),
                       title: Text(c.translatedName),
                       leading: Image.asset("assets/countries/${c.fileName}/flag.png"),
                       trailing: IconButton(
@@ -87,11 +92,11 @@ class GlobalDrawer extends StatelessWidget {
                       ),
                     ),
                   ),
-                ],
-              ),
-        ),
-      );
-    }
+                ),
+              ],
+            ),
+      ),
+    );
 
     return Drawer(
       child: ListView(

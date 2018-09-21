@@ -15,7 +15,7 @@ class ImageViewScreen extends StatelessWidget {
         onTap: () => Navigator.of(context).pop(),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white70,
+            color: Colors.grey[100],
             image: DecorationImage(
               image: AssetImage(path),
             ),

@@ -72,10 +72,9 @@ class CountryScreenState extends State<CountryScreen> {
           child: Column(
             children: <Widget>[
               GestureDetector(
-                onTap: () =>
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ImageViewScreen("assets/countries/${country.fileName}/big_flag.png"),
-                        fullscreenDialog: true)),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ImageViewScreen("assets/countries/${country.fileName}/big_flag.png"),
+                    fullscreenDialog: true)),
                 child: Card(
                   elevation: 2.0,
                   child: Padding(

@@ -21,7 +21,7 @@ class ErasmusWebsiteRaisedButton extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            onPressed: () => URLUtil.launchURL("https://erasmusplus.de"),
+            onPressed: () => URLUtil.launchURL("https://www.erasmusplus.de"),
           ),
         ),
       ],

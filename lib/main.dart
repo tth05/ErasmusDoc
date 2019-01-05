@@ -24,6 +24,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Erasmus',
       home: AppHomeScreen(),
+      //TODO: Implement back button listener for android to navigate between routes
       routes: <String, WidgetBuilder>{
         '/profile': (BuildContext context) => PersonalInfoScreen(),
         '/erasmus_info': (BuildContext context) => ErasmusInfoScreen(),

@@ -15,11 +15,11 @@ class GlobalDrawer extends StatelessWidget {
 
   //Using pushReplacement to prevent "infinite" replacements. (Home -> School -> Country -> School -> School ...)
   // The click on the back arrow should always lead back to the HomeScreen.
-  void pressedSchool(BuildContext context, School s) {
+  void _handleSchool(BuildContext context, School s) {
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(s)));
   }
 
-  void pressedCountry(BuildContext context, Country c) {
+  void _handleCountry(BuildContext context, Country c) {
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => CountryScreen(c)));
   }
 
@@ -41,7 +41,7 @@ class GlobalDrawer extends StatelessWidget {
 //                      BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
 //                    ]),
                 child: InkWell(
-                  onTap: () => pressedSchool(context, s),
+                  onTap: () => _handleSchool(context, s),
                   child: ListTile(
                     title: Text("${s.translatedName}"),
                     leading: Image.asset("assets/schools/${s.fileName}/logo.png"),
@@ -52,7 +52,7 @@ class GlobalDrawer extends StatelessWidget {
                       ),
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
-                      onPressed: () => pressedSchool(context, s),
+                      onPressed: () => _handleSchool(context, s),
                     ),
                   ),
                 ),
@@ -77,7 +77,7 @@ class GlobalDrawer extends StatelessWidget {
 //                      BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
 //                    ]),
                   child: InkWell(
-                    onTap: () => pressedCountry(context, c),
+                    onTap: () => _handleCountry(context, c),
                     child: ListTile(
                       title: Text(c.translatedName),
                       leading: Image.asset("assets/countries/${c.fileName}/flag.png"),
@@ -88,7 +88,7 @@ class GlobalDrawer extends StatelessWidget {
                         ),
                         splashColor: Colors.transparent,
                         highlightColor: Colors.transparent,
-                        onPressed: () => pressedCountry(context, c),
+                        onPressed: () => _handleCountry(context, c),
                       ),
                     ),
                   ),

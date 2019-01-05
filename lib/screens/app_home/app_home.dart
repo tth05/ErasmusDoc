@@ -18,6 +18,7 @@ class AppHomeState extends State<AppHomeScreen> {
   Widget build(BuildContext context) {
     print("devicePixelRatio: ${MediaQuery.of(context).devicePixelRatio}");
     return Scaffold(
+      //TODO: Disable tooltips on AppBar
       appBar: AppBar(
         title: Text("Startseite"),
         centerTitle: true,

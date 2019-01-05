@@ -6,12 +6,23 @@
 import 'dart:convert';
 
 import 'package:erasmus_app/data/country.dart';
+import 'package:erasmus_app/data/personal_data.dart';
 import 'package:erasmus_app/data/school.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 //Handles parsing, loading and writing of json
 class JsonService {
-  void loadSchools(List<School> schools) async {
+  final schools = <School>[];
+  final countries = <Country>[];
+
+  final personalData = PersonalData();
+
+  JsonService() {
+    loadSchools();
+    loadCountries();
+  }
+
+  void loadSchools() async {
     String load = await rootBundle.loadString("assets/schools/all_schools.json");
     final allSchools = List<String>.from(json.decode(load)["schools"]);
     for (String s in allSchools) {
@@ -20,7 +31,7 @@ class JsonService {
     }
   }
 
-  void loadCountries(List<Country> countries) async {
+  void loadCountries() async {
     String load = await rootBundle.loadString("assets/countries/all_countries.json");
     final allCountries = List<String>.from(json.decode(load)["countries"]);
     for (String s in allCountries) {

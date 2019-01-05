@@ -88,7 +88,7 @@ class SchoolScreenState extends State<SchoolScreen> {
                           "Projekt ${index + 1}",
                           style: TextStyle(fontSize: 20.0),
                         ),
-                        subtitle: Text(globals.countries[Random().nextInt(5)].translatedName),
+                        subtitle: Text(globals.jsonService.countries[Random().nextInt(5)].translatedName),
                         trailing: IconButton(
                             icon: Icon(Icons.arrow_forward_ios, color: Colors.blueAccent), onPressed: () => {}),
                       ),

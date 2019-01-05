@@ -5,7 +5,6 @@
 
 import 'dart:async';
 
-import 'package:erasmus_app/globals.dart' as globals;
 import 'package:erasmus_app/screens/app_home/app_home.dart';
 import 'package:erasmus_app/screens/erasmus_info/erasmus_info.dart';
 import 'package:erasmus_app/screens/personal_info/personal_info.dart';
@@ -13,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
-  globals.init();
+//  globals.init();
   //Startup delay to show launch image
   Future.delayed(const Duration(seconds: 4)).whenComplete(() => runApp(App()));
 }

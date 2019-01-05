@@ -15,13 +15,14 @@ class SelectedSchoolButton extends StatefulWidget {
 class SelectedSchoolButtonState extends State<SelectedSchoolButton> {
   @override
   Widget build(BuildContext context) {
+    final selectedSchool = globals.jsonService.personalData.selectedSchool;
     return Card(
-      elevation: globals.selectedSchool != null ? 4.0 : 1.0,
+      elevation: selectedSchool != null ? 4.0 : 1.0,
       child: InkWell(
-        onTap: globals.selectedSchool != null
+        onTap: selectedSchool != null
             ? () =>
             Navigator.of(context)
-                .pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(globals.selectedSchool)))
+                .pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(selectedSchool)))
             : null,
         child: Container(
           padding: const EdgeInsets.all(8.0),
@@ -37,9 +38,9 @@ class SelectedSchoolButtonState extends State<SelectedSchoolButton> {
                     style: TextStyle(fontSize: 25.0),
                   ),
                   Text(
-                    globals.selectedSchool != null ? globals.selectedSchool.translatedName : "Keine Schule ausgewählt",
+                    selectedSchool != null ? selectedSchool.translatedName : "Keine Schule ausgewählt",
                     style: TextStyle(
-                      color: globals.selectedSchool != null ? Colors.grey[800] : Colors.grey[600],
+                      color: selectedSchool != null ? Colors.grey[800] : Colors.grey[600],
                       fontSize: 20.0,
                     ),
                   ),
@@ -48,12 +49,12 @@ class SelectedSchoolButtonState extends State<SelectedSchoolButton> {
               IconButton(
                 icon: Icon(
                   Icons.arrow_forward_ios,
-                  color: globals.selectedSchool != null ? Colors.blueAccent : Colors.grey[400],
+                  color: selectedSchool != null ? Colors.blueAccent : Colors.grey[400],
                 ),
-                onPressed: globals.selectedSchool != null
+                onPressed: selectedSchool != null
                     ? () =>
                     Navigator.of(context)
-                        .pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(globals.selectedSchool)))
+                        .pushReplacement(MaterialPageRoute(builder: (context) => SchoolScreen(selectedSchool)))
                     : null,
               ),
             ],

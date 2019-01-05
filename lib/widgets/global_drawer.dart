@@ -28,7 +28,7 @@ class GlobalDrawer extends StatelessWidget {
     drawerList.clear();
     drawerList.add(ListTile(title: Text("Schulen", style: TextStyle(fontSize: 20.0))));
     drawerList.add(Divider());
-    drawerList.addAll(globals.schools.map(
+    drawerList.addAll(globals.jsonService.schools.map(
           (s) =>
           Column(
             children: <Widget>[
@@ -37,9 +37,6 @@ class GlobalDrawer extends StatelessWidget {
                 color: Colors.grey[50],
               ),
               Container(
-//                    decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
-//                      BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
-//                    ]),
                 child: InkWell(
                   onTap: () => _handleSchool(context, s),
                   child: ListTile(
@@ -64,7 +61,7 @@ class GlobalDrawer extends StatelessWidget {
     drawerList.add(ListTile(title: Text("Länder", style: TextStyle(fontSize: 20.0))));
     drawerList.add(Divider());
     drawerList.addAll(
-      globals.countries.map(
+      globals.jsonService.countries.map(
             (c) =>
             Column(
               children: <Widget>[
@@ -73,9 +70,6 @@ class GlobalDrawer extends StatelessWidget {
                   color: Colors.grey[50],
                 ),
                 Container(
-//                    decoration: BoxDecoration(color: Colors.grey[50], boxShadow: <BoxShadow>[
-//                      BoxShadow(blurRadius: 1.0, offset: Offset(0.0, 2.0), color: Colors.grey[300]),
-//                    ]),
                   child: InkWell(
                     onTap: () => _handleCountry(context, c),
                     child: ListTile(

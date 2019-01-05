@@ -22,6 +22,8 @@ class SchoolScreen extends StatefulWidget {
 class SchoolScreenState extends State<SchoolScreen> {
   final School school;
 
+  SchoolScreenState(this.school);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,49 +38,44 @@ class SchoolScreenState extends State<SchoolScreen> {
       endDrawer: GlobalDrawer(),
       body: Padding(
         padding: EdgeInsets.all(4.0),
-        child: Column(
-//          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Card(
-              elevation: 2.0,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      school.translatedName,
-                      style: TextStyle(fontSize: 30.0),
-                    ),
-                    Divider(),
-//                      Image.asset(
-//                        "assets/countries/${country.fileName}/flag.png",
-//                        fit: BoxFit.fill,
-//                      ),
-                    Text(
-                      school.info,
-                      style: TextStyle(
-                        fontSize: 20.0,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Card(
+                elevation: 2.0,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        school.translatedName,
+                        style: TextStyle(fontSize: 30.0),
                       ),
-                    ),
-                    Divider(),
-                    Text(
-                      school.address,
-                      style: TextStyle(fontSize: 15.0),
-                    ),
-                  ],
+                      Divider(),
+                      Text(
+                        school.info,
+                        style: TextStyle(
+                          fontSize: 20.0,
+                        ),
+                      ),
+                      Divider(),
+                      Text(
+                        school.address,
+                        style: TextStyle(fontSize: 15.0),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.all(4.0),
-              child: Text(
-                "Projekte",
-                style: TextStyle(fontSize: 30.0),
+              Container(
+                padding: EdgeInsets.all(4.0),
+                child: Text(
+                  "Projekte",
+                  style: TextStyle(fontSize: 30.0),
+                ),
               ),
-            ),
-            Divider(),
-            Flexible(
-              child: ListView(
+              Divider(),
+              Column(
                 children: List.generate(
                   10,
                       (index) =>
@@ -93,14 +90,11 @@ class SchoolScreenState extends State<SchoolScreen> {
                             icon: Icon(Icons.arrow_forward_ios, color: Colors.blueAccent), onPressed: () => {}),
                       ),
                 ),
-                padding: EdgeInsets.all(4.0),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
-
-  SchoolScreenState(this.school);
 }

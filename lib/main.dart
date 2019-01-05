@@ -5,6 +5,7 @@
 
 import 'dart:async';
 
+import 'package:erasmus_app/screens/activity_creation_screen/activity_creation_screen.dart';
 import 'package:erasmus_app/screens/app_home/app_home.dart';
 import 'package:erasmus_app/screens/erasmus_info/erasmus_info.dart';
 import 'package:erasmus_app/screens/personal_info/personal_info.dart';
@@ -27,6 +28,7 @@ class App extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/profile': (BuildContext context) => PersonalInfoScreen(),
         '/erasmus_info': (BuildContext context) => ErasmusInfoScreen(),
+        '/create_activity': (BuildContext context) => ActivityCreationScreen(),
       },
       theme: new ThemeData(
         primaryColor: Colors.blueAccent,

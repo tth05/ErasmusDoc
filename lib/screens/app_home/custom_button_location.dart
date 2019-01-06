@@ -31,7 +31,8 @@ class CustomCenterDockedFloatingActionButtonLocation extends FloatingActionButto
     if (snackBarHeight > 0.0)
       fabY = math.min(fabY, contentBottom - snackBarHeight - fabHeight - kFloatingActionButtonMargin);
     // The FAB should sit with its center in front of the top of the bottom sheet.
-    if (bottomSheetHeight > 0.0) fabY = math.min(fabY, contentBottom - bottomSheetHeight - fabHeight / 2.0);
+    if (bottomSheetHeight > 0.0)
+      fabY = math.min(fabY, contentBottom - bottomSheetHeight - fabHeight / 2.0);
 
     final double maxFabY = scaffoldGeometry.scaffoldSize.height - fabHeight;
     return math.min(maxFabY, fabY);

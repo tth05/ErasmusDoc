@@ -4,7 +4,7 @@
 */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:zefyr/zefyr.dart';
 
 class ActivityCreationScreen extends StatefulWidget {
   @override
@@ -12,6 +12,17 @@ class ActivityCreationScreen extends StatefulWidget {
 }
 
 class ActivityCreationScreenState extends State<ActivityCreationScreen> {
+  ZefyrController _controller;
+  FocusNode _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final document = new NotusDocument();
+    _controller = new ZefyrController(document);
+    _focusNode = new FocusNode();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,48 +38,19 @@ class ActivityCreationScreenState extends State<ActivityCreationScreen> {
           ),
         ],
       ),
-      floatingActionButton: SpeedDial(
-        animatedIcon: AnimatedIcons.menu_close,
-        animatedIconTheme: IconThemeData(size: 22.0),
-        visible: true,
-        curve: Curves.bounceIn,
-        overlayColor: Colors.black,
-        overlayOpacity: 0.5,
-        onOpen: () => print('OPENING DIAL'),
-        onClose: () => print('DIAL CLOSED'),
-//        heroTag: 'speed-dial-hero-tag',
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 8.0,
-        shape: CircleBorder(),
-        children: [
-          SpeedDialChild(
-              child: Icon(Icons.accessibility),
-              backgroundColor: Colors.red,
-              label: 'First',
-              labelStyle: TextStyle(fontSize: 18.0),
-              onTap: () => print('FIRST CHILD')),
-          SpeedDialChild(
-            child: Icon(Icons.brush),
-            backgroundColor: Colors.blue,
-            label: 'Second',
-            labelStyle: TextStyle(fontSize: 18.0),
-            onTap: () => print('SECOND CHILD'),
-          ),
-          SpeedDialChild(
-            child: Icon(Icons.keyboard_voice),
-            backgroundColor: Colors.green,
-            label: 'Third',
-            labelStyle: TextStyle(fontSize: 18.0),
-            onTap: () => print('THIRD CHILD'),
-          ),
-        ],
-      ),
       body: Container(
+        padding: EdgeInsets.all(4.0),
         decoration: BoxDecoration(
-            border: Border.all(color: Colors.blueAccent)
+            border: Border.all(color: Colors.blueAccent, width: 2.0),
+            borderRadius: BorderRadius.all(Radius.circular(1.0))),
+        child: ZefyrScaffold(
+          child: ZefyrEditor(
+            padding: EdgeInsets.all(0),
+            autofocus: true,
+            controller: _controller,
+            focusNode: _focusNode,
+          ),
         ),
-        child: TextField(),
       ),
     );
   }

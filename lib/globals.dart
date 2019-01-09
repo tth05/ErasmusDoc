@@ -3,9 +3,9 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/services/json_service.dart';
+import 'package:erasmus_app/managers/json_manager.dart';
 
-final jsonService = JsonService();
+final jsonService = JsonManager();
 
 //void init() {
 //}

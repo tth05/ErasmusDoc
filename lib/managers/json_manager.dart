@@ -11,13 +11,13 @@ import 'package:erasmus_app/data/school.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 //Handles parsing, loading and writing of json
-class JsonService {
+class JsonManager {
   final schools = <School>[];
   final countries = <Country>[];
 
   final personalData = PersonalData();
 
-  JsonService() {
+  JsonManager() {
     loadSchools();
     loadCountries();
   }

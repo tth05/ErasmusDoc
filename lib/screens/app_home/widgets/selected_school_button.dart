@@ -15,7 +15,7 @@ class SelectedSchoolButton extends StatefulWidget {
 class SelectedSchoolButtonState extends State<SelectedSchoolButton> {
   @override
   Widget build(BuildContext context) {
-    final selectedSchool = globals.jsonService.personalData.selectedSchool;
+    final selectedSchool = globals.jsonManager.personalData.selectedSchool;
     return Card(
       elevation: selectedSchool != null ? 4.0 : 1.0,
       child: InkWell(

@@ -27,14 +27,14 @@ class BirthdaySelector extends FormField<DateTime> {
               "Geburtsdatum:",
               style: TextStyle(fontSize: 20.0),
             ),
-            subtitle: Text(globals.jsonService.personalData.userBirthdayAsString),
+            subtitle: Text(globals.jsonManager.personalData.userBirthdayAsString),
             contentPadding: EdgeInsets.all(0.0),
             onTap: () {
               //TODO: Add custom DatePicker that doesn't show the buttons for smaller devices
               Future<DateTime> result = showDatePicker(
                 context: state.context,
                 locale: Locale("de"),
-                initialDate: globals.jsonService.personalData.userBirthdayDate,
+                initialDate: globals.jsonManager.personalData.userBirthdayDate,
                 firstDate: DateTime(1900),
                 lastDate: DateTime.now(),
                 initialDatePickerMode: DatePickerMode.year,
@@ -42,7 +42,7 @@ class BirthdaySelector extends FormField<DateTime> {
               if (result == null) return;
               result.then((dateTime) {
                 if (dateTime == null) return;
-                state.didChange(globals.jsonService.personalData.userBirthdayDate = dateTime);
+                state.didChange(globals.jsonManager.personalData.userBirthdayDate = dateTime);
               });
             },
           ),

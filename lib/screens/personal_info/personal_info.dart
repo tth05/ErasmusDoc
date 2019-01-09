@@ -94,7 +94,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                       color: Colors.grey[50],
                     ),
                     BirthdaySelector(
-                      initialValue: globals.jsonService.personalData.userBirthdayDate,
+                      initialValue: globals.jsonManager.personalData.userBirthdayDate,
                     ),
                     Divider(
                       color: Colors.grey[50],

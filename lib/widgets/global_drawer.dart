@@ -28,7 +28,7 @@ class GlobalDrawer extends StatelessWidget {
     drawerList.clear();
     drawerList.add(ListTile(title: Text("Schulen", style: TextStyle(fontSize: 20.0))));
     drawerList.add(Divider());
-    drawerList.addAll(globals.jsonService.schools.map(
+    drawerList.addAll(globals.jsonManager.schools.map(
           (s) =>
           Column(
             children: <Widget>[
@@ -61,7 +61,7 @@ class GlobalDrawer extends StatelessWidget {
     drawerList.add(ListTile(title: Text("Länder", style: TextStyle(fontSize: 20.0))));
     drawerList.add(Divider());
     drawerList.addAll(
-      globals.jsonService.countries.map(
+      globals.jsonManager.countries.map(
             (c) =>
             Column(
               children: <Widget>[

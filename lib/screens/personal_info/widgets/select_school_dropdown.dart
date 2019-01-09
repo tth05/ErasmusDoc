@@ -17,26 +17,26 @@ class SelectSchoolDropdownButton extends FormField<String> {
     initialValue: initialValue,
     autovalidate: false,
     builder: (FormFieldState<String> state) {
-      final isSchoolSelected = globals.jsonService.personalData.selectedSchool != null;
+      final isSchoolSelected = globals.jsonManager.personalData.selectedSchool != null;
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           DropdownButton(
-            items: globals.jsonService.schools.map((School val) {
+            items: globals.jsonManager.schools.map((School val) {
               return DropdownMenuItem(
                 value: val,
                 child: Text(val.translatedName),
               );
             }).toList(),
             hint: Text(
-              isSchoolSelected ? globals.jsonService.personalData.selectedSchool.translatedName : "Schule",
+              isSchoolSelected ? globals.jsonManager.personalData.selectedSchool.translatedName : "Schule",
               style: TextStyle(
                 fontSize: 20.0,
                 color: isSchoolSelected ? Colors.black : Colors.grey,
               ),
             ),
             onChanged: (School s) {
-              state.didChange((globals.jsonService.personalData.selectedSchool = s).translatedName);
+              state.didChange((globals.jsonManager.personalData.selectedSchool = s).translatedName);
             },
           ),
           state.hasError

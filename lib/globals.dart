@@ -5,7 +5,7 @@
 
 import 'package:erasmus_app/managers/json_manager.dart';
 
-final jsonService = JsonManager();
+final jsonManager = JsonManager();
 
 //void init() {
 //}

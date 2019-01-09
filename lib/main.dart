@@ -56,7 +56,6 @@ class GermanCupertinoLocalizations implements CupertinoLocalizations {
 
   Future init() async {
     ml = await materialDelegate.load(local);
-    print(ml.pasteButtonLabel);
   }
 
   @override

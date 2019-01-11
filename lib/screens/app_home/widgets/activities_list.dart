@@ -56,7 +56,7 @@ class ActivityListViewState extends State<ActivityListView> {
                       ),
                       IconButton(
                         icon: Icon(Icons.edit),
-                        onPressed: () => Navigator.of(context).pushNamed("/create_activity"),
+                        onPressed: () => {},
                       )
                     ],
                   ),

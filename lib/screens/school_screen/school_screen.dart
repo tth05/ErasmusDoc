@@ -5,8 +5,8 @@
 
 import 'dart:math';
 
-import 'package:erasmus_app/data/school.dart';
 import 'package:erasmus_app/globals.dart' as globals;
+import 'package:erasmus_app/models/school.dart';
 import 'package:erasmus_app/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
 

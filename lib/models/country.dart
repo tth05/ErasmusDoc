@@ -8,20 +8,19 @@ import 'package:json_annotation/json_annotation.dart';
 part 'country.g.dart';
 
 @JsonSerializable()
-class Country extends Object with _$CountrySerializerMixin {
+class Country {
   final String fileName;
   final String translatedName;
   final String info;
   final String orientation;
-  @JsonKey(name: "schoolSystem")
-  final String schoolSystemInfo;
+  final String schoolSystem;
 
-  Country(this.fileName, this.translatedName, this.info, this.orientation, this.schoolSystemInfo);
+  Country(this.fileName, this.translatedName, this.info, this.orientation, this.schoolSystem);
 
   factory Country.fromJson(Map<String, dynamic> json) => _$CountryFromJson(json);
 
   @override
   String toString() {
-    return "(fileName: '$fileName', translatedName: '$translatedName', info: '$info', orientation: '$orientation', schoolSystemInfo: '$schoolSystemInfo')";
+    return "(fileName: '$fileName', translatedName: '$translatedName', info: '$info', orientation: '$orientation', schoolSystemInfo: '$schoolSystem')";
   }
 }

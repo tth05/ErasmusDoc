@@ -6,9 +6,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:erasmus_app/data/country.dart';
-import 'package:erasmus_app/data/personal_data.dart';
-import 'package:erasmus_app/data/school.dart';
+import 'package:erasmus_app/models/activity.dart';
+import 'package:erasmus_app/models/country.dart';
+import 'package:erasmus_app/models/personal_data.dart';
+import 'package:erasmus_app/models/school.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path_provider/path_provider.dart';
 
@@ -20,9 +21,10 @@ class JsonManager {
   //Stores all country instances
   final countries = <Country>[];
 
-  //Stores json as strings that describe the activities created by the user with the path as their keys
-  final activities = Map<String, String>();
+  //Stores all activity instances
+  final activities = <Activity>[];
 
+  //Data the user can optionally input
   final personalData = PersonalData();
 
   Future<String> get _localPath async {
@@ -33,7 +35,7 @@ class JsonManager {
   JsonManager() {
     loadSchools();
     loadCountries();
-//    loadActivities();
+    loadActivities();
   }
 
   void loadSchools() async {
@@ -63,10 +65,11 @@ class JsonManager {
 
   void loadActivities() async {
     final path = await _localPath;
-    final dir = await createFileIfNotExists("$path/activities") as Directory;
+    final dir = Directory("$path/activities");
+    if (!dir.existsSync()) return;
 
     dir.listSync().forEach((f) {
-      if (f is File) activities[f.path] = f.readAsStringSync();
+      if (f is File) activities.add(Activity.fromJson(json.decode(f.readAsStringSync())));
     });
   }
 

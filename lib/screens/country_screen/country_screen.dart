@@ -3,7 +3,7 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/data/country.dart';
+import 'package:erasmus_app/models/country.dart';
 import 'package:erasmus_app/screens/image_view_screen/image_view_screen.dart';
 import 'package:erasmus_app/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
@@ -139,7 +139,7 @@ class CountryScreenState extends State<CountryScreen> {
                           children: <Widget>[
                             Divider(),
                             Text(
-                              country.schoolSystemInfo,
+                              country.schoolSystem,
                               style: TextStyle(fontSize: 20.0),
                             ),
                           ],

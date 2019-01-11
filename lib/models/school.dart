@@ -7,7 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'school.g.dart';
 
 @JsonSerializable()
-class School extends Object with _$SchoolSerializerMixin {
+class School {
   final String fileName;
   final String translatedName;
   final String info;

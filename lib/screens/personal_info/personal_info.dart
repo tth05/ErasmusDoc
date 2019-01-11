@@ -5,6 +5,8 @@
 
 import 'package:erasmus_app/globals.dart' as globals;
 import 'package:erasmus_app/screens/personal_info/widgets/widgets.dart';
+import 'package:erasmus_app/util/form_helper.dart';
+import 'package:erasmus_app/widgets/date_picker_tile.dart';
 import 'package:flutter/material.dart';
 
 class PersonalInfoScreen extends StatefulWidget {
@@ -13,34 +15,7 @@ class PersonalInfoScreen extends StatefulWidget {
 }
 
 class PersonalInfoScreenState extends State<PersonalInfoScreen> {
-  final _fieldFont = TextStyle(fontSize: 15.0, color: Colors.black);
-  final _textFont = TextStyle(fontSize: 20.0);
-
   final _formKey = GlobalKey<FormState>();
-
-  Widget buildTitle(String title) {
-    return Text(
-      title,
-      style: _textFont,
-    );
-  }
-
-  Widget buildTextField({bool focus = false}) {
-    return TextFormField(
-      style: _fieldFont,
-      autofocus: focus,
-      validator: (s) {
-        if (s.isEmpty) {
-          return "Bitte fülle dieses Feld aus.";
-        }
-      },
-    );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,46 +38,35 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
       //TODO: Disallow special characters to not break anything for all TextFields
       body: Form(
         key: _formKey,
-        child: Container(
+        child: SingleChildScrollView(
           padding: EdgeInsets.all(8.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Flexible(
-                child: ListView(
-                  padding: EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
-                  children: <Widget>[
-                    buildTitle("Name:"),
-                    buildTextField(focus: false),
-                    Divider(
-                      color: Colors.grey[50],
-                    ),
-                    buildTitle("Wohnort:"),
-                    buildTextField(),
-                    Divider(
-                      color: Colors.grey[50],
-                    ),
-                    buildTitle("Über mich:"),
-                    TextFormField(
-                      style: _fieldFont,
-                      validator: (s) {
-                        if (s.isEmpty) {
-                          return "Bitte fülle dieses Feld aus.";
-                        }
-                      },
-                    ),
-                    Divider(
-                      color: Colors.grey[50],
-                    ),
-                    BirthdaySelector(
-                      initialValue: globals.jsonManager.personalData.userBirthdayDate,
-                    ),
-                    Divider(
-                      color: Colors.grey[50],
-                    ),
-                    SelectSchoolDropdownButton(),
-                  ],
-                ),
+              FormHelper.buildTitle("Name:"),
+              FormHelper.buildTextField(focus: false),
+              Divider(
+                color: Colors.grey[50],
               ),
+              FormHelper.buildTitle("Wohnort:"),
+              FormHelper.buildTextField(),
+              Divider(
+                color: Colors.grey[50],
+              ),
+              FormHelper.buildTitle("Über mich:"),
+              FormHelper.buildTextField(),
+              Divider(
+                color: Colors.grey[50],
+              ),
+              DatePickerTile(
+                "Geburtsdatum:",
+                "Bitte wähle dein Geburtsdatum aus.",
+                initialValue: globals.jsonManager.personalData.userBirthdayDate,
+              ),
+              Divider(
+                color: Colors.grey[50],
+              ),
+              SelectSchoolDropdownButton(),
             ],
           ),
         ),

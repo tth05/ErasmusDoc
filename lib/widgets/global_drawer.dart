@@ -3,9 +3,9 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/data/country.dart';
-import 'package:erasmus_app/data/school.dart';
 import 'package:erasmus_app/globals.dart' as globals;
+import 'package:erasmus_app/models/country.dart';
+import 'package:erasmus_app/models/school.dart';
 import 'package:erasmus_app/screens/country_screen/country_screen.dart';
 import 'package:erasmus_app/screens/school_screen/school_screen.dart';
 import 'package:flutter/material.dart';

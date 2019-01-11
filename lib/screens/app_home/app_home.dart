@@ -83,7 +83,7 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
       endDrawer: GlobalDrawer(),
       floatingActionButton: _index == 0
           ? FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () => Navigator.of(context).pushNamed("/create_activity"),
         icon: Icon(Icons.add),
         label: Text("Neuer Eintrag"),
       )

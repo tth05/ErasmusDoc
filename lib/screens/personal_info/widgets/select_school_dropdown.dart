@@ -3,8 +3,8 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/data/school.dart';
 import 'package:erasmus_app/globals.dart' as globals;
+import 'package:erasmus_app/models/school.dart';
 import 'package:flutter/material.dart';
 
 class SelectSchoolDropdownButton extends FormField<String> {

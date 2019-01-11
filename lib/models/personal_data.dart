@@ -4,7 +4,7 @@
 */
 
 //Handles user data
-import 'package:erasmus_app/data/school.dart';
+import 'package:erasmus_app/models/school.dart';
 
 class PersonalData {
   School selectedSchool;

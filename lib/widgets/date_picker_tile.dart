@@ -8,13 +8,12 @@ import 'dart:async';
 import 'package:erasmus_app/globals.dart' as globals;
 import 'package:flutter/material.dart';
 
-class BirthdaySelector extends FormField<DateTime> {
-  BirthdaySelector({FormFieldSetter<DateTime> onSaved, DateTime initialValue})
+class DatePickerTile extends FormField<DateTime> {
+  DatePickerTile(String title, String error, {FormFieldSetter<DateTime> onSaved, DateTime initialValue})
       : super(
     onSaved: onSaved,
     validator: (value) {
-      if (value.toString().substring(0, 10) == DateTime.now().toString().substring(0, 10))
-        return 'Bitte wähle dein Geburtsdatum aus.';
+      if (value.toString().substring(0, 10) == DateTime.now().toString().substring(0, 10)) return error;
     },
     initialValue: initialValue,
     autovalidate: false,
@@ -24,17 +23,16 @@ class BirthdaySelector extends FormField<DateTime> {
         children: <Widget>[
           ListTile(
             title: Text(
-              "Geburtsdatum:",
+              title,
               style: TextStyle(fontSize: 20.0),
             ),
             subtitle: Text(globals.jsonManager.personalData.userBirthdayAsString),
             contentPadding: EdgeInsets.all(0.0),
             onTap: () {
-              //TODO: Add custom DatePicker that doesn't show the buttons for smaller devices
               Future<DateTime> result = showDatePicker(
                 context: state.context,
                 locale: Locale("de"),
-                initialDate: globals.jsonManager.personalData.userBirthdayDate,
+                initialDate: initialValue,
                 firstDate: DateTime(1900),
                 lastDate: DateTime.now(),
                 initialDatePickerMode: DatePickerMode.year,

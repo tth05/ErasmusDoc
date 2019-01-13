@@ -7,6 +7,7 @@ import 'dart:math';
 
 import 'package:erasmus_app/globals.dart' as globals;
 import 'package:erasmus_app/models/school.dart';
+import 'package:erasmus_app/widgets/custom_app_bar.dart';
 import 'package:erasmus_app/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class SchoolScreenState extends State<SchoolScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: CustomAppBar(
         title: Text("Info"),
         centerTitle: true,
         leading: IconButton(

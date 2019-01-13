@@ -6,6 +6,7 @@
 import 'package:erasmus_app/globals.dart' as globals;
 import 'package:erasmus_app/screens/personal_info/widgets/widgets.dart';
 import 'package:erasmus_app/util/form_helper.dart';
+import 'package:erasmus_app/widgets/custom_app_bar.dart';
 import 'package:erasmus_app/widgets/date_picker_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: CustomAppBar(
         title: Text("Daten"),
         centerTitle: true,
         actions: <Widget>[

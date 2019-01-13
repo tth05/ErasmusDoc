@@ -57,10 +57,10 @@ class JsonManager {
   }
 
   /// Saves an activity and also overwrites if it already exists
-  void saveActivity(String name, String content) async {
+  void saveActivity(Activity activity) async {
     final path = await _localPath;
-    final file = await createFileIfNotExists("$path/activities/$name.json") as File;
-    file.writeAsStringSync(content);
+    final file = await createFileIfNotExists("$path/activities/${activity.name}.json") as File;
+    file.writeAsStringSync(json.encode(activity.toJson()));
   }
 
   void loadActivities() async {

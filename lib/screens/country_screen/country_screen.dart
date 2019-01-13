@@ -5,6 +5,7 @@
 
 import 'package:erasmus_app/models/country.dart';
 import 'package:erasmus_app/screens/image_view_screen/image_view_screen.dart';
+import 'package:erasmus_app/widgets/custom_app_bar.dart';
 import 'package:erasmus_app/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -57,7 +58,7 @@ class CountryScreenState extends State<CountryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: CustomAppBar(
         title: Text("Info"),
         centerTitle: true,
         leading: IconButton(

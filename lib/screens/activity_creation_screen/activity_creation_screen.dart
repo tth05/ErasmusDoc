@@ -5,8 +5,10 @@
 
 import 'dart:convert';
 
+import 'package:erasmus_app/globals.dart' as globals;
 import 'package:erasmus_app/models/activity.dart';
 import 'package:erasmus_app/util/form_helper.dart';
+import 'package:erasmus_app/widgets/custom_app_bar.dart';
 import 'package:erasmus_app/widgets/date_picker_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:zefyr/zefyr.dart';
@@ -60,7 +62,7 @@ class ActivityCreationScreenState extends State<ActivityCreationScreen> {
     if (activity == null) activity = Activity("", DateTime.now(), "");
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: CustomAppBar(
         title: Text("Neue Aktivität"),
         centerTitle: true,
         actions: <Widget>[
@@ -68,6 +70,7 @@ class ActivityCreationScreenState extends State<ActivityCreationScreen> {
             icon: Icon(Icons.save),
             onPressed: () {
               activity.data = base64.encode(utf8.encode(json.encode(_controller.document.toJson())));
+              globals.jsonManager.saveActivity(activity);
               Navigator.of(context).pop();
             },
           ),

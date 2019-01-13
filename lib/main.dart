@@ -4,7 +4,6 @@
 */
 
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:erasmus_app/screens/activity_creation_screen/activity_creation_screen.dart';
 import 'package:erasmus_app/screens/app_home/app_home.dart';
@@ -17,9 +16,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 void main() {
 //  globals.init();
   //Startup delay to show launch image
-  var s = base64.encode(utf8.encode("""[{"insert":"t\n"}]"""));
-  print(utf8.decode(base64.decode(s)));
-
   Future.delayed(const Duration(seconds: 4)).whenComplete(() => runApp(App()));
 }
 

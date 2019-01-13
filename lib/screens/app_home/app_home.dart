@@ -8,6 +8,7 @@ import 'package:erasmus_app/screens/app_home/widgets/activities_list.dart';
 import 'package:erasmus_app/screens/app_home/widgets/erasmus_info_body.dart';
 import 'package:erasmus_app/screens/app_home/widgets/widgets.dart';
 import 'package:erasmus_app/util/after_layout_mixin.dart';
+import 'package:erasmus_app/widgets/custom_app_bar.dart';
 import 'package:erasmus_app/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_permissions/simple_permissions.dart';
@@ -71,8 +72,7 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
 
     //Normal screen
     return Scaffold(
-      //TODO: Disable tooltips on AppBar
-      appBar: AppBar(
+      appBar: CustomAppBar(
         title: Text(_index == 0 ? "Startseite" : "Erasmus-Projektinfo"),
         centerTitle: true,
         leading: IconButton(

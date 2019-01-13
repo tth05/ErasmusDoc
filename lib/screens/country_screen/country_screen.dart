@@ -48,110 +48,114 @@ class CountryScreenState extends State<CountryScreen> {
           ),
         ],
       );
-//      return Text(
-//        text,
-//        style: TextStyle(fontSize: 20.0),
-//      );
     };
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: Text("Info"),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.of(context).pushReplacementNamed("/"),
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context).pushReplacementNamed("/");
+        return false;
+      },
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title: Text("Info"),
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () => Navigator.of(context).pushReplacementNamed("/"),
+          ),
         ),
-      ),
-      endDrawer: GlobalDrawer(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: Column(
-            children: <Widget>[
-              GestureDetector(
-                onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ImageViewScreen("assets/countries/${country.fileName}/big_flag.png"),
-                    fullscreenDialog: true)),
-                child: Card(
-                  elevation: 2.0,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              country.translatedName,
-                              style: TextStyle(fontSize: 30.0),
-                            ),
-                          ],
-                        ),
-                        Divider(),
+        endDrawer: GlobalDrawer(),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Column(
+              children: <Widget>[
+                GestureDetector(
+                  onTap: () =>
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ImageViewScreen("assets/countries/${country.fileName}/big_flag.png"),
+                          fullscreenDialog: true)),
+                  child: Card(
+                    elevation: 2.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                country.translatedName,
+                                style: TextStyle(fontSize: 30.0),
+                              ),
+                            ],
+                          ),
+                          Divider(),
 //                      Image.asset(
 //                        "assets/countries/${country.fileName}/flag.png",
 //                        fit: BoxFit.fill,
 //                      ),
-                        Text(
-                          country.info,
-                          style: TextStyle(
-                            fontSize: 20.0,
+                          Text(
+                            country.info,
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: ExpansionPanelList(
-                  expansionCallback: (index, expanded) => setState(() {
-                        if (index == 0) expanded1 = !expanded;
-                        if (index == 1) expanded2 = !expanded;
-                      }),
-                  children: <ExpansionPanel>[
-                    ExpansionPanel(
-                      headerBuilder: buildHeader("Berufsorientierung"),
-                      body: Container(
-                        padding: EdgeInsets.all(8.0),
-                        child: Column(
-                          children: <Widget>[
-                            Divider(),
-                            Text(
-                              country.orientation,
-                              style: TextStyle(fontSize: 20.0),
-                            ),
-                          ],
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: ExpansionPanelList(
+                    expansionCallback: (index, expanded) =>
+                        setState(() {
+                          if (index == 0) expanded1 = !expanded;
+                          if (index == 1) expanded2 = !expanded;
+                        }),
+                    children: <ExpansionPanel>[
+                      ExpansionPanel(
+                        headerBuilder: buildHeader("Berufsorientierung"),
+                        body: Container(
+                          padding: EdgeInsets.all(8.0),
+                          child: Column(
+                            children: <Widget>[
+                              Divider(),
+                              Text(
+                                country.orientation,
+                                style: TextStyle(fontSize: 20.0),
+                              ),
+                            ],
+                          ),
                         ),
+                        isExpanded: expanded1,
                       ),
-                      isExpanded: expanded1,
-                    ),
-                    ExpansionPanel(
-                      headerBuilder: buildHeader("Schulsystem"),
-                      body: Container(
-                        padding: EdgeInsets.all(8.0),
-                        child: Column(
-                          children: <Widget>[
-                            Divider(),
-                            Text(
-                              country.schoolSystem,
-                              style: TextStyle(fontSize: 20.0),
-                            ),
-                          ],
+                      ExpansionPanel(
+                        headerBuilder: buildHeader("Schulsystem"),
+                        body: Container(
+                          padding: EdgeInsets.all(8.0),
+                          child: Column(
+                            children: <Widget>[
+                              Divider(),
+                              Text(
+                                country.schoolSystem,
+                                style: TextStyle(fontSize: 20.0),
+                              ),
+                            ],
+                          ),
                         ),
+                        isExpanded: expanded2,
                       ),
-                      isExpanded: expanded2,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

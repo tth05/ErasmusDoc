@@ -27,72 +27,78 @@ class SchoolScreenState extends State<SchoolScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: Text("Info"),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.of(context).pushReplacementNamed("/"),
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context).pushReplacementNamed("/");
+        return false;
+      },
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title: Text("Info"),
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () => Navigator.of(context).pushReplacementNamed("/"),
+          ),
         ),
-      ),
-      endDrawer: GlobalDrawer(),
-      body: Padding(
-        padding: EdgeInsets.all(4.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Card(
-                elevation: 2.0,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        school.translatedName,
-                        style: TextStyle(fontSize: 30.0),
-                      ),
-                      Divider(),
-                      Text(
-                        school.info,
-                        style: TextStyle(
-                          fontSize: 20.0,
+        endDrawer: GlobalDrawer(),
+        body: Padding(
+          padding: EdgeInsets.all(4.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Card(
+                  elevation: 2.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          school.translatedName,
+                          style: TextStyle(fontSize: 30.0),
                         ),
-                      ),
-                      Divider(),
-                      Text(
-                        school.address,
-                        style: TextStyle(fontSize: 15.0),
-                      ),
-                    ],
+                        Divider(),
+                        Text(
+                          school.info,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                          ),
+                        ),
+                        Divider(),
+                        Text(
+                          school.address,
+                          style: TextStyle(fontSize: 15.0),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                padding: EdgeInsets.all(4.0),
-                child: Text(
-                  "Projekte",
-                  style: TextStyle(fontSize: 30.0),
+                Container(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text(
+                    "Projekte",
+                    style: TextStyle(fontSize: 30.0),
+                  ),
                 ),
-              ),
-              Divider(),
-              Column(
-                children: List.generate(
-                  10,
-                      (index) =>
-                      ListTile(
-                        leading: Icon(Icons.airport_shuttle),
-                        title: Text(
-                          "Projekt ${index + 1}",
-                          style: TextStyle(fontSize: 20.0),
+                Divider(),
+                Column(
+                  children: List.generate(
+                    10,
+                        (index) =>
+                        ListTile(
+                          leading: Icon(Icons.airport_shuttle),
+                          title: Text(
+                            "Projekt ${index + 1}",
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                          subtitle: Text(globals.jsonManager.countries[Random().nextInt(5)].translatedName),
+                          trailing: IconButton(
+                              icon: Icon(Icons.arrow_forward_ios, color: Colors.blueAccent), onPressed: () => {}),
                         ),
-                        subtitle: Text(globals.jsonManager.countries[Random().nextInt(5)].translatedName),
-                        trailing: IconButton(
-                            icon: Icon(Icons.arrow_forward_ios, color: Colors.blueAccent), onPressed: () => {}),
-                      ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

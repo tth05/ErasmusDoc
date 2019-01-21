@@ -3,6 +3,7 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
+import 'package:erasmus_app/globals.dart' as globals;
 import 'package:json_annotation/json_annotation.dart';
 
 part 'activity.g.dart';
@@ -11,6 +12,12 @@ part 'activity.g.dart';
 class Activity {
   String name;
   DateTime when;
+  @JsonKey(ignore: true)
+  String _fileName;
+
+  String get fileName => _fileName == null ? (_fileName = globals.uuid.v1()) : _fileName;
+
+  set fileName(String name) => _fileName = name;
 
   //Project this belongs to
 //  final Project when;

@@ -11,6 +11,7 @@ import 'package:erasmus_app/models/country.dart';
 import 'package:erasmus_app/models/personal_data.dart';
 import 'package:erasmus_app/models/school.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 //Handles parsing, loading and writing of json
@@ -56,11 +57,15 @@ class JsonManager {
     }
   }
 
-  /// Saves an activity and also overwrites if it already exists
   void saveActivity(Activity activity) async {
     final path = await _localPath;
-    final file = await createFileIfNotExists("$path/activities/${activity.name}.json") as File;
+    final file = await createFileIfNotExists("$path/activities/${activity.fileName}.json") as File;
     file.writeAsStringSync(json.encode(activity.toJson()));
+  }
+
+  void deleteActivity(Activity activity) async {
+    final path = await _localPath;
+    File("$path/activities/${activity.fileName}.json").deleteSync();
   }
 
   void loadActivities() async {
@@ -69,7 +74,11 @@ class JsonManager {
     if (!dir.existsSync()) return;
 
     dir.listSync().forEach((f) {
-      if (f is File) activities.add(Activity.fromJson(json.decode(f.readAsStringSync())));
+      if (f is File) {
+        final a = Activity.fromJson(json.decode(f.readAsStringSync()));
+        a.fileName = basename(f.path).replaceAll(".json", "");
+        activities.add(a);
+      }
     });
   }
 

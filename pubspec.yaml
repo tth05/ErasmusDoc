@@ -20,6 +20,8 @@ dependencies:
   path_provider: ^0.4.1
   #To get permissions for writing to the file system
   simple_permissions: ^0.1.9
+  #Random uuids
+  uuid: ^1.0.3
   #Date formatting
   intl: ^0.15.7
   #Rich text editor

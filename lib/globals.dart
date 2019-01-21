@@ -5,10 +5,12 @@
 
 import 'package:erasmus_app/managers/json_manager.dart';
 import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 
 final jsonManager = JsonManager();
 
 final dateFormat = DateFormat("dd-MM-yyyy");
+final uuid = Uuid();
 
 //void init() {
 //}

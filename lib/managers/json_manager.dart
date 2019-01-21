@@ -3,6 +3,7 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -36,7 +37,6 @@ class JsonManager {
   JsonManager() {
     loadSchools();
     loadCountries();
-    loadActivities();
   }
 
   void loadSchools() async {
@@ -57,29 +57,37 @@ class JsonManager {
     }
   }
 
+  Future<List<Activity>> loadActivities() async {
+    if(activities.isEmpty) {
+      final path = await _localPath;
+      final dir = Directory("$path/activities");
+
+      if (dir.existsSync()) {
+        dir.listSync().forEach((f) {
+          if (f is File) {
+            final a = Activity.fromJson(json.decode(f.readAsStringSync()));
+            a.fileName = basename(f.path).replaceAll(".json", "");
+            activities.add(a);
+          }
+        });
+      }
+    }
+    print("Load, completed");
+    return activities;
+  }
+
   void saveActivity(Activity activity) async {
     final path = await _localPath;
     final file = await createFileIfNotExists("$path/activities/${activity.fileName}.json") as File;
     file.writeAsStringSync(json.encode(activity.toJson()));
+    if(!activities.any((a) => a.fileName == activity.fileName))
+      activities.add(activity);
   }
 
   void deleteActivity(Activity activity) async {
     final path = await _localPath;
     File("$path/activities/${activity.fileName}.json").deleteSync();
-  }
-
-  void loadActivities() async {
-    final path = await _localPath;
-    final dir = Directory("$path/activities");
-    if (!dir.existsSync()) return;
-
-    dir.listSync().forEach((f) {
-      if (f is File) {
-        final a = Activity.fromJson(json.decode(f.readAsStringSync()));
-        a.fileName = basename(f.path).replaceAll(".json", "");
-        activities.add(a);
-      }
-    });
+    activities.removeWhere((a) => a.fileName == activity.fileName);
   }
 
   Future<FileSystemEntity> createFileIfNotExists(String path) async {

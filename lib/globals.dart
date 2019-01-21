@@ -4,8 +4,11 @@
 */
 
 import 'package:erasmus_app/managers/json_manager.dart';
+import 'package:intl/intl.dart';
 
 final jsonManager = JsonManager();
+
+final dateFormat = DateFormat("dd-MM-yyyy");
 
 //void init() {
 //}

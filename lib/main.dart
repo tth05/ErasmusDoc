@@ -12,11 +12,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart';
 
 void main() {
 //  globals.init();
+
+  Intl.defaultLocale = 'de_DE';
   //Startup delay to show launch image
-  Future.delayed(const Duration(seconds: 4)).whenComplete(() => runApp(App()));
+  Future.delayed(const Duration(seconds: 1)).whenComplete(() => runApp(App()));
 }
 
 class App extends StatelessWidget {
@@ -61,23 +64,18 @@ class GermanCupertinoLocalizations implements CupertinoLocalizations {
   @override
   String get alertDialogLabel => ml.alertDialogLabel;
 
-  // TODO: implement anteMeridiemAbbreviation
   @override
   String get anteMeridiemAbbreviation => ml.anteMeridiemAbbreviation;
 
-  // TODO: implement copyButtonLabel
   @override
   String get copyButtonLabel => ml.copyButtonLabel;
 
-  // TODO: implement cutButtonLabel
   @override
   String get cutButtonLabel => ml.cutButtonLabel;
 
-  // TODO: implement datePickerDateOrder
   @override
   DatePickerDateOrder get datePickerDateOrder => DatePickerDateOrder.mdy;
 
-  // TODO: implement datePickerDateTimeOrder
   @override
   DatePickerDateTimeOrder get datePickerDateTimeOrder => DatePickerDateTimeOrder.date_time_dayPeriod;
 

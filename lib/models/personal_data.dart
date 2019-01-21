@@ -4,6 +4,7 @@
 */
 
 //Handles user data
+import 'package:erasmus_app/globals.dart' as globals;
 import 'package:erasmus_app/models/school.dart';
 
 class PersonalData {
@@ -15,5 +16,5 @@ class PersonalData {
 
   DateTime get userBirthdayDate => _userBirthdayDate == null ? (_userBirthdayDate = DateTime.now()) : _userBirthdayDate;
 
-  String get userBirthdayAsString => userBirthdayDate.toString().substring(0, 10);
+  String get userBirthdayAsString => globals.dateFormat.format(_userBirthdayDate);
 }

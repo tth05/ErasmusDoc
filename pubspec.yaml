@@ -10,11 +10,19 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   #  cupertino_icons: ^0.1.2
+  #To open the browser
   url_launcher: ^4.0.3
+  #Json
   json_annotation: ^2.0.0
+  #Markdown
   flutter_markdown: ^0.2.0
+  #To get file paths on IOS and Android
   path_provider: ^0.4.1
+  #To get permissions for writing to the file system
   simple_permissions: ^0.1.9
+  #Date formatting
+  intl: ^0.15.7
+  #Rich text editor
   zefyr:
     path: ../zefyr/packages/zefyr/
 

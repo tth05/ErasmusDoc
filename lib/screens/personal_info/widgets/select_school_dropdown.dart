@@ -36,7 +36,7 @@ class SelectSchoolDropdownButton extends FormField<String> {
               ),
             ),
             onChanged: (School s) {
-              state.didChange((globals.jsonManager.personalData.selectedSchool = s).translatedName);
+              state.didChange((s).translatedName);
             },
           ),
           state.hasError

@@ -4,6 +4,7 @@
 */
 
 import 'package:erasmus_app/managers/manager_context.dart';
+import 'package:erasmus_app/screens/activity_screen/activity_screen.dart';
 import 'package:erasmus_app/screens/app_home/custom_button_location.dart';
 import 'package:erasmus_app/screens/app_home/widgets/activities_list.dart';
 import 'package:erasmus_app/screens/app_home/widgets/erasmus_info_body.dart';
@@ -85,7 +86,8 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
       endDrawer: GlobalDrawer(),
       floatingActionButton: _index == 0
           ? FloatingActionButton.extended(
-              onPressed: () => Navigator.of(context).pushNamed("/create_activity"),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ActivityScreen(mode: Mode.create))),
               icon: Icon(Icons.add),
               label: Text("Neuer Eintrag"),
             )

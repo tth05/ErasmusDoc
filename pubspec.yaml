@@ -14,8 +14,6 @@ dependencies:
   url_launcher: ^4.0.3
   #Json
   json_annotation: ^2.0.0
-  #Markdown
-  flutter_markdown: ^0.2.0
   #To get file paths on IOS and Android
   path_provider: ^0.4.1
   #To get permissions for writing to the file system
@@ -27,6 +25,10 @@ dependencies:
   #Rich text editor
   zefyr:
     path: ../zefyr/packages/zefyr/
+  #Markdown renderer
+  flutter_markdown:
+    git:
+      url: https://github.com/flutter/flutter_markdown.git
 
 dev_dependencies:
   flutter_test:

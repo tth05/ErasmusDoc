@@ -8,6 +8,7 @@ import 'package:erasmus_app/screens/image_view_screen/image_view_screen.dart';
 import 'package:erasmus_app/widgets/custom_app_bar.dart';
 import 'package:erasmus_app/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class CountryScreen extends StatefulWidget {
   final Country country;
@@ -20,36 +21,6 @@ class CountryScreen extends StatefulWidget {
 
 class CountryScreenState extends State<CountryScreen> {
   final Country country;
-
-  var expanded1 = false;
-  var expanded2 = false;
-
-  ExpansionPanelHeaderBuilder buildHeader(String text) {
-    return (BuildContext c, bool expanded) {
-      return Row(
-        children: <Widget>[
-          Expanded(
-            flex: 2,
-            child: Container(
-              margin: EdgeInsets.only(left: 24.0),
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  text,
-                  style: TextStyle(
-                    color: Colors.blueAccent,
-                    decoration: TextDecoration.underline,
-                    fontSize: 25.0,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      );
-    };
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,18 +41,17 @@ class CountryScreenState extends State<CountryScreen> {
         endDrawer: GlobalDrawer(),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(4.0),
+            padding: EdgeInsets.all(4.0),
             child: Column(
               children: <Widget>[
                 GestureDetector(
-                  onTap: () =>
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ImageViewScreen("assets/countries/${country.fileName}/big_flag.png"),
-                          fullscreenDialog: true)),
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ImageViewScreen("assets/countries/${country.fileName}/big_flag.png"),
+                      fullscreenDialog: true)),
                   child: Card(
                     elevation: 2.0,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
                           Row(
@@ -95,10 +65,6 @@ class CountryScreenState extends State<CountryScreen> {
                             ],
                           ),
                           Divider(),
-//                      Image.asset(
-//                        "assets/countries/${country.fileName}/flag.png",
-//                        fit: BoxFit.fill,
-//                      ),
                           Text(
                             country.info,
                             style: TextStyle(
@@ -110,46 +76,65 @@ class CountryScreenState extends State<CountryScreen> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: ExpansionPanelList(
-                    expansionCallback: (index, expanded) =>
-                        setState(() {
-                          if (index == 0) expanded1 = !expanded;
-                          if (index == 1) expanded2 = !expanded;
-                        }),
-                    children: <ExpansionPanel>[
-                      ExpansionPanel(
-                        headerBuilder: buildHeader("Berufsorientierung"),
-                        body: Container(
-                          padding: EdgeInsets.all(8.0),
-                          child: Column(
-                            children: <Widget>[
-                              Divider(),
-                              Text(
-                                country.orientation,
-                                style: TextStyle(fontSize: 20.0),
-                              ),
-                            ],
+                Card(
+                  elevation: 1.0,
+                  child: Column(
+                    children: <Widget>[
+                      //First tile
+                      ListTile(
+                        title: Text(
+                          "Berufsorientierung",
+                          style: TextStyle(
+                            color: Colors.blueAccent,
+                            decoration: TextDecoration.underline,
+                            fontSize: 25.0,
                           ),
                         ),
-                        isExpanded: expanded1,
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.blueAccent,
+                        ),
+                        onTap: () => showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Padding(
+                              padding: EdgeInsets.all(4.0),
+                              child: Markdown(
+                                styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)),
+                                padding: EdgeInsets.all(0.0),
+                                data: country.orientation,
+                              ),
+                            );
+                          },
+                        ),
                       ),
-                      ExpansionPanel(
-                        headerBuilder: buildHeader("Schulsystem"),
-                        body: Container(
-                          padding: EdgeInsets.all(8.0),
-                          child: Column(
-                            children: <Widget>[
-                              Divider(),
-                              Text(
-                                country.schoolSystem,
-                                style: TextStyle(fontSize: 20.0),
-                              ),
-                            ],
+                      Divider(),
+                      //Second tile
+                      ListTile(
+                        title: Text(
+                          "Schulsystem",
+                          style: TextStyle(
+                            color: Colors.blueAccent,
+                            decoration: TextDecoration.underline,
+                            fontSize: 25.0,
                           ),
                         ),
-                        isExpanded: expanded2,
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.blueAccent,
+                        ),
+                        onTap: () => showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Padding(
+                                  padding: EdgeInsets.all(4.0),
+                                  child: Markdown(
+                                    padding: EdgeInsets.all(0.0),
+                                    data: country.schoolSystem,
+                                  ),
+                                );
+                              },
+                            ),
                       ),
                     ],
                   ),

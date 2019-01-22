@@ -3,7 +3,7 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/globals.dart' as globals;
+import 'package:erasmus_app/managers/manager_context.dart';
 import 'package:erasmus_app/models/activity.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +16,8 @@ class ActivityListViewState extends State<ActivityListView> {
 
   @override
   Widget build(BuildContext context) {
+    final jsonManager = ManagerContext.of(context).jsonManager;
+
     return Column(
       children: <Widget>[
         Text(
@@ -26,7 +28,7 @@ class ActivityListViewState extends State<ActivityListView> {
           ),
         ),
         FutureBuilder<List<Activity>>(
-          future: globals.jsonManager.loadActivities(),
+          future: jsonManager.loadActivities(),
           builder: (BuildContext context, AsyncSnapshot<List<Activity>> snapshot) {
             if(snapshot.hasData && snapshot.data != null && snapshot.data.isNotEmpty) {
                 return Column(
@@ -59,7 +61,7 @@ class ActivityListViewState extends State<ActivityListView> {
                           IconButton(
                             icon: Icon(Icons.delete),
                             onPressed: () {
-                              globals.jsonManager.deleteActivity(activity);
+                              jsonManager.deleteActivity(activity);
                               setState(() {});
                             },
                           ),

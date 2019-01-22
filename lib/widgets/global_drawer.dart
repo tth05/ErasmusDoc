@@ -3,7 +3,7 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/globals.dart' as globals;
+import 'package:erasmus_app/managers/manager_context.dart';
 import 'package:erasmus_app/models/country.dart';
 import 'package:erasmus_app/models/school.dart';
 import 'package:erasmus_app/screens/country_screen/country_screen.dart';
@@ -25,10 +25,12 @@ class GlobalDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final jsonManager = ManagerContext.of(context).jsonManager;
+
     drawerList.clear();
     drawerList.add(ListTile(title: Text("Schulen", style: TextStyle(fontSize: 20.0))));
     drawerList.add(Divider());
-    drawerList.addAll(globals.jsonManager.schools.map(
+    drawerList.addAll(jsonManager.schools.map(
           (s) =>
           Column(
             children: <Widget>[
@@ -61,7 +63,7 @@ class GlobalDrawer extends StatelessWidget {
     drawerList.add(ListTile(title: Text("Länder", style: TextStyle(fontSize: 20.0))));
     drawerList.add(Divider());
     drawerList.addAll(
-      globals.jsonManager.countries.map(
+      jsonManager.countries.map(
             (c) =>
             Column(
               children: <Widget>[

@@ -3,6 +3,7 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
+import 'package:erasmus_app/managers/manager_context.dart';
 import 'package:erasmus_app/screens/app_home/custom_button_location.dart';
 import 'package:erasmus_app/screens/app_home/widgets/activities_list.dart';
 import 'package:erasmus_app/screens/app_home/widgets/erasmus_info_body.dart';
@@ -46,8 +47,7 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
                     FlatButton(
                       color: Colors.blueAccent,
                       textColor: Colors.white,
-                      onPressed: () =>
-                          SimplePermissions.requestPermission(Permission.WriteExternalStorage).then((p) {
+                      onPressed: () => SimplePermissions.requestPermission(Permission.WriteExternalStorage).then((p) {
                             if (p == PermissionStatus.authorized) {
                               setState(() {
                                 permissionsGranted = true;
@@ -70,6 +70,8 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
         ),
       );
 
+    final jsonManager = ManagerContext.of(context).jsonManager;
+    final hasSelectedSchool = jsonManager.personalData.school != null;
     //Normal screen
     return Scaffold(
       appBar: CustomAppBar(
@@ -83,16 +85,15 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
       endDrawer: GlobalDrawer(),
       floatingActionButton: _index == 0
           ? FloatingActionButton.extended(
-        onPressed: () => Navigator.of(context).pushNamed("/create_activity"),
-        icon: Icon(Icons.add),
-        label: Text("Neuer Eintrag"),
-      )
+              onPressed: () => Navigator.of(context).pushNamed("/create_activity"),
+              icon: Icon(Icons.add),
+              label: Text("Neuer Eintrag"),
+            )
           : null,
       floatingActionButtonLocation: CustomCenterDockedFloatingActionButtonLocation(20.0),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _index,
-        onTap: (index) =>
-            setState(() {
+        onTap: (index) => setState(() {
               _index = index;
             }),
         items: [
@@ -109,20 +110,19 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
       body: _index == 1
           ? ErasmusInfoBody()
           : Padding(
-        padding: EdgeInsets.symmetric(horizontal: 4.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              //TODO: Remove if no school is selected
-              SelectedSchoolButton(),
-              Divider(
-                height: 20.0,
+              padding: EdgeInsets.symmetric(horizontal: 4.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    hasSelectedSchool ? SelectedSchoolButton() : Container(),
+                    Divider(
+                      height: 20.0,
+                    ),
+                    ActivityListView(),
+                  ],
+                ),
               ),
-              ActivityListView(),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 

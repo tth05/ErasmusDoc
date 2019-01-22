@@ -5,7 +5,7 @@
 
 import 'dart:convert';
 
-import 'package:erasmus_app/globals.dart' as globals;
+import 'package:erasmus_app/managers/manager_context.dart';
 import 'package:erasmus_app/models/activity.dart';
 import 'package:erasmus_app/util/form_helper.dart';
 import 'package:erasmus_app/widgets/custom_app_bar.dart';
@@ -58,6 +58,7 @@ class ActivityCreationScreenState extends State<ActivityCreationScreen> {
         toggleColor: Colors.blueAccent[400],
       ),
     );
+    final jsonManager = ManagerContext.of(context).jsonManager;
 
     if (activity == null) activity = Activity("", DateTime.now(), "");
 
@@ -70,7 +71,7 @@ class ActivityCreationScreenState extends State<ActivityCreationScreen> {
             icon: Icon(Icons.save),
             onPressed: () {
               activity.data = base64.encode(utf8.encode(json.encode(_controller.document.toJson())));
-              globals.jsonManager.saveActivity(activity);
+              jsonManager.saveActivity(activity);
               Navigator.of(context).pop();
             },
           ),

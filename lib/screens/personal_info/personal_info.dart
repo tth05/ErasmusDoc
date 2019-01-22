@@ -3,7 +3,7 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/globals.dart' as globals;
+import 'package:erasmus_app/managers/manager_context.dart';
 import 'package:erasmus_app/screens/personal_info/widgets/widgets.dart';
 import 'package:erasmus_app/util/form_helper.dart';
 import 'package:erasmus_app/widgets/custom_app_bar.dart';
@@ -20,6 +20,8 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final jsonManager = ManagerContext.of(context).jsonManager;
+
     return Scaffold(
       appBar: CustomAppBar(
         title: Text("Daten"),
@@ -62,7 +64,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
               DatePickerTile(
                 "Geburtsdatum:",
                 "Bitte wähle dein Geburtsdatum aus.",
-                initialValue: globals.jsonManager.personalData.userBirthdayDate,
+                initialValue: jsonManager.personalData.userBirthdayDate,
               ),
               Divider(
                 color: Colors.grey[50],

@@ -8,7 +8,7 @@ import 'package:erasmus_app/globals.dart' as globals;
 import 'package:erasmus_app/models/school.dart';
 
 class PersonalData {
-  School selectedSchool;
+  School school;
 
   var _userBirthdayDate;
 

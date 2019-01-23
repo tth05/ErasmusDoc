@@ -69,7 +69,7 @@ class ActivityListViewState extends State<ActivityListView> {
                                         context: context,
                                         builder: (BuildContext context) {
                                           return AlertDialog(
-                                            title: Text("Möchtest du wirklich diese Aktivität löschen?"),
+                                            title: Text("Möchtest du diese Aktivität wirklich löschen?"),
                                             content: Text("Alle vorhandenen Daten gehen verloren."),
                                             actions: <Widget>[
                                               FlatButton(

@@ -8,7 +8,7 @@ import 'package:erasmus_app/screens/activity_screen/activity_screen.dart';
 import 'package:erasmus_app/screens/app_home/custom_button_location.dart';
 import 'package:erasmus_app/screens/app_home/widgets/activities_list.dart';
 import 'package:erasmus_app/screens/app_home/widgets/erasmus_info_body.dart';
-import 'package:erasmus_app/screens/app_home/widgets/widgets.dart';
+import 'package:erasmus_app/screens/app_home/widgets/selected_school_button.dart';
 import 'package:erasmus_app/util/after_layout_mixin.dart';
 import 'package:erasmus_app/widgets/custom_app_bar.dart';
 import 'package:erasmus_app/widgets/global_drawer.dart';

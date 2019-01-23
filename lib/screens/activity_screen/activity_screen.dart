@@ -74,7 +74,7 @@ class ActivityScreenState extends State<ActivityScreen> {
             mode == Mode.create ? "Neue Aktivität" : mode == Mode.edit ? "Aktivität bearbeiten" : "Aktivität ansehen"),
         centerTitle: true,
         actions: <Widget>[
-          mode != Mode.view
+          mode != Mode.view && page != 0
               ? IconButton(
                   icon: Icon(Icons.save),
                   onPressed: () {

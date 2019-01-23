@@ -4,6 +4,7 @@
 */
 
 import 'package:erasmus_app/models/country.dart';
+import 'package:erasmus_app/screens/country_screen/widgets/rounded_modal.dart';
 import 'package:erasmus_app/screens/image_view_screen/image_view_screen.dart';
 import 'package:erasmus_app/widgets/custom_app_bar.dart';
 import 'package:erasmus_app/widgets/global_drawer.dart';
@@ -24,6 +25,12 @@ class CountryScreenState extends State<CountryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
+    MarkdownStyleSheet markdownStyleSheet = MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
+      p: theme.textTheme.body1.copyWith(fontSize: 20.0),
+      h1: theme.textTheme.headline.copyWith(fontSize: 30.0),
+    );
+
     return WillPopScope(
       onWillPop: () async {
         Navigator.of(context).pushReplacementNamed("/");
@@ -94,21 +101,20 @@ class CountryScreenState extends State<CountryScreen> {
                           Icons.arrow_forward_ios,
                           color: Colors.blueAccent,
                         ),
-                        onTap: () => showModalBottomSheet(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Padding(
-                              padding: EdgeInsets.all(4.0),
-                              child: Markdown(
-                                styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)),
-                                padding: EdgeInsets.all(0.0),
-                                data: country.orientation,
-                              ),
-                            );
-                          },
-                        ),
+                        onTap: () => showRoundedModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Markdown(
+                                  styleSheet: markdownStyleSheet,
+                                  padding: EdgeInsets.all(8.0),
+                                  data: country.orientation,
+                                );
+                              },
+                            ),
                       ),
-                      Divider(),
+                      Divider(
+                        height: 0.0,
+                      ),
                       //Second tile
                       ListTile(
                         title: Text(
@@ -123,15 +129,13 @@ class CountryScreenState extends State<CountryScreen> {
                           Icons.arrow_forward_ios,
                           color: Colors.blueAccent,
                         ),
-                        onTap: () => showModalBottomSheet(
+                        onTap: () => showRoundedModalBottomSheet(
                               context: context,
                               builder: (BuildContext context) {
-                                return Padding(
-                                  padding: EdgeInsets.all(4.0),
-                                  child: Markdown(
-                                    padding: EdgeInsets.all(0.0),
-                                    data: country.schoolSystem,
-                                  ),
+                                return Markdown(
+                                  styleSheet: markdownStyleSheet,
+                                  padding: EdgeInsets.all(8.0),
+                                  data: country.schoolSystem,
                                 );
                               },
                             ),

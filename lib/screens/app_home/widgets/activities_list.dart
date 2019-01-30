@@ -116,13 +116,18 @@ class ActivityListState extends State<ActivityList> {
                       .toList(),
                 );
               } else
-                return Text(
-                  "Keine vorhandenen Aktivitäten",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 20.0,
-                  ),
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "Keine vorhandenen Aktivitäten",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  ],
                 );
             },
           ),

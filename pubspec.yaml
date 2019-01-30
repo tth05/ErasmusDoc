@@ -10,6 +10,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   #  cupertino_icons: ^0.1.2
+
   #To open the browser
   url_launcher: ^4.0.3
   #Json
@@ -22,6 +23,8 @@ dependencies:
   uuid: ^1.0.3
   #Date formatting
   intl: ^0.15.7
+  #Sticky headers
+  sticky_headers: ^0.1.7
   #Rich text editor
   zefyr:
     path: ../zefyr/packages/zefyr/

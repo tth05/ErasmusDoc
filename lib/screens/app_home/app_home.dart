@@ -25,6 +25,24 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
   var permissionsGranted = true;
 
   @override
+  void afterFirstLayout(BuildContext context) {
+    //Check status
+    SimplePermissions.getPermissionStatus(Permission.WriteExternalStorage).then((p) {
+      if (p != PermissionStatus.authorized) {
+        //Request once if not authorized
+        SimplePermissions.requestPermission(Permission.WriteExternalStorage).then((p) {
+          if (p != PermissionStatus.authorized) {
+            //Switch to other screen if still not authorized
+            setState(() {
+              permissionsGranted = false;
+            });
+          }
+        });
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     if (!permissionsGranted)
       //Permissions not granted screen
@@ -76,7 +94,7 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
     //Normal screen
     return Scaffold(
       appBar: CustomAppBar(
-        title: Text(_index == 0 ? "Startseite" : "Erasmus-Projektinfo"),
+        title: Text(_index == 0 ? "Überblick" : "Erasmus-Projektinfo"),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.person),
@@ -86,8 +104,8 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
       endDrawer: GlobalDrawer(),
       floatingActionButton: _index == 0
           ? FloatingActionButton.extended(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ActivityScreen(mode: Mode.create))),
+              onPressed: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => ActivityScreen(mode: Mode.create))),
               icon: Icon(Icons.add),
               label: Text("Neuer Eintrag"),
             )
@@ -101,7 +119,7 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text("Start"),
+            title: Text("Überblick"),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info_outline),
@@ -113,36 +131,22 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
           ? ErasmusInfoBody()
           : Padding(
               padding: EdgeInsets.symmetric(horizontal: 4.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    hasSelectedSchool ? SelectedSchoolButton() : Container(),
-                    Divider(
-                      height: 20.0,
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: ListView(
+                      children: <Widget>[
+                        hasSelectedSchool ? SelectedSchoolButton() : Container(),
+                        Divider(
+                          height: 20.0,
+                        ),
+                        ActivityList(),
+                      ],
                     ),
-                    ActivityListView(),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
     );
-  }
-
-  @override
-  void afterFirstLayout(BuildContext context) {
-    //Check status
-    SimplePermissions.getPermissionStatus(Permission.WriteExternalStorage).then((p) {
-      if (p != PermissionStatus.authorized) {
-        //Request once if not authorized
-        SimplePermissions.requestPermission(Permission.WriteExternalStorage).then((p) {
-          if (p != PermissionStatus.authorized) {
-            //Switch to other screen if still not authorized
-            setState(() {
-              permissionsGranted = false;
-            });
-          }
-        });
-      }
-    });
   }
 }

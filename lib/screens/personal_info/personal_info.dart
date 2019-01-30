@@ -30,15 +30,13 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
           IconButton(
             icon: Icon(Icons.save),
             onPressed: () {
-              if (_formKey.currentState.validate()) {
-                Navigator.of(context).pushReplacementNamed("/");
-              }
+              _formKey.currentState.save();
+              jsonManager.savePersonalData();
+              Navigator.of(context).pushReplacementNamed("/");
             },
           ),
         ],
       ),
-      //TODO: Add maxLength checks for all TextFields
-      //TODO: Disallow special characters to not break anything for all TextFields
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -47,29 +45,47 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               FormHelper.buildTitle("Name:"),
-              FormHelper.buildTextField(focus: false),
-              Divider(
-                color: Colors.grey[50],
-              ),
-              FormHelper.buildTitle("Wohnort:"),
-              FormHelper.buildTextField(),
-              Divider(
-                color: Colors.grey[50],
-              ),
-              FormHelper.buildTitle("Über mich:"),
-              FormHelper.buildTextField(),
-              Divider(
-                color: Colors.grey[50],
-              ),
-              DatePickerTile(
-                "Geburtsdatum:",
-                "Bitte wähle dein Geburtsdatum aus.",
-                initialValue: jsonManager.personalData.userBirthdayDate,
-              ),
-              Divider(
-                color: Colors.grey[50],
-              ),
-              SelectSchoolDropdownButton(),
+              FormHelper.buildTextField(
+                  initialValue: jsonManager.personalData.name, onSaved: (v) => jsonManager.personalData.name = v),
+              FormHelper.divider,
+              FormHelper.buildTitle("Straße, Hausnummer:"),
+              FormHelper.buildTextField(
+                  initialValue: jsonManager.personalData.addressPart1,
+                  onSaved: (v) => jsonManager.personalData.addressPart1 = v),
+              FormHelper.divider,
+              FormHelper.buildTitle("PLZ, Ort:"),
+              FormHelper.buildTextField(
+                  initialValue: jsonManager.personalData.addressPart2,
+                  onSaved: (v) => jsonManager.personalData.addressPart2 = v),
+              FormHelper.divider,
+              FormHelper.buildTitle("E-Mail:"),
+              FormHelper.buildTextField(
+                  initialValue: jsonManager.personalData.email, onSaved: (v) => jsonManager.personalData.email = v),
+              FormHelper.divider,
+              DatePickerTile("Geburtsdatum:", "Bitte wähle dein Geburtsdatum aus.",
+                  initialValue: jsonManager.personalData.userBirthdayDate,
+                  onSaved: (v) => jsonManager.personalData.userBirthdayDate = v),
+              FormHelper.divider,
+              SelectSchoolDropdownButton(jsonManager.personalData.school,
+                  onSaved: (v) => jsonManager.personalData.school = v),
+              FormHelper.divider,
+              FormHelper.buildTitle("Meine Interessen:"),
+              FormHelper.buildTextField(
+                  initialValue: jsonManager.personalData.interests,
+                  maxLines: 3,
+                  onSaved: (v) => jsonManager.personalData.interests = v),
+              FormHelper.divider,
+              FormHelper.buildTitle("Meine Stärken:"),
+              FormHelper.buildTextField(
+                  initialValue: jsonManager.personalData.strengths,
+                  maxLines: 3,
+                  onSaved: (v) => jsonManager.personalData.strengths = v),
+              FormHelper.divider,
+              FormHelper.buildTitle("Meine Berufsziele:"),
+              FormHelper.buildTextField(
+                  initialValue: jsonManager.personalData.jobGoals,
+                  maxLines: 3,
+                  onSaved: (v) => jsonManager.personalData.jobGoals = v),
             ],
           ),
         ),

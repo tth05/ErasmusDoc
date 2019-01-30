@@ -27,7 +27,7 @@ class JsonManager {
   final activities = <Activity>[];
 
   //Data the user can optionally input
-  final personalData = PersonalData();
+  var personalData = PersonalData(null, "", "", "", "", "", "", "", DateTime.now());
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
@@ -37,6 +37,7 @@ class JsonManager {
   JsonManager() {
     loadSchools();
     loadCountries();
+    loadPersonalData();
   }
 
   void loadSchools() async {
@@ -58,7 +59,7 @@ class JsonManager {
   }
 
   Future<List<Activity>> loadActivities() async {
-    if(activities.isEmpty) {
+    if (activities.isEmpty) {
       final path = await _localPath;
       final dir = Directory("$path/activities");
 
@@ -76,18 +77,29 @@ class JsonManager {
     return activities;
   }
 
-  void saveActivity(Activity activity) async {
+  Future<void> saveActivity(Activity activity) async {
     final path = await _localPath;
     final file = await createFileIfNotExists("$path/activities/${activity.fileName}.json") as File;
     file.writeAsStringSync(json.encode(activity.toJson()));
-    if(!activities.any((a) => a.fileName == activity.fileName))
-      activities.add(activity);
+    if (!activities.any((a) => a.fileName == activity.fileName)) activities.add(activity);
   }
 
   void deleteActivity(Activity activity) async {
     final path = await _localPath;
     File("$path/activities/${activity.fileName}.json").deleteSync();
     activities.removeWhere((a) => a.fileName == activity.fileName);
+  }
+
+  void loadPersonalData() async {
+    final path = await _localPath;
+    final file = File("$path/personal_data.json");
+    if (file.existsSync()) personalData = PersonalData.fromJson(json.decode(file.readAsStringSync()));
+  }
+
+  void savePersonalData() async {
+    final path = await _localPath;
+    final file = await createFileIfNotExists("$path/personal_data.json") as File;
+    file.writeAsStringSync(json.encode(personalData.toJson()));
   }
 
   Future<FileSystemEntity> createFileIfNotExists(String path) async {

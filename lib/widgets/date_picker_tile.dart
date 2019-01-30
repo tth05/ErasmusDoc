@@ -10,7 +10,11 @@ import 'package:flutter/material.dart';
 
 class DatePickerTile extends FormField<DateTime> {
   DatePickerTile(String title, String error,
-      {FormFieldSetter<DateTime> onSaved, FormFieldValidator<DateTime> validator, DateTime initialValue})
+      {FormFieldSetter<DateTime> onSaved,
+      FormFieldValidator<DateTime> validator,
+      DateTime initialValue,
+      DateTime firstDate,
+      DateTime lastDate})
       : super(
           onSaved: onSaved,
           validator: validator == null
@@ -34,8 +38,8 @@ class DatePickerTile extends FormField<DateTime> {
                       context: state.context,
                       locale: Locale("de"),
                       initialDate: initialValue,
-                      firstDate: DateTime(1900),
-                      lastDate: DateTime.now(),
+                      firstDate: firstDate != null ? firstDate : DateTime(1900),
+                      lastDate: lastDate != null ? lastDate : DateTime.now(),
                       initialDatePickerMode: DatePickerMode.year,
                     );
                     result.then((dateTime) {

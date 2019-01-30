@@ -6,15 +6,29 @@
 //Handles user data
 import 'package:erasmus_app/globals.dart' as globals;
 import 'package:erasmus_app/models/school.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'personal_data.g.dart';
+
+@JsonSerializable()
 class PersonalData {
+  String name;
+  String addressPart1;
+  String addressPart2;
+  String email;
+  String interests;
+  String strengths;
+  String jobGoals;
+
   School school;
+  DateTime userBirthdayDate;
 
-  var _userBirthdayDate;
+  String get userBirthdayAsString => globals.dateFormat.format(userBirthdayDate);
 
-  set userBirthdayDate(DateTime date) => _userBirthdayDate = date;
+  PersonalData(this.school, this.name, this.addressPart1, this.addressPart2, this.email, this.interests, this.strengths,
+      this.jobGoals, this.userBirthdayDate);
 
-  DateTime get userBirthdayDate => _userBirthdayDate == null ? (_userBirthdayDate = DateTime.now()) : _userBirthdayDate;
+  factory PersonalData.fromJson(Map<String, dynamic> json) => _$PersonalDataFromJson(json);
 
-  String get userBirthdayAsString => globals.dateFormat.format(_userBirthdayDate);
+  Map<String, dynamic> toJson() => _$PersonalDataToJson(this);
 }

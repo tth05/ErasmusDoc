@@ -8,53 +8,54 @@ import 'package:erasmus_app/models/school.dart';
 import 'package:flutter/material.dart';
 
 class SelectSchoolDropdownButton extends FormField<School> {
-  SelectSchoolDropdownButton({FormFieldSetter<School> onSaved})
+  SelectSchoolDropdownButton(School initialValue, {FormFieldSetter<School> onSaved, FormFieldValidator<School> validator})
       : super(
-    onSaved: onSaved,
-    validator: (value) {
-      if (value == null) return 'Bitte wähle deine Schule aus.';
-    },
-    initialValue: null,
-    autovalidate: false,
-    builder: (FormFieldState<School> state) {
-      final isSchoolSelected = state.value != null;
-      final jsonManager = ManagerContext.of(state.context).jsonManager;
+          onSaved: onSaved,
+          validator: validator == null
+              ? (value) {
+                  if (value == null) return 'Bitte wähle deine Schule aus.';
+                }
+              : validator,
+          initialValue: initialValue,
+          autovalidate: false,
+          builder: (FormFieldState<School> state) {
+            final isSchoolSelected = state.value != null;
+            final jsonManager = ManagerContext.of(state.context).jsonManager;
 
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          DropdownButton(
-            items: jsonManager.schools.map((School val) {
-              return DropdownMenuItem(
-                value: val,
-                child: Text(val.translatedName),
-              );
-            }).toList(),
-            hint: Text(
-              isSchoolSelected ? state.value.translatedName : "Schule",
-              style: TextStyle(
-                fontSize: 20.0,
-                color: isSchoolSelected ? Colors.black : Colors.grey,
-              ),
-            ),
-            onChanged: (School s) {
-              state.didChange(s);
-            },
-          ),
-          state.hasError
-              ? Text(
-            state.errorText,
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              color: Theme
-                  .of(state.context)
-                  .errorColor,
-              fontSize: 12.0,
-            ),
-          )
-              : Container()
-        ],
-      );
-    },
-  );
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                DropdownButton(
+                  items: jsonManager.schools.map((School val) {
+                    return DropdownMenuItem(
+                      value: val,
+                      child: Text(val.translatedName),
+                    );
+                  }).toList(),
+                  hint: Text(
+                    isSchoolSelected ? state.value.translatedName : "Schule",
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: isSchoolSelected ? Colors.black : Colors.grey,
+                    ),
+                  ),
+                  onChanged: (School s) {
+                    state.didChange(s);
+                  },
+                ),
+                state.hasError
+                    ? Text(
+                        state.errorText,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Theme.of(state.context).errorColor,
+                          fontSize: 12.0,
+                        ),
+                      )
+                    : Container()
+              ],
+            );
+          },
+        );
 }

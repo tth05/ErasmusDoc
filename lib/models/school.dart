@@ -17,6 +17,8 @@ class School {
 
   factory School.fromJson(Map<String, dynamic> json) => _$SchoolFromJson(json);
 
+  Map<String, dynamic> toJson() => _$SchoolToJson(this);
+
   @override
   String toString() {
     return "(fileName: '$fileName', translatedName: '$translatedName', info: '$info', address: '$address')";

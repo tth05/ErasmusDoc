@@ -12,11 +12,14 @@ import 'package:erasmus_app/screens/personal_info/personal_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 
 void main() {
   Intl.defaultLocale = 'de_DE';
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   //Startup delay to show launch image
   Future.delayed(const Duration(seconds: 1)).whenComplete(() => runApp(App()));
 }

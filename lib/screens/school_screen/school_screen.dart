@@ -81,8 +81,7 @@ class SchoolScreenState extends State<SchoolScreen> {
                 Column(
                   children: List.generate(
                     10,
-                        (index) =>
-                        ListTile(
+                    (index) => ListTile(
                           leading: Icon(Icons.airport_shuttle),
                           title: Text(
                             "Projekt ${index + 1}",

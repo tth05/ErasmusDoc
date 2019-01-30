@@ -79,8 +79,7 @@ class ActivityScreenState extends State<ActivityScreen> {
                   icon: Icon(Icons.save),
                   onPressed: () {
                     activity.data = base64.encode(utf8.encode(json.encode(_controller.document.toJson())));
-                    jsonManager.saveActivity(activity);
-                    Navigator.of(context).pop();
+                    jsonManager.saveActivity(activity).then((v) => Navigator.of(context).pop());
                   },
                 )
               : Container(),
@@ -99,12 +98,14 @@ class ActivityScreenState extends State<ActivityScreen> {
                         FormHelper.buildTitle("Name:"),
                         FormHelper.buildTextField(
                             focus: true, initialValue: activity.name, onSaved: (value) => activity.name = value),
-                        Divider(color: Colors.grey[50]),
+                        FormHelper.divider,
                         DatePickerTile(
                           "Datum:",
                           "Bitte wähle ein Datum aus.",
                           initialValue: activity.when,
                           onSaved: (value) => activity.when = value,
+                          validator: (value) => null,
+                          lastDate: DateTime.now().add(Duration(days: 365)),
                         ),
                       ],
                     ),

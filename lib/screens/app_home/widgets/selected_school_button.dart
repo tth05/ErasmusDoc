@@ -20,6 +20,7 @@ class SelectedSchoolButtonState extends State<SelectedSchoolButton> {
     return Card(
       elevation: school != null ? 4.0 : 1.0,
       child: InkWell(
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
         onTap: school != null
             ? () =>
             Navigator.of(context)

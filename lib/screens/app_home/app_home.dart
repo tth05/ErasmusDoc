@@ -8,6 +8,7 @@ import 'package:erasmus_app/screens/activity_screen/activity_screen.dart';
 import 'package:erasmus_app/screens/app_home/custom_button_location.dart';
 import 'package:erasmus_app/screens/app_home/widgets/activities_list.dart';
 import 'package:erasmus_app/screens/app_home/widgets/erasmus_info_body.dart';
+import 'package:erasmus_app/screens/app_home/widgets/permissions_needed_screen.dart';
 import 'package:erasmus_app/screens/app_home/widgets/selected_school_button.dart';
 import 'package:erasmus_app/util/after_layout_mixin.dart';
 import 'package:erasmus_app/widgets/custom_app_bar.dart';
@@ -46,48 +47,7 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
   Widget build(BuildContext context) {
     if (!permissionsGranted)
       //Permissions not granted screen
-      return Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Card(
-              elevation: 4,
-              margin: EdgeInsets.all(4.0),
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Diese App benötigt Berechtigungen um zu funktionieren",
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                    Divider(),
-                    FlatButton(
-                      color: Colors.blueAccent,
-                      textColor: Colors.white,
-                      onPressed: () => SimplePermissions.requestPermission(Permission.WriteExternalStorage).then((p) {
-                            if (p == PermissionStatus.authorized) {
-                              setState(() {
-                                permissionsGranted = true;
-                              });
-                            }
-                          }),
-                      child: Text("Berechtigungen geben"),
-                    ),
-                    FlatButton(
-                      color: Colors.blueAccent,
-                      textColor: Colors.white,
-                      onPressed: () => SimplePermissions.openSettings(),
-                      child: Text("Einstellungen öffnen"),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
+      return PermissionsNeededScreen();
 
     final jsonManager = ManagerContext.of(context).jsonManager;
     final hasSelectedSchool = jsonManager.personalData.school != null;
@@ -140,7 +100,7 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
                         Divider(
                           height: 20.0,
                         ),
-                        ActivityList(),
+                        ActivitiesList(),
                       ],
                     ),
                   ),

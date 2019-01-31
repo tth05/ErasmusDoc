@@ -9,12 +9,12 @@ import 'package:erasmus_app/screens/activity_screen/activity_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
-class ActivityList extends StatefulWidget {
+class ActivitiesList extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => ActivityListState();
+  State<StatefulWidget> createState() => ActivitiesListState();
 }
 
-class ActivityListState extends State<ActivityList> {
+class ActivitiesListState extends State<ActivitiesList> {
   @override
   Widget build(BuildContext context) {
     final jsonManager = ManagerContext.of(context).jsonManager;
@@ -49,6 +49,7 @@ class ActivityListState extends State<ActivityList> {
                       .map(
                         (activity) => Card(
                       child: InkWell(
+                        borderRadius: BorderRadius.all(Radius.circular(4.0)),
                         onTap: () => Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => ActivityScreen(activity: activity, mode: Mode.view))),
                         child: Row(

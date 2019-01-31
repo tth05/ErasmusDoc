@@ -140,9 +140,11 @@ class ActivityScreenState extends State<ActivityScreen> {
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
                 child: mode == Mode.view
-                    ? ZefyrView(
-                        document: _notusDocument,
-                        imageDelegate: ZefyrDefaultImageDelegate(),
+                    ? SingleChildScrollView(
+                        child: ZefyrView(
+                          document: _notusDocument,
+                          imageDelegate: ZefyrDefaultImageDelegate(),
+                        )
                       )
                     : ZefyrScaffold(
                         child: ZefyrTheme(

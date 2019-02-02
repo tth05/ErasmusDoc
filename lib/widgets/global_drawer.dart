@@ -28,11 +28,12 @@ class GlobalDrawer extends StatelessWidget {
     final jsonManager = ManagerContext.of(context).jsonManager;
 
     drawerList.clear();
-    drawerList.add(ListTile(title: Text("Schulen", style: TextStyle(fontSize: 20.0))));
-    drawerList.add(Divider());
+    drawerList.add(Container(
+      color: Colors.grey[200],
+      child: ListTile(title: Text("Schulen", style: TextStyle(fontSize: 20.0, color: Colors.grey[600]))),
+    ));
     drawerList.addAll(jsonManager.schools.map(
-          (s) =>
-          Column(
+      (s) => Column(
             children: <Widget>[
               Divider(
                 height: 10.0,
@@ -43,12 +44,12 @@ class GlobalDrawer extends StatelessWidget {
                   onTap: () => _handleSchool(context, s),
                   child: ListTile(
                     title: Text("${s.translatedName}"),
-                    leading: Image.asset("assets/schools/${s.fileName}/logo.png"),
+                    leading: Image.asset(
+                      "assets/schools/${s.fileName}/logo.png",
+                      width: 40.0,
+                    ),
                     trailing: IconButton(
-                      icon: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.blueAccent,
-                      ),
+                      icon: Icon(Icons.arrow_forward_ios),
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onPressed: () => _handleSchool(context, s),
@@ -60,12 +61,13 @@ class GlobalDrawer extends StatelessWidget {
           ),
     ));
     drawerList.add(Divider(color: Colors.white));
-    drawerList.add(ListTile(title: Text("Länder", style: TextStyle(fontSize: 20.0))));
-    drawerList.add(Divider());
+    drawerList.add(Container(
+      color: Colors.grey[200],
+      child: ListTile(title: Text("Länder", style: TextStyle(fontSize: 20.0, color: Colors.grey[600]))),
+    ));
     drawerList.addAll(
       jsonManager.countries.map(
-            (c) =>
-            Column(
+        (c) => Column(
               children: <Widget>[
                 Divider(
                   height: 10.0,
@@ -76,12 +78,12 @@ class GlobalDrawer extends StatelessWidget {
                     onTap: () => _handleCountry(context, c),
                     child: ListTile(
                       title: Text(c.translatedName),
-                      leading: Image.asset("assets/countries/${c.fileName}/flag.png"),
+                      leading: Image.asset(
+                        "assets/countries/${c.fileName}/flag.png",
+                        width: 40.0,
+                      ),
                       trailing: IconButton(
-                        icon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueAccent,
-                        ),
+                        icon: Icon(Icons.arrow_forward_ios),
                         splashColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onPressed: () => _handleCountry(context, c),

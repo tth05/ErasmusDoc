@@ -6,6 +6,7 @@
 import 'package:erasmus_app/models/country.dart';
 import 'package:erasmus_app/screens/country_screen/widgets/rounded_modal.dart';
 import 'package:erasmus_app/screens/image_view_screen/image_view_screen.dart';
+import 'package:erasmus_app/util/common_widgets_util.dart';
 import 'package:erasmus_app/widgets/custom_app_bar.dart';
 import 'package:erasmus_app/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
@@ -26,10 +27,6 @@ class CountryScreenState extends State<CountryScreen> {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
-    MarkdownStyleSheet markdownStyleSheet = MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
-      p: theme.textTheme.body1.copyWith(fontSize: 20.0),
-      h1: theme.textTheme.headline.copyWith(fontSize: 30.0),
-    );
 
     return WillPopScope(
       onWillPop: () async {
@@ -46,106 +43,43 @@ class CountryScreenState extends State<CountryScreen> {
           ),
         ),
         endDrawer: GlobalDrawer(),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(4.0),
-            child: Column(
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ImageViewScreen("assets/countries/${country.fileName}/big_flag.png"),
-                      fullscreenDialog: true)),
-                  child: Card(
-                    elevation: 2.0,
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Column(
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                country.translatedName,
-                                style: TextStyle(fontSize: 30.0),
-                              ),
-                            ],
-                          ),
-                          Divider(),
-                          Text(
-                            country.info,
-                            style: TextStyle(
-                              fontSize: 20.0,
-                            ),
-                          ),
-                        ],
+        body: Column(
+          children: <Widget>[
+            Expanded(
+              child: ListView(
+                children: <Widget>[
+                  CommonWidgetsUtil.buildStickyHeader(
+                    "Land",
+                    CommonWidgetsUtil.buildSimpleInfoCard(
+                      leading: Image.asset(
+                        "assets/countries/${country.fileName}/flag.png",
+                        width: 40.0,
                       ),
+                      title: country.translatedName,
+                      onInfoPressed: () => CommonWidgetsUtil.openMarkdownModal(context, country.info)
                     ),
                   ),
-                ),
-                Card(
-                  elevation: 1.0,
-                  child: Column(
-                    children: <Widget>[
-                      //First tile
-                      ListTile(
-                        title: Text(
-                          "Berufsorientierung",
-                          style: TextStyle(
-                            color: Colors.blueAccent,
-                            decoration: TextDecoration.underline,
-                            fontSize: 25.0,
-                          ),
+                  CommonWidgetsUtil.buildStickyHeader(
+                    "Bildung",
+                    Column(
+                      children: <Widget>[
+                        CommonWidgetsUtil.buildSimpleInfoCard(
+                          title: "Schulsystem",
+                          divider: true,
+                          dividerIndent: 15.0,
+                          onInfoPressed: () => CommonWidgetsUtil.openMarkdownModal(context, country.schoolSystem),
                         ),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueAccent,
+                        CommonWidgetsUtil.buildSimpleInfoCard(
+                          title: "Berufsorientierung",
+                          onInfoPressed: () => CommonWidgetsUtil.openMarkdownModal(context, country.orientation),
                         ),
-                        onTap: () => showRoundedModalBottomSheet(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return Markdown(
-                                  styleSheet: markdownStyleSheet,
-                                  padding: EdgeInsets.all(8.0),
-                                  data: country.orientation,
-                                );
-                              },
-                            ),
-                      ),
-                      Divider(
-                        height: 0.0,
-                      ),
-                      //Second tile
-                      ListTile(
-                        title: Text(
-                          "Schulsystem",
-                          style: TextStyle(
-                            color: Colors.blueAccent,
-                            decoration: TextDecoration.underline,
-                            fontSize: 25.0,
-                          ),
-                        ),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueAccent,
-                        ),
-                        onTap: () => showRoundedModalBottomSheet(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return Markdown(
-                                  styleSheet: markdownStyleSheet,
-                                  padding: EdgeInsets.all(8.0),
-                                  data: country.schoolSystem,
-                                );
-                              },
-                            ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

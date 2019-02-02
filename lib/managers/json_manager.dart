@@ -34,13 +34,13 @@ class JsonManager {
     return directory.path;
   }
 
-  JsonManager() {
-    loadSchools();
-    loadCountries();
-    loadPersonalData();
+  Future<void> init() async {
+    await loadSchools();
+    await loadCountries();
+    await loadPersonalData();
   }
 
-  void loadSchools() async {
+  Future<void> loadSchools() async {
     String load = await rootBundle.loadString("assets/schools/all_schools.json");
     final allSchools = List<String>.from(json.decode(load)["schools"]);
     for (String s in allSchools) {
@@ -49,7 +49,7 @@ class JsonManager {
     }
   }
 
-  void loadCountries() async {
+  Future<void> loadCountries() async {
     String load = await rootBundle.loadString("assets/countries/all_countries.json");
     final allCountries = List<String>.from(json.decode(load)["countries"]);
     for (String s in allCountries) {
@@ -90,7 +90,7 @@ class JsonManager {
     activities.removeWhere((a) => a.fileName == activity.fileName);
   }
 
-  void loadPersonalData() async {
+  Future<void> loadPersonalData() async {
     final path = await _localPath;
     final file = File("$path/personal_data.json");
     if (file.existsSync()) personalData = PersonalData.fromJson(json.decode(file.readAsStringSync()));

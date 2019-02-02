@@ -62,8 +62,8 @@ class ActivityScreenState extends State<ActivityScreen> {
   Widget build(BuildContext context) {
     final zefyrTheme = new ZefyrThemeData(
       toolbarTheme: ZefyrToolbarTheme.fallback(context).copyWith(
-        color: Colors.blueAccent,
-        toggleColor: Colors.blueAccent[400],
+        color: Colors.grey[600],
+        toggleColor: Colors.grey[200],
       ),
     );
     final jsonManager = ManagerContext.of(context).jsonManager;
@@ -135,10 +135,10 @@ class ActivityScreenState extends State<ActivityScreen> {
               padding: EdgeInsets.all(2.0),
               child: Container(
                 padding: EdgeInsets.all(4.0),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blueAccent, width: 2.0),
+                decoration: mode != Mode.view ? BoxDecoration(
+                  border: Border.all(color: Colors.grey[600], width: 2.0),
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                ),
+                ) : null,
                 child: mode == Mode.view
                     ? SingleChildScrollView(
                         child: ZefyrView(

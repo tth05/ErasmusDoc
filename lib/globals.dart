@@ -8,7 +8,3 @@ import 'package:uuid/uuid.dart';
 
 final dateFormat = DateFormat("dd-MM-yyyy");
 final uuid = Uuid();
-
-//void init() {
-//}
-

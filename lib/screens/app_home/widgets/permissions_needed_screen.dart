@@ -30,7 +30,7 @@ class PermissionsNeededScreen extends StatelessWidget {
                   ),
                   Divider(),
                   FlatButton(
-                    color: Colors.blueAccent,
+                    color: Colors.grey[600],
                     textColor: Colors.white,
                     onPressed: () => SimplePermissions.requestPermission(Permission.WriteExternalStorage).then((p) {
                       if (p == PermissionStatus.authorized) {
@@ -42,7 +42,7 @@ class PermissionsNeededScreen extends StatelessWidget {
                     child: Text("Berechtigungen geben"),
                   ),
                   FlatButton(
-                    color: Colors.blueAccent,
+                    color: Colors.grey[600],
                     textColor: Colors.white,
                     onPressed: () => SimplePermissions.openSettings(),
                     child: Text("Einstellungen öffnen"),

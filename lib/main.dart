@@ -16,39 +16,40 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 
-void main() {
+void main() async {
   Intl.defaultLocale = 'de_DE';
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
+  final jsonManager = JsonManager();
+  await jsonManager.init();
+
   //Startup delay to show launch image
-  Future.delayed(const Duration(seconds: 1)).whenComplete(() => runApp(App()));
+  Future.delayed(const Duration(seconds: 1)).whenComplete(() => runApp(ManagerContext(jsonManager, child: App())));
 }
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ManagerContext(
-      JsonManager(),
-      child: MaterialApp(
-        title: 'Erasmus',
-        home: AppHomeScreen(),
-        routes: <String, WidgetBuilder>{
-          '/profile': (BuildContext context) => PersonalInfoScreen(),
-        },
-        theme: ThemeData(
-          primaryColor: Colors.blueAccent,
-          buttonColor: Colors.blue,
-          errorColor: Colors.red[700],
-        ),
-        localizationsDelegates: [
-          GermanCupertinoLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: [
-          const Locale('de', 'DE'),
-        ],
+    return MaterialApp(
+      title: 'Erasmus',
+      home: AppHomeScreen(),
+      routes: <String, WidgetBuilder>{
+        '/profile': (BuildContext context) => PersonalInfoScreen(),
+      },
+      theme: ThemeData(
+        primaryColor: Colors.grey[600],
+        buttonColor: Colors.grey[600],
+        accentColor: Colors.grey[600],
+        errorColor: Colors.red[700],
       ),
+      localizationsDelegates: [
+        GermanCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('de', 'DE'),
+      ],
     );
   }
 }

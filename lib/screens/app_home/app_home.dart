@@ -9,8 +9,9 @@ import 'package:erasmus_app/screens/app_home/custom_button_location.dart';
 import 'package:erasmus_app/screens/app_home/widgets/activities_list.dart';
 import 'package:erasmus_app/screens/app_home/widgets/erasmus_info_body.dart';
 import 'package:erasmus_app/screens/app_home/widgets/permissions_needed_screen.dart';
-import 'package:erasmus_app/screens/app_home/widgets/selected_school_button.dart';
+import 'package:erasmus_app/screens/school_screen/school_screen.dart';
 import 'package:erasmus_app/util/after_layout_mixin.dart';
+import 'package:erasmus_app/util/common_widgets_util.dart';
 import 'package:erasmus_app/widgets/custom_app_bar.dart';
 import 'package:erasmus_app/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
@@ -73,9 +74,12 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
       floatingActionButtonLocation: CustomCenterDockedFloatingActionButtonLocation(20.0),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _index,
-        onTap: (index) => setState(() {
+        onTap: (index) {
+          if (index != _index)
+            setState(() {
               _index = index;
-            }),
+            });
+        },
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -89,23 +93,33 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
       ),
       body: _index == 1
           ? ErasmusInfoBody()
-          : Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4.0),
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: ListView(
-                      children: <Widget>[
-                        hasSelectedSchool ? SelectedSchoolButton() : Container(),
-                        Divider(
-                          height: 20.0,
-                        ),
-                        ActivitiesList(),
-                      ],
-                    ),
+          : Column(
+              children: <Widget>[
+                Expanded(
+                  child: ListView(
+                    children: <Widget>[
+                      hasSelectedSchool
+                          ? CommonWidgetsUtil.buildStickyHeader(
+                              "Schule",
+                              CommonWidgetsUtil.buildSimpleInfoCard(
+                                title: jsonManager.personalData.school.translatedName,
+                                subtitle: jsonManager.personalData.school.address,
+                                leading: Image.asset(
+                                  "assets/schools/${jsonManager.personalData.school.fileName}/logo.png",
+                                  width: 40.0,
+                                ),
+                                trailing: IconButton(
+                                    icon: Icon(Icons.arrow_forward_ios),
+                                    onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                        builder: (context) => SchoolScreen(jsonManager.personalData.school)))),
+                              ),
+                            )
+                          : Container(),
+                      ActivitiesList(),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
     );
   }

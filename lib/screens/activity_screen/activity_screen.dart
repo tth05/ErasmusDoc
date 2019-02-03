@@ -61,10 +61,11 @@ class ActivityScreenState extends State<ActivityScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final zefyrTheme = new ZefyrThemeData(
+    final theme = Theme.of(context);
+    final zefyrTheme = ZefyrThemeData(
       toolbarTheme: ZefyrToolbarTheme.fallback(context).copyWith(
-        color: Colors.grey[600],
-        toggleColor: Colors.grey[200],
+        color: theme.primaryColor,
+        toggleColor: theme.primaryColorLight,
       ),
     );
     final jsonManager = ManagerContext.of(context).jsonManager;
@@ -95,6 +96,7 @@ class ActivityScreenState extends State<ActivityScreen> {
                   child: ListView(
                     children: <Widget>[
                       CommonWidgetsUtil.buildStickyHeader(
+                        context,
                         "Name",
                         FormHelper.buildTextField(
                             focus: true, initialValue: activity.name, onSaved: (value) => activity.name = value),
@@ -115,7 +117,7 @@ class ActivityScreenState extends State<ActivityScreen> {
                           children: <Widget>[
                             RaisedButton(
                               child: Text("Weiter"),
-                              textColor: Colors.white,
+                              textColor: theme.primaryTextTheme.button.color,
                               elevation: 4.0,
                               onPressed: () {
                                 if (_formKey.currentState.validate()) {
@@ -141,7 +143,7 @@ class ActivityScreenState extends State<ActivityScreen> {
                 padding: EdgeInsets.all(4.0),
                 decoration: mode != Mode.view
                     ? BoxDecoration(
-                        border: Border.all(color: Colors.grey[600], width: 2.0),
+                        border: Border.all(color: theme.primaryColor, width: 2.0),
                         borderRadius: BorderRadius.all(Radius.circular(5.0)),
                       )
                     : null,

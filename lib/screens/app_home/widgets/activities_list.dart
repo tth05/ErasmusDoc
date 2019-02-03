@@ -25,6 +25,7 @@ class ActivitiesListState extends State<ActivitiesList> {
     final random = Random();
 
     return CommonWidgetsUtil.buildStickyHeader(
+      context,
       "Aktivitäten",
       FutureBuilder<List<Activity>>(
         future: jsonManager.loadActivities(),
@@ -93,7 +94,7 @@ class ActivitiesListState extends State<ActivitiesList> {
                   "Keine vorhandenen Aktivitäten",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.grey[600],
+                    color: theme.primaryColor,
                     fontSize: 20.0,
                   ),
                 ),

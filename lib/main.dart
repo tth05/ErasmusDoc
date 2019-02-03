@@ -38,6 +38,7 @@ class App extends StatelessWidget {
       },
       theme: ThemeData(
         primaryColor: Colors.grey[600],
+        primaryColorLight: Colors.grey[200],
         buttonColor: Colors.grey[600],
         accentColor: Colors.grey[600],
         errorColor: Colors.red[700],

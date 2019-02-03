@@ -100,6 +100,7 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
                     children: <Widget>[
                       hasSelectedSchool
                           ? CommonWidgetsUtil.buildStickyHeader(
+                        context,
                               "Schule",
                               CommonWidgetsUtil.buildSimpleInfoCard(
                                 title: jsonManager.personalData.school.translatedName,

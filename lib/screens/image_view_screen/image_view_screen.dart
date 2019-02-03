@@ -10,12 +10,13 @@ class ImageViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Center(
       child: GestureDetector(
         onTap: () => Navigator.of(context).pop(),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.grey[100],
+            color: theme.primaryColorLight,
             image: DecorationImage(
               image: AssetImage(path),
             ),

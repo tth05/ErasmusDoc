@@ -47,12 +47,14 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
               child: ListView(
                 children: <Widget>[
                   CommonWidgetsUtil.buildStickyHeader(
+                    context,
                     "Name",
                     FormHelper.buildTextField(
                         initialValue: jsonManager.personalData.name, onSaved: (v) => jsonManager.personalData.name = v),
                     contentPadding: contentPadding
                   ),
                   CommonWidgetsUtil.buildStickyHeader(
+                    context,
                     "Straße/Hausnummer",
                     FormHelper.buildTextField(
                         initialValue: jsonManager.personalData.addressPart1,
@@ -60,6 +62,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                       contentPadding: contentPadding
                   ),
                   CommonWidgetsUtil.buildStickyHeader(
+                    context,
                     "PLZ/Ort",
                     FormHelper.buildTextField(
                         initialValue: jsonManager.personalData.addressPart2,
@@ -67,6 +70,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                       contentPadding: contentPadding
                   ),
                   CommonWidgetsUtil.buildStickyHeader(
+                    context,
                     "E-Mail",
                     FormHelper.buildTextField(
                         initialValue: jsonManager.personalData.email,
@@ -77,12 +81,14 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                       initialValue: jsonManager.personalData.userBirthdayDate,
                       onSaved: (v) => jsonManager.personalData.userBirthdayDate = v),
                   CommonWidgetsUtil.buildStickyHeader(
+                    context,
                     "Schule",
                     SelectSchoolDropdownButton(jsonManager.personalData.school,
                         onSaved: (v) => jsonManager.personalData.school = v),
                       contentPadding: contentPadding
                   ),
                   CommonWidgetsUtil.buildStickyHeader(
+                    context,
                     "Meine Interessen",
                     FormHelper.buildTextField(
                         initialValue: jsonManager.personalData.interests,
@@ -91,6 +97,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                       contentPadding: contentPadding
                   ),
                   CommonWidgetsUtil.buildStickyHeader(
+                    context,
                     "Meine Stärken",
                     FormHelper.buildTextField(
                         initialValue: jsonManager.personalData.strengths,
@@ -99,6 +106,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
                       contentPadding: contentPadding
                   ),
                   CommonWidgetsUtil.buildStickyHeader(
+                    context,
                     "Meine Berufsziele",
                     FormHelper.buildTextField(
                         initialValue: jsonManager.personalData.jobGoals,

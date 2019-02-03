@@ -9,20 +9,21 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
 class CommonWidgetsUtil {
-  static Widget buildStickyHeader(String title, Widget content,
+  static Widget buildStickyHeader(BuildContext context, String title, Widget content,
       {EdgeInsets contentPadding: const EdgeInsets.all(0.0)}) {
+    final theme = Theme.of(context);
     return StickyHeader(
       header: Row(
         children: <Widget>[
           Expanded(
             child: Container(
-              decoration: BoxDecoration(color: Colors.grey[200]),
+              decoration: BoxDecoration(color: theme.primaryColorLight),
               padding: EdgeInsets.symmetric(vertical: 5.0),
               child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   title,
-                  style: TextStyle(fontSize: 20.0, color: Colors.grey[600]),
+                  style: TextStyle(fontSize: 20.0, color: theme.primaryColor),
                 ),
               ),
             ),

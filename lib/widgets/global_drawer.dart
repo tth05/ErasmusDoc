@@ -26,53 +26,43 @@ class GlobalDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final jsonManager = ManagerContext.of(context).jsonManager;
+    final theme = Theme.of(context);
 
     drawerList.clear();
     drawerList.add(Container(
-      color: Colors.grey[200],
-      child: ListTile(title: Text("Schulen", style: TextStyle(fontSize: 20.0, color: Colors.grey[600]))),
+      color: theme.primaryColorLight,
+      child: ListTile(title: Text("Schulen", style: TextStyle(fontSize: 20.0, color: theme.primaryColor))),
     ));
-    drawerList.addAll(jsonManager.schools.map(
-      (s) => Column(
-            children: <Widget>[
-              Divider(
-                height: 10.0,
-                color: Colors.grey[50],
-              ),
-              Container(
-                child: InkWell(
-                  onTap: () => _handleSchool(context, s),
-                  child: ListTile(
-                    title: Text("${s.translatedName}"),
-                    leading: Image.asset(
-                      "assets/schools/${s.fileName}/logo.png",
-                      width: 40.0,
-                    ),
-                    trailing: IconButton(
-                      icon: Icon(Icons.arrow_forward_ios),
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onPressed: () => _handleSchool(context, s),
+    drawerList.addAll(
+      jsonManager.schools.map(
+        (s) => Column(
+              children: <Widget>[
+                Container(
+                  child: InkWell(
+                    onTap: () => _handleSchool(context, s),
+                    child: ListTile(
+                      title: Text("${s.translatedName}"),
+                      leading: Image.asset(
+                        "assets/schools/${s.fileName}/logo.png",
+                        width: 40.0,
+                      ),
+                      trailing: Icon(Icons.arrow_forward_ios),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-    ));
+              ],
+            ),
+      ),
+    );
     drawerList.add(Divider(color: Colors.white));
     drawerList.add(Container(
-      color: Colors.grey[200],
-      child: ListTile(title: Text("Länder", style: TextStyle(fontSize: 20.0, color: Colors.grey[600]))),
+      color: theme.primaryColorLight,
+      child: ListTile(title: Text("Länder", style: TextStyle(fontSize: 20.0, color: theme.primaryColor))),
     ));
     drawerList.addAll(
       jsonManager.countries.map(
         (c) => Column(
               children: <Widget>[
-                Divider(
-                  height: 10.0,
-                  color: Colors.grey[50],
-                ),
                 Container(
                   child: InkWell(
                     onTap: () => _handleCountry(context, c),
@@ -82,12 +72,7 @@ class GlobalDrawer extends StatelessWidget {
                         "assets/countries/${c.fileName}/flag.png",
                         width: 40.0,
                       ),
-                      trailing: IconButton(
-                        icon: Icon(Icons.arrow_forward_ios),
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onPressed: () => _handleCountry(context, c),
-                      ),
+                      trailing: Icon(Icons.arrow_forward_ios),
                     ),
                   ),
                 ),

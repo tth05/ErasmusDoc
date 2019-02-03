@@ -20,7 +20,6 @@ class ErasmusWebsiteRaisedButton extends StatelessWidget {
                 "Zur Webseite",
                 style: TextStyle(
                   fontSize: 25.0,
-                  color: Colors.white,
                 ),
               ),
               onPressed: () => URLUtil.launchURL("https://www.erasmusplus.de"),

@@ -10,6 +10,7 @@ import 'package:simple_permissions/simple_permissions.dart';
 class PermissionsNeededScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     AppHomeState parentState = context.ancestorStateOfType(TypeMatcher<AppHomeState>());
 
     return Scaffold(
@@ -30,8 +31,7 @@ class PermissionsNeededScreen extends StatelessWidget {
                   ),
                   Divider(),
                   FlatButton(
-                    color: Colors.grey[600],
-                    textColor: Colors.white,
+                    color: theme.primaryColor,
                     onPressed: () => SimplePermissions.requestPermission(Permission.WriteExternalStorage).then((p) {
                       if (p == PermissionStatus.authorized) {
                         parentState.setState(() {
@@ -42,8 +42,7 @@ class PermissionsNeededScreen extends StatelessWidget {
                     child: Text("Berechtigungen geben"),
                   ),
                   FlatButton(
-                    color: Colors.grey[600],
-                    textColor: Colors.white,
+                    color: theme.primaryColor,
                     onPressed: () => SimplePermissions.openSettings(),
                     child: Text("Einstellungen öffnen"),
                   ),

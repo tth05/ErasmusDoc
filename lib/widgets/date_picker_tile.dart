@@ -25,6 +25,7 @@ class DatePickerTile extends FormField<DateTime> {
           autovalidate: false,
           builder: (FormFieldState<DateTime> state) {
             return CommonWidgetsUtil.buildStickyHeader(
+              state.context,
               title,
               Column(
                 children: <Widget>[

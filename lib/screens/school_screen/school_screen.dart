@@ -54,6 +54,7 @@ class SchoolScreenState extends State<SchoolScreen> {
               child: ListView(
                 children: <Widget>[
                   CommonWidgetsUtil.buildStickyHeader(
+                    context,
                     "Schule",
                     CommonWidgetsUtil.buildSimpleInfoCard(
                       title: school.translatedName,
@@ -63,6 +64,7 @@ class SchoolScreenState extends State<SchoolScreen> {
                     ),
                   ),
                   CommonWidgetsUtil.buildStickyHeader(
+                    context,
                     "Projekte",
                     Column(
                       children: List.generate(

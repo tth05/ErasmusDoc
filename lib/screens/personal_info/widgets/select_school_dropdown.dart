@@ -34,7 +34,7 @@ class SelectSchoolDropdownButton extends FormField<School> {
                     );
                   }).toList(),
                   hint: Text(
-                    isSchoolSelected ? state.value.translatedName : "Schule",
+                    isSchoolSelected ? state.value.translatedName : "Schule auswählen",
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: isSchoolSelected ? Colors.black : Colors.grey,

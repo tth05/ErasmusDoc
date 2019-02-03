@@ -7,7 +7,7 @@ import 'package:erasmus_app/managers/manager_context.dart';
 import 'package:erasmus_app/screens/activity_screen/activity_screen.dart';
 import 'package:erasmus_app/screens/app_home/custom_button_location.dart';
 import 'package:erasmus_app/screens/app_home/widgets/activities_list.dart';
-import 'package:erasmus_app/screens/app_home/widgets/erasmus_info_body.dart';
+import 'package:erasmus_app/screens/app_home/widgets/info_body.dart';
 import 'package:erasmus_app/screens/app_home/widgets/permissions_needed_screen.dart';
 import 'package:erasmus_app/screens/school_screen/school_screen.dart';
 import 'package:erasmus_app/util/after_layout_mixin.dart';
@@ -55,7 +55,7 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
     //Normal screen
     return Scaffold(
       appBar: CustomAppBar(
-        title: Text(_index == 0 ? "Überblick" : "Erasmus-Projektinfo"),
+        title: Text(_index == 0 ? "Überblick" : "Projektinfo"),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.person),
@@ -87,12 +87,12 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info_outline),
-            title: Text("Erasmus"),
+            title: Text("Projektinfo"),
           ),
         ],
       ),
       body: _index == 1
-          ? ErasmusInfoBody()
+          ? InfoBody()
           : Column(
               children: <Widget>[
                 Expanded(

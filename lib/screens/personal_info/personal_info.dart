@@ -5,6 +5,7 @@
 
 import 'package:erasmus_app/managers/manager_context.dart';
 import 'package:erasmus_app/screens/personal_info/widgets/select_school_dropdown.dart';
+import 'package:erasmus_app/util/common_widgets_util.dart';
 import 'package:erasmus_app/util/form_helper.dart';
 import 'package:erasmus_app/widgets/custom_app_bar.dart';
 import 'package:erasmus_app/widgets/date_picker_tile.dart';
@@ -21,6 +22,7 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
   @override
   Widget build(BuildContext context) {
     final jsonManager = ManagerContext.of(context).jsonManager;
+    final contentPadding = EdgeInsets.symmetric(horizontal: 6.0);
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -39,55 +41,75 @@ class PersonalInfoScreenState extends State<PersonalInfoScreen> {
       ),
       body: Form(
         key: _formKey,
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              FormHelper.buildTitle("Name:"),
-              FormHelper.buildTextField(
-                  initialValue: jsonManager.personalData.name, onSaved: (v) => jsonManager.personalData.name = v),
-              FormHelper.divider,
-              FormHelper.buildTitle("Straße, Hausnummer:"),
-              FormHelper.buildTextField(
-                  initialValue: jsonManager.personalData.addressPart1,
-                  onSaved: (v) => jsonManager.personalData.addressPart1 = v),
-              FormHelper.divider,
-              FormHelper.buildTitle("PLZ, Ort:"),
-              FormHelper.buildTextField(
-                  initialValue: jsonManager.personalData.addressPart2,
-                  onSaved: (v) => jsonManager.personalData.addressPart2 = v),
-              FormHelper.divider,
-              FormHelper.buildTitle("E-Mail:"),
-              FormHelper.buildTextField(
-                  initialValue: jsonManager.personalData.email, onSaved: (v) => jsonManager.personalData.email = v),
-              FormHelper.divider,
-              DatePickerTile("Geburtsdatum:", "Bitte wähle dein Geburtsdatum aus.",
-                  initialValue: jsonManager.personalData.userBirthdayDate,
-                  onSaved: (v) => jsonManager.personalData.userBirthdayDate = v),
-              FormHelper.divider,
-              SelectSchoolDropdownButton(jsonManager.personalData.school,
-                  onSaved: (v) => jsonManager.personalData.school = v),
-              FormHelper.divider,
-              FormHelper.buildTitle("Meine Interessen:"),
-              FormHelper.buildTextField(
-                  initialValue: jsonManager.personalData.interests,
-                  maxLines: 3,
-                  onSaved: (v) => jsonManager.personalData.interests = v),
-              FormHelper.divider,
-              FormHelper.buildTitle("Meine Stärken:"),
-              FormHelper.buildTextField(
-                  initialValue: jsonManager.personalData.strengths,
-                  maxLines: 3,
-                  onSaved: (v) => jsonManager.personalData.strengths = v),
-              FormHelper.divider,
-              FormHelper.buildTitle("Meine Berufsziele:"),
-              FormHelper.buildTextField(
-                  initialValue: jsonManager.personalData.jobGoals,
-                  maxLines: 3,
-                  onSaved: (v) => jsonManager.personalData.jobGoals = v),
-            ],
-          ),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: ListView(
+                children: <Widget>[
+                  CommonWidgetsUtil.buildStickyHeader(
+                    "Name",
+                    FormHelper.buildTextField(
+                        initialValue: jsonManager.personalData.name, onSaved: (v) => jsonManager.personalData.name = v),
+                    contentPadding: contentPadding
+                  ),
+                  CommonWidgetsUtil.buildStickyHeader(
+                    "Straße/Hausnummer",
+                    FormHelper.buildTextField(
+                        initialValue: jsonManager.personalData.addressPart1,
+                        onSaved: (v) => jsonManager.personalData.addressPart1 = v),
+                      contentPadding: contentPadding
+                  ),
+                  CommonWidgetsUtil.buildStickyHeader(
+                    "PLZ/Ort",
+                    FormHelper.buildTextField(
+                        initialValue: jsonManager.personalData.addressPart2,
+                        onSaved: (v) => jsonManager.personalData.addressPart2 = v),
+                      contentPadding: contentPadding
+                  ),
+                  CommonWidgetsUtil.buildStickyHeader(
+                    "E-Mail",
+                    FormHelper.buildTextField(
+                        initialValue: jsonManager.personalData.email,
+                        onSaved: (v) => jsonManager.personalData.email = v),
+                      contentPadding: contentPadding
+                  ),
+                  DatePickerTile("Geburtsdatum", "Bitte wähle dein Geburtsdatum aus.",
+                      initialValue: jsonManager.personalData.userBirthdayDate,
+                      onSaved: (v) => jsonManager.personalData.userBirthdayDate = v),
+                  CommonWidgetsUtil.buildStickyHeader(
+                    "Schule",
+                    SelectSchoolDropdownButton(jsonManager.personalData.school,
+                        onSaved: (v) => jsonManager.personalData.school = v),
+                      contentPadding: contentPadding
+                  ),
+                  CommonWidgetsUtil.buildStickyHeader(
+                    "Meine Interessen",
+                    FormHelper.buildTextField(
+                        initialValue: jsonManager.personalData.interests,
+                        maxLines: 3,
+                        onSaved: (v) => jsonManager.personalData.interests = v),
+                      contentPadding: contentPadding
+                  ),
+                  CommonWidgetsUtil.buildStickyHeader(
+                    "Meine Stärken",
+                    FormHelper.buildTextField(
+                        initialValue: jsonManager.personalData.strengths,
+                        maxLines: 3,
+                        onSaved: (v) => jsonManager.personalData.strengths = v),
+                      contentPadding: contentPadding
+                  ),
+                  CommonWidgetsUtil.buildStickyHeader(
+                    "Meine Berufsziele",
+                    FormHelper.buildTextField(
+                        initialValue: jsonManager.personalData.jobGoals,
+                        maxLines: 3,
+                        onSaved: (v) => jsonManager.personalData.jobGoals = v),
+                      contentPadding: contentPadding
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

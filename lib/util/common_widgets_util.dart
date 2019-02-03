@@ -9,26 +9,31 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
 class CommonWidgetsUtil {
-  static Widget buildStickyHeader(String title, Widget content) {
+  static Widget buildStickyHeader(String title, Widget content,
+      {EdgeInsets contentPadding: const EdgeInsets.all(0.0)}) {
     return StickyHeader(
-        header: Row(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200]),
-                padding: EdgeInsets.symmetric(vertical: 5.0),
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    title,
-                    style: TextStyle(fontSize: 20.0, color: Colors.grey[600]),
-                  ),
+      header: Row(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(color: Colors.grey[200]),
+              padding: EdgeInsets.symmetric(vertical: 5.0),
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  title,
+                  style: TextStyle(fontSize: 20.0, color: Colors.grey[600]),
                 ),
               ),
-            )
-          ],
-        ),
-        content: content);
+            ),
+          )
+        ],
+      ),
+      content: Padding(
+        padding: contentPadding,
+        child: content,
+      ),
+    );
   }
 
   static Widget buildSimpleInfoCard({
@@ -56,9 +61,9 @@ class CommonWidgetsUtil {
             trailing: trailing != null
                 ? trailing
                 : IconButton(
-              icon: Icon(Icons.info),
-              onPressed: onInfoPressed,
-            ),
+                    icon: Icon(Icons.info),
+                    onPressed: onInfoPressed,
+                  ),
           ),
           Divider(
             indent: dividerIndent,
@@ -77,9 +82,9 @@ class CommonWidgetsUtil {
       trailing: trailing != null
           ? trailing
           : IconButton(
-        icon: Icon(Icons.info),
-        onPressed: onInfoPressed,
-      ),
+              icon: Icon(Icons.info),
+              onPressed: onInfoPressed,
+            ),
     );
   }
 

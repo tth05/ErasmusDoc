@@ -6,6 +6,7 @@
 import 'dart:async';
 
 import 'package:erasmus_app/globals.dart' as globals;
+import 'package:erasmus_app/util/common_widgets_util.dart';
 import 'package:flutter/material.dart';
 
 class DatePickerTile extends FormField<DateTime> {
@@ -23,42 +24,43 @@ class DatePickerTile extends FormField<DateTime> {
           initialValue: initialValue,
           autovalidate: false,
           builder: (FormFieldState<DateTime> state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                ListTile(
-                  title: Text(
-                    title,
-                    style: TextStyle(fontSize: 20.0),
+            return CommonWidgetsUtil.buildStickyHeader(
+              title,
+              Column(
+                children: <Widget>[
+                  CommonWidgetsUtil.buildSimpleInfoCard(
+                    leading: Icon(Icons.date_range),
+                    title: globals.dateFormat.format(state.value),
+                    trailing: Icon(Icons.edit,),
+                    onTap: () {
+                      Future<DateTime> result = showDatePicker(
+                        context: state.context,
+                        locale: Locale("de"),
+                        initialDate: initialValue,
+                        firstDate: firstDate != null ? firstDate : DateTime(1900),
+                        lastDate: lastDate != null ? lastDate : DateTime.now(),
+                        initialDatePickerMode: DatePickerMode.year,
+                      );
+                      result.then(
+                        (dateTime) {
+                          if (dateTime == null) return;
+                          state.didChange(dateTime);
+                        },
+                      );
+                    },
                   ),
-                  subtitle: Text(globals.dateFormat.format(state.value)),
-                  contentPadding: EdgeInsets.all(0.0),
-                  onTap: () {
-                    Future<DateTime> result = showDatePicker(
-                      context: state.context,
-                      locale: Locale("de"),
-                      initialDate: initialValue,
-                      firstDate: firstDate != null ? firstDate : DateTime(1900),
-                      lastDate: lastDate != null ? lastDate : DateTime.now(),
-                      initialDatePickerMode: DatePickerMode.year,
-                    );
-                    result.then((dateTime) {
-                      if (dateTime == null) return;
-                      state.didChange(dateTime);
-                    });
-                  },
-                ),
-                state.hasError
-                    ? Text(
-                        state.errorText,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: Theme.of(state.context).errorColor,
-                          fontSize: 12.0,
-                        ),
-                      )
-                    : Container()
-              ],
+                  state.hasError
+                      ? Text(
+                          state.errorText,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            color: Theme.of(state.context).errorColor,
+                            fontSize: 12.0,
+                          ),
+                        )
+                      : Container()
+                ],
+              ),
             );
           },
         );

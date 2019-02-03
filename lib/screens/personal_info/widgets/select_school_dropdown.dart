@@ -37,7 +37,6 @@ class SelectSchoolDropdownButton extends FormField<School> {
                     isSchoolSelected ? state.value.translatedName : "Schule",
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontSize: 20.0,
                       color: isSchoolSelected ? Colors.black : Colors.grey,
                     ),
                   ),

@@ -38,6 +38,7 @@ class JsonManager {
     await loadSchools();
     await loadCountries();
     await loadPersonalData();
+    await loadActivities();
   }
 
   Future<void> loadSchools() async {

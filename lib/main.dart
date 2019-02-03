@@ -41,6 +41,7 @@ class App extends StatelessWidget {
         buttonColor: Colors.grey[600],
         accentColor: Colors.grey[600],
         errorColor: Colors.red[700],
+        cursorColor: Colors.black,
       ),
       localizationsDelegates: [
         GermanCupertinoLocalizations.delegate,

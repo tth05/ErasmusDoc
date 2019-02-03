@@ -7,6 +7,7 @@ import 'dart:convert';
 
 import 'package:erasmus_app/managers/manager_context.dart';
 import 'package:erasmus_app/models/activity.dart';
+import 'package:erasmus_app/util/common_widgets_util.dart';
 import 'package:erasmus_app/util/form_helper.dart';
 import 'package:erasmus_app/widgets/custom_app_bar.dart';
 import 'package:erasmus_app/widgets/date_picker_tile.dart';
@@ -86,66 +87,70 @@ class ActivityScreenState extends State<ActivityScreen> {
         ],
       ),
       body: page == 0
-          ? Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Column(
-                children: <Widget>[
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        FormHelper.buildTitle("Name:"),
+          ? Column(
+            children: <Widget>[
+              Form(
+                key: _formKey,
+                child: Expanded(
+                  child: ListView(
+                    children: <Widget>[
+                      CommonWidgetsUtil.buildStickyHeader(
+                        "Name",
                         FormHelper.buildTextField(
                             focus: true, initialValue: activity.name, onSaved: (value) => activity.name = value),
-                        FormHelper.divider,
-                        DatePickerTile(
-                          "Datum:",
-                          "Bitte wähle ein Datum aus.",
-                          initialValue: activity.when,
-                          onSaved: (value) => activity.when = value,
-                          validator: (value) => null,
-                          lastDate: DateTime.now().add(Duration(days: 365)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      RaisedButton(
-                        child: Text("Weiter"),
-                        textColor: Colors.white,
-                        elevation: 4.0,
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            _formKey.currentState.save();
-                            setState(() {
-                              page = 1;
-                            });
-                          }
-                        },
+                        contentPadding: EdgeInsets.symmetric(horizontal: 6.0),
                       ),
+                      DatePickerTile(
+                        "Datum",
+                        "Bitte wähle ein Datum aus.",
+                        initialValue: activity.when,
+                        onSaved: (value) => activity.when = value,
+                        validator: (value) => null,
+                        lastDate: DateTime.now().add(Duration(days: 365)),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 6.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            RaisedButton(
+                              child: Text("Weiter"),
+                              textColor: Colors.white,
+                              elevation: 4.0,
+                              onPressed: () {
+                                if (_formKey.currentState.validate()) {
+                                  _formKey.currentState.save();
+                                  setState(() {
+                                    page = 1;
+                                  });
+                                }
+                              },
+                            ),
+                          ],
+                        ),
+                      )
                     ],
-                  )
-                ],
+                  ),
+                ),
               ),
-            )
+            ],
+          )
           : Padding(
               padding: EdgeInsets.all(2.0),
               child: Container(
                 padding: EdgeInsets.all(4.0),
-                decoration: mode != Mode.view ? BoxDecoration(
-                  border: Border.all(color: Colors.grey[600], width: 2.0),
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                ) : null,
+                decoration: mode != Mode.view
+                    ? BoxDecoration(
+                        border: Border.all(color: Colors.grey[600], width: 2.0),
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      )
+                    : null,
                 child: mode == Mode.view
                     ? SingleChildScrollView(
                         child: ZefyrView(
-                          document: _notusDocument,
-                          imageDelegate: ZefyrDefaultImageDelegate(),
-                        )
-                      )
+                        document: _notusDocument,
+                        imageDelegate: ZefyrDefaultImageDelegate(),
+                      ))
                     : ZefyrScaffold(
                         child: ZefyrTheme(
                           data: zefyrTheme,

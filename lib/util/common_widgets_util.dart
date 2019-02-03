@@ -94,10 +94,7 @@ class CommonWidgetsUtil {
       context: context,
       builder: (BuildContext context) {
         return Markdown(
-          styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
-            p: theme.textTheme.body1.copyWith(fontSize: 20.0),
-            h1: theme.textTheme.headline.copyWith(fontSize: 30.0),
-          ),
+          styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)),
           padding: EdgeInsets.all(8.0),
           data: data,
         );

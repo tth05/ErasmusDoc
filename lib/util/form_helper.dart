@@ -7,16 +7,6 @@ import 'package:flutter/material.dart';
 
 class FormHelper {
   static const _fieldFont = TextStyle(fontSize: 15.0, color: Colors.black);
-  static const _textFont = TextStyle(fontSize: 20.0);
-
-  static final divider = Divider(color: Colors.grey[50]);
-
-  static Widget buildTitle(String title) {
-    return Text(
-      title,
-      style: _textFont,
-    );
-  }
 
   static Widget buildTextField(
       {bool focus = false,

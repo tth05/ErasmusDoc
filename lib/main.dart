@@ -5,10 +5,10 @@
 
 import 'dart:async';
 
-import 'package:erasmus_app/managers/json_manager.dart';
-import 'package:erasmus_app/managers/manager_context.dart';
-import 'package:erasmus_app/screens/app_home/app_home.dart';
-import 'package:erasmus_app/screens/personal_info/personal_info.dart';
+import 'package:erasmus_doc/managers/json_manager.dart';
+import 'package:erasmus_doc/managers/manager_context.dart';
+import 'package:erasmus_doc/screens/app_home/app_home.dart';
+import 'package:erasmus_doc/screens/personal_info/personal_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

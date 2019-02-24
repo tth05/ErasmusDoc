@@ -5,8 +5,8 @@
 
 import 'dart:math' as math;
 
-import 'package:erasmus_app/managers/manager_context.dart';
-import 'package:erasmus_app/models/school.dart';
+import 'package:erasmus_doc/managers/manager_context.dart';
+import 'package:erasmus_doc/models/school.dart';
 import 'package:flutter/material.dart';
 
 class SelectSchoolDropdownButton extends FormField<School> {

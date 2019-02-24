@@ -3,17 +3,17 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/managers/manager_context.dart';
-import 'package:erasmus_app/screens/activity_screen/activity_screen.dart';
-import 'package:erasmus_app/screens/app_home/custom_button_location.dart';
-import 'package:erasmus_app/screens/app_home/widgets/activities_list.dart';
-import 'package:erasmus_app/screens/app_home/widgets/info_body.dart';
-import 'package:erasmus_app/screens/app_home/widgets/permissions_needed_screen.dart';
-import 'package:erasmus_app/screens/school_screen/school_screen.dart';
-import 'package:erasmus_app/util/after_layout_mixin.dart';
-import 'package:erasmus_app/util/common_widgets_util.dart';
-import 'package:erasmus_app/widgets/custom_app_bar.dart';
-import 'package:erasmus_app/widgets/global_drawer.dart';
+import 'package:erasmus_doc/managers/manager_context.dart';
+import 'package:erasmus_doc/screens/activity_screen/activity_screen.dart';
+import 'package:erasmus_doc/screens/app_home/custom_button_location.dart';
+import 'package:erasmus_doc/screens/app_home/widgets/activities_list.dart';
+import 'package:erasmus_doc/screens/app_home/widgets/info_body.dart';
+import 'package:erasmus_doc/screens/app_home/widgets/permissions_needed_screen.dart';
+import 'package:erasmus_doc/screens/school_screen/school_screen.dart';
+import 'package:erasmus_doc/util/after_layout_mixin.dart';
+import 'package:erasmus_doc/util/common_widgets_util.dart';
+import 'package:erasmus_doc/widgets/custom_app_bar.dart';
+import 'package:erasmus_doc/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 

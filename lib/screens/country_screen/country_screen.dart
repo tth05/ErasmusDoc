@@ -3,12 +3,12 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/models/country.dart';
-import 'package:erasmus_app/screens/country_screen/widgets/rounded_modal.dart';
-import 'package:erasmus_app/screens/image_view_screen/image_view_screen.dart';
-import 'package:erasmus_app/util/common_widgets_util.dart';
-import 'package:erasmus_app/widgets/custom_app_bar.dart';
-import 'package:erasmus_app/widgets/global_drawer.dart';
+import 'package:erasmus_doc/models/country.dart';
+import 'package:erasmus_doc/screens/country_screen/widgets/rounded_modal.dart';
+import 'package:erasmus_doc/screens/image_view_screen/image_view_screen.dart';
+import 'package:erasmus_doc/util/common_widgets_util.dart';
+import 'package:erasmus_doc/widgets/custom_app_bar.dart';
+import 'package:erasmus_doc/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 

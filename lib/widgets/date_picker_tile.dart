@@ -5,8 +5,8 @@
 
 import 'dart:async';
 
-import 'package:erasmus_app/globals.dart' as globals;
-import 'package:erasmus_app/util/common_widgets_util.dart';
+import 'package:erasmus_doc/globals.dart' as globals;
+import 'package:erasmus_doc/util/common_widgets_util.dart';
 import 'package:flutter/material.dart';
 
 class DatePickerTile extends FormField<DateTime> {

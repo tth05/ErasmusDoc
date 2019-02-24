@@ -3,8 +3,8 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/util/common_widgets_util.dart';
-import 'package:erasmus_app/util/url_util.dart';
+import 'package:erasmus_doc/util/common_widgets_util.dart';
+import 'package:erasmus_doc/util/url_util.dart';
 import 'package:flutter/material.dart';
 
 class InfoBody extends StatelessWidget {
@@ -70,7 +70,7 @@ class InfoBody extends StatelessWidget {
                   ),
                   trailing: IconButton(
                     icon: Icon(Icons.arrow_forward_ios),
-                    onPressed: () => URLUtil.launchURL("https://github.com/KotlinIsCool/ErasmusApp"),
+                    onPressed: () => URLUtil.launchURL("https://github.com/KotlinIsCool/ErasmusDoc"),
                   ),
                 ),
               ),

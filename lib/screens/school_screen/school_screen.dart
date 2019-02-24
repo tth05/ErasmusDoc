@@ -3,11 +3,12 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/managers/manager_context.dart';
-import 'package:erasmus_app/models/school.dart';
-import 'package:erasmus_app/util/common_widgets_util.dart';
-import 'package:erasmus_app/widgets/custom_app_bar.dart';
-import 'package:erasmus_app/widgets/global_drawer.dart';
+import 'package:erasmus_doc/managers/manager_context.dart';
+import 'package:erasmus_doc/models/school.dart';
+import 'package:erasmus_doc/util/common_widgets_util.dart';
+import 'package:erasmus_doc/util/url_util.dart';
+import 'package:erasmus_doc/widgets/custom_app_bar.dart';
+import 'package:erasmus_doc/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
 
 class SchoolScreen extends StatefulWidget {
@@ -27,8 +28,7 @@ class SchoolScreenState extends State<SchoolScreen> {
   @override
   Widget build(BuildContext context) {
     final jsonManager = ManagerContext.of(context).jsonManager;
-    print(jsonManager.personalData.school.country);
-    print(jsonManager.personalData.school.fileName);
+    final country = jsonManager.countries.firstWhere((c) => c.fileName == school.country);
 
     return WillPopScope(
       onWillPop: () async {
@@ -64,15 +64,31 @@ class SchoolScreenState extends State<SchoolScreen> {
                   ),
                   CommonWidgetsUtil.buildStickyHeader(
                     context,
-                    "Projekte",
-                    CommonWidgetsUtil.buildSimpleInfoCard(
-                      title:
-                          "Projekttreffen in ${jsonManager.countries.firstWhere((c) => c.fileName == school.country).translatedName}",
-                      leading: Image.asset(
-                        "assets/countries/${school.country}/flag.png",
-                        width: 40,
-                      ),
-                      onInfoPressed: () => CommonWidgetsUtil.openMarkdownModal(context, school.projectDescription),
+                    "Projekt",
+                    Column(
+                      children: <Widget>[
+                        CommonWidgetsUtil.buildSimpleInfoCard(
+                          title:
+                              "Projekttreffen in${country.fileName == "turkey" || country.fileName == "slovakia" ? " der " : " "}${country.translatedName}",
+                          leading: Image.asset(
+                            "assets/countries/${school.country}/flag.png",
+                            width: 40,
+                          ),
+                          onInfoPressed: () => CommonWidgetsUtil.openMarkdownModal(context, school.projectDescription),
+                        ),
+                        CommonWidgetsUtil.buildSimpleInfoCard(
+                          title: "Webseite",
+                          trailing: IconButton(
+                            icon: Icon(Icons.arrow_forward_ios),
+                            //Workaround because url_launcher can't launch an url without http or https
+                            onPressed: () => URLUtil.launchURL("https://bit.ly/2E8TIIp"),
+                          ),
+                          leading: Icon(
+                            Icons.web,
+                            size: 40.0,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

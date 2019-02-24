@@ -5,11 +5,11 @@
 
 import 'dart:math';
 
-import 'package:erasmus_app/globals.dart' as globals;
-import 'package:erasmus_app/managers/manager_context.dart';
-import 'package:erasmus_app/models/activity.dart';
-import 'package:erasmus_app/screens/activity_screen/activity_screen.dart';
-import 'package:erasmus_app/util/common_widgets_util.dart';
+import 'package:erasmus_doc/globals.dart' as globals;
+import 'package:erasmus_doc/managers/manager_context.dart';
+import 'package:erasmus_doc/models/activity.dart';
+import 'package:erasmus_doc/screens/activity_screen/activity_screen.dart';
+import 'package:erasmus_doc/util/common_widgets_util.dart';
 import 'package:flutter/material.dart';
 
 class ActivitiesList extends StatefulWidget {

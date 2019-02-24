@@ -3,7 +3,7 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/globals.dart' as globals;
+import 'package:erasmus_doc/globals.dart' as globals;
 import 'package:json_annotation/json_annotation.dart';
 
 part 'activity.g.dart';

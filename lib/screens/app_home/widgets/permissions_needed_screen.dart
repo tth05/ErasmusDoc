@@ -3,7 +3,7 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/screens/app_home/app_home.dart';
+import 'package:erasmus_doc/screens/app_home/app_home.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 

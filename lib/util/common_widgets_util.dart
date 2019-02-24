@@ -3,8 +3,8 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/screens/country_screen/widgets/rounded_modal.dart';
-import 'package:erasmus_app/util/url_util.dart';
+import 'package:erasmus_doc/screens/country_screen/widgets/rounded_modal.dart';
+import 'package:erasmus_doc/util/url_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:sticky_headers/sticky_headers.dart';

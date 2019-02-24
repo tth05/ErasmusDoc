@@ -4,8 +4,8 @@
 */
 
 //Handles user data
-import 'package:erasmus_app/globals.dart' as globals;
-import 'package:erasmus_app/models/school.dart';
+import 'package:erasmus_doc/globals.dart' as globals;
+import 'package:erasmus_doc/models/school.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'personal_data.g.dart';

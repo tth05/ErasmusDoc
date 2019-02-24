@@ -7,10 +7,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:erasmus_app/models/activity.dart';
-import 'package:erasmus_app/models/country.dart';
-import 'package:erasmus_app/models/personal_data.dart';
-import 'package:erasmus_app/models/school.dart';
+import 'package:erasmus_doc/models/activity.dart';
+import 'package:erasmus_doc/models/country.dart';
+import 'package:erasmus_doc/models/personal_data.dart';
+import 'package:erasmus_doc/models/school.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';

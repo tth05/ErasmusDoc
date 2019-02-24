@@ -3,7 +3,7 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/managers/json_manager.dart';
+import 'package:erasmus_doc/managers/json_manager.dart';
 import 'package:flutter/material.dart';
 
 //Lives at the root of the app to supply instances of the managers

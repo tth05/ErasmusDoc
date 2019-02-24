@@ -3,11 +3,11 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'package:erasmus_app/managers/manager_context.dart';
-import 'package:erasmus_app/models/country.dart';
-import 'package:erasmus_app/models/school.dart';
-import 'package:erasmus_app/screens/country_screen/country_screen.dart';
-import 'package:erasmus_app/screens/school_screen/school_screen.dart';
+import 'package:erasmus_doc/managers/manager_context.dart';
+import 'package:erasmus_doc/models/country.dart';
+import 'package:erasmus_doc/models/school.dart';
+import 'package:erasmus_doc/screens/country_screen/country_screen.dart';
+import 'package:erasmus_doc/screens/school_screen/school_screen.dart';
 import 'package:flutter/material.dart';
 
 class GlobalDrawer extends StatelessWidget {

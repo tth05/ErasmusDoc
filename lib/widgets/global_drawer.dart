@@ -57,7 +57,15 @@ class GlobalDrawer extends StatelessWidget {
     drawerList.add(Divider(color: Colors.white));
     drawerList.add(Container(
       color: theme.primaryColorLight,
-      child: ListTile(title: Text("Länder", style: TextStyle(fontSize: 20.0, color: theme.primaryColor))),
+      child: ListTile(
+        title: Text(
+          "Länder",
+          style: TextStyle(
+            fontSize: 20.0,
+            color: theme.primaryColor,
+          ),
+        ),
+      ),
     ));
     drawerList.addAll(
       jsonManager.countries.map(

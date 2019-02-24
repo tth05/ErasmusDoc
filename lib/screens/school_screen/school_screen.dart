@@ -3,15 +3,12 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'dart:math';
-
 import 'package:erasmus_app/managers/manager_context.dart';
 import 'package:erasmus_app/models/school.dart';
 import 'package:erasmus_app/util/common_widgets_util.dart';
 import 'package:erasmus_app/widgets/custom_app_bar.dart';
 import 'package:erasmus_app/widgets/global_drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:sticky_headers/sticky_headers.dart';
 
 class SchoolScreen extends StatefulWidget {
   final School school;
@@ -29,9 +26,9 @@ class SchoolScreenState extends State<SchoolScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
     final jsonManager = ManagerContext.of(context).jsonManager;
-    final random = Random();
+    print(jsonManager.personalData.school.country);
+    print(jsonManager.personalData.school.fileName);
 
     return WillPopScope(
       onWillPop: () async {
@@ -57,43 +54,25 @@ class SchoolScreenState extends State<SchoolScreen> {
                     context,
                     "Schule",
                     CommonWidgetsUtil.buildSimpleInfoCard(
-                      title: school.translatedName,
-                      subtitle: school.address,
-                      leading: Image.asset("assets/schools/${school.fileName}/logo.png", width: 40.0,),
-                      onInfoPressed: () => CommonWidgetsUtil.openMarkdownModal(context, school.info)
-                    ),
+                        title: school.translatedName,
+                        subtitle: school.address,
+                        leading: Image.asset(
+                          "assets/schools/${school.fileName}/logo.png",
+                          width: 40.0,
+                        ),
+                        onInfoPressed: () => CommonWidgetsUtil.openMarkdownModal(context, school.info)),
                   ),
                   CommonWidgetsUtil.buildStickyHeader(
                     context,
                     "Projekte",
-                    Column(
-                      children: List.generate(
-                        10,
-                        (index) => Column(
-                              children: <Widget>[
-                                ListTile(
-                                  dense: true,
-                                  leading: Image.asset(
-                                    "assets/countries/${jsonManager.countries[random.nextInt(5)].fileName}/flag.png",
-                                    width: 40.0,
-                                  ),
-                                  title: Text(
-                                    "Projekt ${index + 1}",
-                                    style: TextStyle(fontSize: 20.0),
-                                  ),
-                                  subtitle: Text("Land\nDatum"),
-                                  isThreeLine: true,
-                                  trailing: IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: () => {}),
-                                ),
-                                index != 9
-                                    ? Divider(
-                                        height: 0,
-                                        indent: 60,
-                                      )
-                                    : Container()
-                              ],
-                            ),
+                    CommonWidgetsUtil.buildSimpleInfoCard(
+                      title:
+                          "Projekttreffen in ${jsonManager.countries.firstWhere((c) => c.fileName == school.country).translatedName}",
+                      leading: Image.asset(
+                        "assets/countries/${school.country}/flag.png",
+                        width: 40,
                       ),
+                      onInfoPressed: () => CommonWidgetsUtil.openMarkdownModal(context, school.projectDescription),
                     ),
                   ),
                 ],

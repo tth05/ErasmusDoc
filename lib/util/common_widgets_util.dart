@@ -4,6 +4,7 @@
 */
 
 import 'package:erasmus_app/screens/country_screen/widgets/rounded_modal.dart';
+import 'package:erasmus_app/util/url_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:sticky_headers/sticky_headers.dart';
@@ -90,12 +91,12 @@ class CommonWidgetsUtil {
   }
 
   static void openMarkdownModal(BuildContext context, String data) {
-    ThemeData theme = Theme.of(context);
     showRoundedModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
         return Markdown(
           styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)),
+          onTapLink: (link) => URLUtil.launchURL(link),
           padding: EdgeInsets.all(8.0),
           data: data,
         );

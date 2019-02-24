@@ -63,6 +63,7 @@ class ActivityScreenState extends State<ActivityScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final zefyrTheme = ZefyrThemeData(
+      cursorColor: Colors.black,
       toolbarTheme: ZefyrToolbarTheme.fallback(context).copyWith(
         color: theme.primaryColor,
         toggleColor: theme.primaryColorLight,
@@ -89,54 +90,54 @@ class ActivityScreenState extends State<ActivityScreen> {
       ),
       body: page == 0
           ? Column(
-            children: <Widget>[
-              Form(
-                key: _formKey,
-                child: Expanded(
-                  child: ListView(
-                    children: <Widget>[
-                      CommonWidgetsUtil.buildStickyHeader(
-                        context,
-                        "Name",
-                        FormHelper.buildTextField(
-                            focus: true, initialValue: activity.name, onSaved: (value) => activity.name = value),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 6.0),
-                      ),
-                      DatePickerTile(
-                        "Datum",
-                        "Bitte wähle ein Datum aus.",
-                        initialValue: activity.when,
-                        onSaved: (value) => activity.when = value,
-                        validator: (value) => null,
-                        lastDate: DateTime.now().add(Duration(days: 365)),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 6.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            RaisedButton(
-                              child: Text("Weiter"),
-                              textColor: theme.primaryTextTheme.button.color,
-                              elevation: 4.0,
-                              onPressed: () {
-                                if (_formKey.currentState.validate()) {
-                                  _formKey.currentState.save();
-                                  setState(() {
-                                    page = 1;
-                                  });
-                                }
-                              },
-                            ),
-                          ],
+              children: <Widget>[
+                Form(
+                  key: _formKey,
+                  child: Expanded(
+                    child: ListView(
+                      children: <Widget>[
+                        CommonWidgetsUtil.buildStickyHeader(
+                          context,
+                          "Name",
+                          FormHelper.buildTextField(
+                              focus: true, initialValue: activity.name, onSaved: (value) => activity.name = value),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 6.0),
                         ),
-                      )
-                    ],
+                        DatePickerTile(
+                          "Datum",
+                          "Bitte wähle ein Datum aus.",
+                          initialValue: activity.when,
+                          onSaved: (value) => activity.when = value,
+                          validator: (value) => null,
+                          lastDate: DateTime.now().add(Duration(days: 365)),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 6.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              RaisedButton(
+                                child: Text("Weiter"),
+                                textColor: theme.primaryTextTheme.button.color,
+                                elevation: 4.0,
+                                onPressed: () {
+                                  if (_formKey.currentState.validate()) {
+                                    _formKey.currentState.save();
+                                    setState(() {
+                                      page = 1;
+                                    });
+                                  }
+                                },
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          )
+              ],
+            )
           : Padding(
               padding: EdgeInsets.all(2.0),
               child: Container(

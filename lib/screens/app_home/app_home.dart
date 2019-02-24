@@ -100,7 +100,7 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
                     children: <Widget>[
                       hasSelectedSchool
                           ? CommonWidgetsUtil.buildStickyHeader(
-                        context,
+                              context,
                               "Schule",
                               CommonWidgetsUtil.buildSimpleInfoCard(
                                 title: jsonManager.personalData.school.translatedName,
@@ -110,9 +110,13 @@ class AppHomeState extends State<AppHomeScreen> with AfterLayoutMixin<AppHomeScr
                                   width: 40.0,
                                 ),
                                 trailing: IconButton(
-                                    icon: Icon(Icons.arrow_forward_ios),
-                                    onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                        builder: (context) => SchoolScreen(jsonManager.personalData.school)))),
+                                  icon: Icon(Icons.arrow_forward_ios),
+                                  onPressed: () => Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                          builder: (context) => SchoolScreen(jsonManager.personalData.school),
+                                        ),
+                                      ),
+                                ),
                               ),
                             )
                           : Container(),

@@ -23,15 +23,14 @@ void main() async {
   final jsonManager = JsonManager();
   await jsonManager.init();
 
-  //Startup delay to show launch image
-  Future.delayed(const Duration(seconds: 1)).whenComplete(() => runApp(ManagerContext(jsonManager, child: App())));
+  runApp(ManagerContext(jsonManager, child: App()));
 }
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Erasmus',
+      title: 'ErasmusDoc',
       home: AppHomeScreen(),
       routes: <String, WidgetBuilder>{
         '/profile': (BuildContext context) => PersonalInfoScreen(),

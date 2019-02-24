@@ -5,12 +5,12 @@
 
 import 'dart:math';
 
+import 'package:erasmus_app/globals.dart' as globals;
 import 'package:erasmus_app/managers/manager_context.dart';
 import 'package:erasmus_app/models/activity.dart';
 import 'package:erasmus_app/screens/activity_screen/activity_screen.dart';
 import 'package:erasmus_app/util/common_widgets_util.dart';
 import 'package:flutter/material.dart';
-import 'package:erasmus_app/globals.dart' as globals;
 
 class ActivitiesList extends StatefulWidget {
   @override
@@ -26,7 +26,7 @@ class ActivitiesListState extends State<ActivitiesList> {
 
     return CommonWidgetsUtil.buildStickyHeader(
       context,
-      "Aktivitäten",
+      "Meine Aktivitäten",
       FutureBuilder<List<Activity>>(
         future: jsonManager.loadActivities(),
         builder: (BuildContext context, AsyncSnapshot<List<Activity>> snapshot) {

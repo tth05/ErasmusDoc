@@ -10,7 +10,8 @@ import 'package:erasmus_doc/models/school.dart';
 import 'package:flutter/material.dart';
 
 class SelectSchoolDropdownButton extends FormField<School> {
-  SelectSchoolDropdownButton(School initialValue, {FormFieldSetter<School> onSaved, FormFieldValidator<School> validator})
+  SelectSchoolDropdownButton(School initialValue,
+      {FormFieldSetter<School> onSaved, FormFieldValidator<School> validator})
       : super(
           onSaved: onSaved,
           validator: validator == null
@@ -27,6 +28,7 @@ class SelectSchoolDropdownButton extends FormField<School> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 FixedDropdownButton(
+                  isExpanded: true,
                   items: jsonManager.schools.map((School val) {
                     return DropdownMenuItem(
                       value: val,
@@ -82,14 +84,15 @@ class _DropdownMenuPainter extends CustomPainter {
     this.elevation,
     this.selectedIndex,
     this.resize,
-  }) : _painter = BoxDecoration(
+  })
+      : _painter = BoxDecoration(
     // If you add an image here, you must provide a real
     // configuration in the paint() function and you must provide some sort
     // of onChanged callback here.
       color: color,
       borderRadius: BorderRadius.circular(2.0),
-      boxShadow: kElevationToShadow[elevation]
-  ).createBoxPainter(),
+      boxShadow: kElevationToShadow[elevation])
+      .createBoxPainter(),
         super(repaint: resize);
 
   final Color color;
@@ -119,10 +122,10 @@ class _DropdownMenuPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_DropdownMenuPainter oldPainter) {
-    return oldPainter.color != color
-        || oldPainter.elevation != elevation
-        || oldPainter.selectedIndex != selectedIndex
-        || oldPainter.resize != resize;
+    return oldPainter.color != color ||
+        oldPainter.elevation != elevation ||
+        oldPainter.selectedIndex != selectedIndex ||
+        oldPainter.resize != resize;
   }
 }
 
@@ -289,10 +292,10 @@ class _DropdownMenuRouteLayout<T> extends SingleChildLayoutDelegate {
 
   @override
   bool shouldRelayout(_DropdownMenuRouteLayout<T> oldDelegate) {
-    return buttonRect != oldDelegate.buttonRect
-        || menuTop != oldDelegate.menuTop
-        || menuHeight != oldDelegate.menuHeight
-        || textDirection != oldDelegate.textDirection;
+    return buttonRect != oldDelegate.buttonRect ||
+        menuTop != oldDelegate.menuTop ||
+        menuHeight != oldDelegate.menuHeight ||
+        textDirection != oldDelegate.textDirection;
   }
 }
 
@@ -303,8 +306,7 @@ class _DropdownRouteResult<T> {
 
   @override
   bool operator ==(dynamic other) {
-    if (other is! _DropdownRouteResult<T>)
-      return false;
+    if (other is! _DropdownRouteResult<T>) return false;
     final _DropdownRouteResult<T> typedOther = other;
     return result == typedOther.result;
   }
@@ -368,15 +370,15 @@ class _DropdownRoute<T> extends PopupRoute<_DropdownRouteResult<T>> {
 
     double menuBottom = menuTop + menuHeight;
 
-    if (menuTop < topLimit)
-      menuTop = math.min(buttonTop, topLimit);
+    if (menuTop < topLimit) menuTop = math.min(buttonTop, topLimit);
     if (menuBottom > bottomLimit) {
       menuBottom = math.max(buttonBottom, bottomLimit);
       menuTop = menuBottom - menuHeight;
     }
 
     if (scrollController == null) {
-      final double scrollOffset = preferredMenuHeight > maxMenuHeight ? math.max(0.0, selectedItemOffset - (buttonTop - menuTop)) : 0.0;
+      final double scrollOffset =
+      preferredMenuHeight > maxMenuHeight ? math.max(0.0, selectedItemOffset - (buttonTop - menuTop)) : 0.0;
       scrollController = ScrollController(initialScrollOffset: scrollOffset);
     }
 
@@ -386,8 +388,7 @@ class _DropdownRoute<T> extends PopupRoute<_DropdownRouteResult<T>> {
       padding: padding.resolve(textDirection),
     );
 
-    if (theme != null)
-      menu = Theme(data: theme, child: menu);
+    if (theme != null) menu = Theme(data: theme, child: menu);
 
     return MediaQuery.removePadding(
       context: context,
@@ -429,7 +430,12 @@ class FixedDropdownButton<T> extends StatefulWidget {
     this.iconSize = 24.0,
     this.isDense = false,
     this.isExpanded = false,
-  }) : assert(items == null || value == null || items.where((DropdownMenuItem<T> item) => item.value == value).length == 1),
+  })
+      : assert(items == null ||
+      value == null ||
+      items
+          .where((DropdownMenuItem<T> item) => item.value == value)
+          .length == 1),
         super(key: key);
 
   final List<DropdownMenuItem<T>> items;
@@ -512,9 +518,10 @@ class _FixedDropdownButtonState<T> extends State<FixedDropdownButton<T>> with Wi
     final RenderBox itemBox = context.findRenderObject();
     final Rect itemRect = itemBox.localToGlobal(Offset.zero) & itemBox.size;
     final TextDirection textDirection = Directionality.of(context);
-    final EdgeInsetsGeometry menuMargin = ButtonTheme.of(context).alignedDropdown
-        ?_kAlignedMenuMargin
-        : _kUnalignedMenuMargin;
+    final EdgeInsetsGeometry menuMargin =
+    ButtonTheme
+        .of(context)
+        .alignedDropdown ? _kAlignedMenuMargin : _kUnalignedMenuMargin;
 
     assert(_dropdownRoute == null);
     _dropdownRoute = _DropdownRoute<T>(
@@ -530,10 +537,8 @@ class _FixedDropdownButtonState<T> extends State<FixedDropdownButton<T>> with Wi
 
     Navigator.push(context, _dropdownRoute).then<void>((_DropdownRouteResult<T> newValue) {
       _dropdownRoute = null;
-      if (!mounted || newValue == null)
-        return;
-      if (widget.onChanged != null)
-        widget.onChanged(newValue.result);
+      if (!mounted || newValue == null) return;
+      if (widget.onChanged != null) widget.onChanged(newValue.result);
     });
   }
 
@@ -579,9 +584,10 @@ class _FixedDropdownButtonState<T> extends State<FixedDropdownButton<T>> with Wi
       ));
     }
 
-    final EdgeInsetsGeometry padding = ButtonTheme.of(context).alignedDropdown
-        ? _kAlignedButtonPadding
-        : _kUnalignedButtonPadding;
+    final EdgeInsetsGeometry padding =
+    ButtonTheme
+        .of(context)
+        .alignedDropdown ? _kAlignedButtonPadding : _kUnalignedButtonPadding;
 
     // If value is null (then _selectedIndex is null) or if disabled then we
     // display the hint or nothing at all.
@@ -601,7 +607,8 @@ class _FixedDropdownButtonState<T> extends State<FixedDropdownButton<T>> with Wi
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Expanded(child: innerItemsWidget),
-            Icon(Icons.arrow_drop_down,
+            Icon(
+              Icons.arrow_drop_down,
               size: widget.iconSize,
               color: _downArrowColor,
             ),
@@ -621,9 +628,7 @@ class _FixedDropdownButtonState<T> extends State<FixedDropdownButton<T>> with Wi
             bottom: bottom,
             child: Container(
               height: 1.0,
-              decoration: const BoxDecoration(
-                  border: Border(bottom: BorderSide(color: Color(0xFFBDBDBD), width: 0.0))
-              ),
+              decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xFFBDBDBD), width: 0.0))),
             ),
           ),
         ],
@@ -632,11 +637,7 @@ class _FixedDropdownButtonState<T> extends State<FixedDropdownButton<T>> with Wi
 
     return Semantics(
       button: true,
-      child: GestureDetector(
-          onTap: _enabled ? _handleTap : null,
-          behavior: HitTestBehavior.opaque,
-          child: result
-      ),
+      child: GestureDetector(onTap: _enabled ? _handleTap : null, behavior: HitTestBehavior.opaque, child: result),
     );
   }
 }

@@ -35,11 +35,14 @@ class ActivitiesListState extends State<ActivitiesList> {
               children: snapshot.data.map((a) {
                 return CommonWidgetsUtil.buildSimpleInfoCard(
                   leading: Image.asset(
-                    "assets/countries/${jsonManager.countries[random.nextInt(5)].fileName}/flag.png",
+                    "assets/countries/${a.country}/flag.png",
                     width: 40.0,
                   ),
                   title: a.name,
-                  subtitle: "Land\n${globals.dateFormat.format(a.when)}",
+                  subtitle:
+                  "${jsonManager.countries
+                      .firstWhere((c) => c.fileName == a.country)
+                      .translatedName}\n${globals.dateFormat.format(a.when)}",
                   dense: true,
                   divider: snapshot.data.indexOf(a) != snapshot.data.length - 1,
                   dividerIndent: 60.0,

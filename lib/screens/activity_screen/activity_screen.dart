@@ -7,6 +7,7 @@ import 'dart:convert';
 
 import 'package:erasmus_doc/managers/manager_context.dart';
 import 'package:erasmus_doc/models/activity.dart';
+import 'package:erasmus_doc/screens/activity_screen/widgets/select_country_dropdown.dart';
 import 'package:erasmus_doc/util/common_widgets_util.dart';
 import 'package:erasmus_doc/util/form_helper.dart';
 import 'package:erasmus_doc/widgets/custom_app_bar.dart';
@@ -43,7 +44,7 @@ class ActivityScreenState extends State<ActivityScreen> {
   @override
   void initState() {
     super.initState();
-    if (mode == Mode.create) activity = Activity("", DateTime.now(), "");
+    if (mode == Mode.create) activity = Activity("", DateTime.now(), "", "");
     if (mode == Mode.view) page = 1;
 
     _focusNode = FocusNode();
@@ -102,7 +103,19 @@ class ActivityScreenState extends State<ActivityScreen> {
                           context,
                           "Name",
                           FormHelper.buildTextField(
-                              focus: true, initialValue: activity.name, onSaved: (value) => activity.name = value),
+                            focus: mode == Mode.create ? true : false,
+                            initialValue: activity.name,
+                            onSaved: (value) => activity.name = value,
+                          ),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 6.0),
+                        ),
+                        CommonWidgetsUtil.buildStickyHeader(
+                          context,
+                          "Land",
+                          SelectCountryDropdownButton(
+                            jsonManager.countries.firstWhere((c) => c.fileName == activity.country, orElse: () => null),
+                                (value) => activity.country = value.fileName,
+                          ),
                           contentPadding: EdgeInsets.symmetric(horizontal: 6.0),
                         ),
                         DatePickerTile(

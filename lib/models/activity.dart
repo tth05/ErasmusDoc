@@ -11,7 +11,11 @@ part 'activity.g.dart';
 @JsonSerializable()
 class Activity {
   String name;
+
+  //Date of the activity
   DateTime when;
+
+  //Random file name based on timestamp to avoid duplicates
   @JsonKey(ignore: true)
   String _fileName;
 
@@ -19,19 +23,15 @@ class Activity {
 
   set fileName(String name) => _fileName = name;
 
-  //Project this belongs to
-//  final Project when;
-  //Json data written by the user encrypted in base64 to correctly load it as a string
+  //Country this activity was in
+  String country;
+
+  //Json data in notus format encrypted in base64 to correctly load it and save it
   String data;
 
-  Activity(this.name, this.when, this.data);
+  Activity(this.name, this.when, this.country, this.data);
 
   factory Activity.fromJson(Map<String, dynamic> json) => _$ActivityFromJson(json);
 
   Map<String, dynamic> toJson() => _$ActivityToJson(this);
-
-  @override
-  String toString() {
-    return "(name: '$name', when: '${when.toIso8601String()}', data: '$data')";
-  }
 }

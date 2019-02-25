@@ -68,12 +68,14 @@ class SchoolScreenState extends State<SchoolScreen> {
                     Column(
                       children: <Widget>[
                         CommonWidgetsUtil.buildSimpleInfoCard(
-                          title:
-                              "Projekttreffen in${country.fileName == "turkey" || country.fileName == "slovakia" ? " der " : " "}${country.translatedName}",
+                          title: "Projekttreffen",
+//                          subtitle: country.translatedName,
                           leading: Image.asset(
                             "assets/countries/${school.country}/flag.png",
                             width: 40,
                           ),
+                          divider: true,
+                          dividerIndent: 60.0,
                           onInfoPressed: () => CommonWidgetsUtil.openMarkdownModal(context, school.projectDescription),
                         ),
                         CommonWidgetsUtil.buildSimpleInfoCard(

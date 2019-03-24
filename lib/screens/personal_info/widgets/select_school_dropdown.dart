@@ -84,15 +84,14 @@ class _DropdownMenuPainter extends CustomPainter {
     this.elevation,
     this.selectedIndex,
     this.resize,
-  })
-      : _painter = BoxDecoration(
-    // If you add an image here, you must provide a real
-    // configuration in the paint() function and you must provide some sort
-    // of onChanged callback here.
-      color: color,
-      borderRadius: BorderRadius.circular(2.0),
-      boxShadow: kElevationToShadow[elevation])
-      .createBoxPainter(),
+  })  : _painter = BoxDecoration(
+                // If you add an image here, you must provide a real
+                // configuration in the paint() function and you must provide some sort
+                // of onChanged callback here.
+                color: color,
+                borderRadius: BorderRadius.circular(2.0),
+                boxShadow: kElevationToShadow[elevation])
+            .createBoxPainter(),
         super(repaint: resize);
 
   final Color color;
@@ -199,9 +198,9 @@ class _DropdownMenuState<T> extends State<_DropdownMenu<T>> {
             child: route.items[itemIndex],
           ),
           onTap: () => Navigator.pop(
-            context,
-            _DropdownRouteResult<T>(route.items[itemIndex].value),
-          ),
+                context,
+                _DropdownRouteResult<T>(route.items[itemIndex].value),
+              ),
         ),
       ));
     }
@@ -378,7 +377,7 @@ class _DropdownRoute<T> extends PopupRoute<_DropdownRouteResult<T>> {
 
     if (scrollController == null) {
       final double scrollOffset =
-      preferredMenuHeight > maxMenuHeight ? math.max(0.0, selectedItemOffset - (buttonTop - menuTop)) : 0.0;
+          preferredMenuHeight > maxMenuHeight ? math.max(0.0, selectedItemOffset - (buttonTop - menuTop)) : 0.0;
       scrollController = ScrollController(initialScrollOffset: scrollOffset);
     }
 
@@ -430,12 +429,9 @@ class FixedDropdownButton<T> extends StatefulWidget {
     this.iconSize = 24.0,
     this.isDense = false,
     this.isExpanded = false,
-  })
-      : assert(items == null ||
-      value == null ||
-      items
-          .where((DropdownMenuItem<T> item) => item.value == value)
-          .length == 1),
+  })  : assert(items == null ||
+            value == null ||
+            items.where((DropdownMenuItem<T> item) => item.value == value).length == 1),
         super(key: key);
 
   final List<DropdownMenuItem<T>> items;
@@ -519,9 +515,7 @@ class _FixedDropdownButtonState<T> extends State<FixedDropdownButton<T>> with Wi
     final Rect itemRect = itemBox.localToGlobal(Offset.zero) & itemBox.size;
     final TextDirection textDirection = Directionality.of(context);
     final EdgeInsetsGeometry menuMargin =
-    ButtonTheme
-        .of(context)
-        .alignedDropdown ? _kAlignedMenuMargin : _kUnalignedMenuMargin;
+        ButtonTheme.of(context).alignedDropdown ? _kAlignedMenuMargin : _kUnalignedMenuMargin;
 
     assert(_dropdownRoute == null);
     _dropdownRoute = _DropdownRoute<T>(
@@ -573,7 +567,7 @@ class _FixedDropdownButtonState<T> extends State<FixedDropdownButton<T>> with Wi
     int hintIndex;
     if (widget.hint != null || (!_enabled && widget.disabledHint != null)) {
       final Widget emplacedHint =
-      _enabled ? widget.hint : DropdownMenuItem<Widget>(child: widget.disabledHint ?? widget.hint);
+          _enabled ? widget.hint : DropdownMenuItem<Widget>(child: widget.disabledHint ?? widget.hint);
       hintIndex = items.length;
       items.add(DefaultTextStyle(
         style: _textStyle.copyWith(color: Theme.of(context).hintColor),
@@ -585,9 +579,7 @@ class _FixedDropdownButtonState<T> extends State<FixedDropdownButton<T>> with Wi
     }
 
     final EdgeInsetsGeometry padding =
-    ButtonTheme
-        .of(context)
-        .alignedDropdown ? _kAlignedButtonPadding : _kUnalignedButtonPadding;
+        ButtonTheme.of(context).alignedDropdown ? _kAlignedButtonPadding : _kUnalignedButtonPadding;
 
     // If value is null (then _selectedIndex is null) or if disabled then we
     // display the hint or nothing at all.

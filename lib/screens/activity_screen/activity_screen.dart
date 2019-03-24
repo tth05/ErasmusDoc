@@ -114,7 +114,7 @@ class ActivityScreenState extends State<ActivityScreen> {
                           "Land",
                           SelectCountryDropdownButton(
                             jsonManager.countries.firstWhere((c) => c.fileName == activity.country, orElse: () => null),
-                                (value) => activity.country = value.fileName,
+                            (value) => activity.country = value.fileName,
                           ),
                           contentPadding: EdgeInsets.symmetric(horizontal: 6.0),
                         ),

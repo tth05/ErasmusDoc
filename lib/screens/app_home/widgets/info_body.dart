@@ -22,6 +22,8 @@ class InfoBody extends StatelessWidget {
                   children: <Widget>[
                     CommonWidgetsUtil.buildSimpleInfoCard(
                       title: "Kurzinfo",
+                      divider: true,
+                      dividerIndent: 60.0,
                       leading: Image.asset(
                         "assets/images/erasmus_logo.png",
                         width: 40.0,

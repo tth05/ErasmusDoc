@@ -3,8 +3,6 @@
     This project is licensed under the terms of the GNU General Public License v3.0, see LICENSE.txt
 */
 
-import 'dart:math';
-
 import 'package:erasmus_doc/globals.dart' as globals;
 import 'package:erasmus_doc/managers/manager_context.dart';
 import 'package:erasmus_doc/models/activity.dart';
@@ -22,7 +20,6 @@ class ActivitiesListState extends State<ActivitiesList> {
   Widget build(BuildContext context) {
     final jsonManager = ManagerContext.of(context).jsonManager;
     final theme = Theme.of(context);
-    final random = Random();
 
     return CommonWidgetsUtil.buildStickyHeader(
       context,
